@@ -1,0 +1,218 @@
+﻿<UserControl 
+    x:Class="LibrabyManagement.UserControls.BookStore"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:LibrabyManagement.UserControls"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid
+        Background="White">
+        <Grid.Resources>
+            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="40"/>
+            </Style>
+
+
+
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition  Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Button Thêm Sưả Xóa-->
+
+
+
+        <materialDesign:Card 
+            Grid.Column="0" 
+            Margin="10" 
+            UniformCornerRadius="10" 
+            HorizontalAlignment="Stretch">
+            <StackPanel>
+                <Button 
+                    HorizontalAlignment="Left" 
+                    Command="{Binding AddConmmand}" 
+                    Content="Thêm" 
+                    Margin="10 5 10 5" 
+                    Width="100"/>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding StudentList}"  
+                          SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                                <GridViewColumn Header="Tên nhà sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                                <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding BirthDay}" Width="auto"/>
+                                <GridViewColumn Header="Ngày hợp tác" DisplayMemberBinding="{Binding Class.Name}" Width="auto"/>
+                                <GridViewColumn Header="Số lượng sách đã nhập" DisplayMemberBinding="{Binding StartDate}" Width="auto"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card 
+            Grid.Column="1" 
+            UniformCornerRadius="10" 
+            Margin="10" 
+            HorizontalAlignment="Stretch">
+            <Grid>
+
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="Không có thông tin" >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding InfoStudent}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <StackPanel
+                    x:Name="infoStudent"
+                    Orientation="Vertical"
+                    Margin="10" >
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+
+                    </StackPanel.Resources>
+                    <Image 
+                        Width="100" 
+                        Height="100"
+                        Source="Images/student.png"/>
+
+                    <TextBox
+                        IsEnabled="False"
+                        Margin="0 5 0 5"
+                        Text="{Binding student.Id}"
+                        materialDesign:HintAssist.Hint="MSSV"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center" />
+
+                    <TextBox
+                        Margin="0 5 0 5"
+                        Text="{Binding student.Name}"
+                        materialDesign:HintAssist.Hint="Họ Và Tên"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center" />
+
+                    <DatePicker
+                        Margin="0 5 0 5"
+                        SelectedDate="{Binding student.BirthDay}"
+                        materialDesign:HintAssist.Hint="Ngày Sinh"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <ComboBox
+                        Name="classList"
+                        ItemsSource="{Binding ClassList}"
+                        Margin="0 5 0 5"
+                        materialDesign:HintAssist.Hint="Lớp"
+                        SelectedValue="{Binding student.Class, Mode=TwoWay}" Height="37">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <DatePicker
+                        Margin="0 5 0 5"
+                        SelectedDate="{Binding student.StartDate}"
+                        materialDesign:HintAssist.Hint="Ngày Nhập Học"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="auto"
+                            Text="Điểm Trung Bình: "/>
+                        <TextBlock
+                            Width="auto"
+                            Text="{Binding student.GPA}"/>
+                    </StackPanel>
+                    <Button
+                        Width="auto"
+                        Background="AliceBlue"
+                        Foreground="Black"
+                        Height="30"
+                        Content="Chi Tiết Học Phần"
+                        Command="{Binding SubjectConmmand}"
+                        Margin="5" BorderBrush="#7F0D0915">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Grid Margin="0 15 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Column="0"
+                            ToolTip="Lưu"
+                            Command="{Binding EditConmmand}"
+                            CommandParameter="{Binding ElementName=classList}"
+                            HorizontalAlignment="Center">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                    <Setter Property="Width" Value="100"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="Content" Value="Lưu"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Content" Value="Thêm"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button 
+                            Grid.Column="1"
+                            Content="Xóa"
+                            ToolTip="Xóa"
+                            HorizontalAlignment="Center"/>
+                    </Grid>
+
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding InfoStudent}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                </StackPanel>
+            </Grid>
+
+        </materialDesign:Card>
+    </Grid>
+
+</UserControl>

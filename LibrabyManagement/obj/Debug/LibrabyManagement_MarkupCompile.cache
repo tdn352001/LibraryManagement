@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\App.xaml
-41374923658
+11-862277196
 
-10-504269694
+14-1122331383
 17-338367948
-LoginWindow.xaml;MainWindow.xaml;ResourceXaml\Colors.xaml;ResourceXaml\ViewModelResource.xaml;
+CustomControls\MenuButton.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;ResourceXaml\Icons.xaml;ResourceXaml\TextStyle.xaml;UserControls\BookStore.xaml;CustomControls\MainUserControl.xaml;ResourceXaml\ViewModelResource.xaml;
 
-False
+True
 
