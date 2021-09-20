@@ -2,4 +2,5 @@
                      xmlns:viewmodel="clr-namespace:LibrabyManagement.ViewModel"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
+    <viewmodel:MainViewModel x:Key="MainViewModel"/>
 </ResourceDictionary>

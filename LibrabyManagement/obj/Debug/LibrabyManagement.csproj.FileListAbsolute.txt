@@ -29,3 +29,6 @@ C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LibrabyManagement.pdb
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\ViewModelResource.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\ButtonStyle.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\ButtonTemplate.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControl\TopBarControl.g.cs

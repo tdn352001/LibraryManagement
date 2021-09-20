@@ -8,5 +8,6 @@ namespace LibrabyManagement.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        public MainViewModel() { }
     }
 }
