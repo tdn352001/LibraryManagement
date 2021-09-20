@@ -4,9 +4,157 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibrabyManagement"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:uc="clr-namespace:LibraryManagement.UserControls"
+        WindowStartupLocation="CenterScreen"
+        Name="mainWindow"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        DataContext="{StaticResource MainViewModel}"
+        Title="Library Management" 
+        Height="640" 
+        Width="1024"
+        mc:Ignorable="d">
     <Grid>
-        
+
+        <!--Resource-->
+        <Grid.Resources>
+            <!--Button-->
+            <Style TargetType="Button">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Height" Value="80"/>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="Background" Value="BlueViolet"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="LightCoral"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding Content}" Value="True">
+                        <Setter Property="Foreground" Value="LightCoral"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+        </Grid.Resources>
+
+        <!--Hai hàng-->
+        <Grid.RowDefinitions>
+            <!--Hàng 1: Thanh Control-->
+            <RowDefinition Height="auto"/>
+            <!--Hàng 2: Nội dung chính-->
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <!--Hàng 1: Thanh Control-->
+        <Grid Grid.Row="0">
+            <uc:MainUserControl Tag="{Binding Title, ElementName=mainWindow}"/>
+        </Grid>
+
+        <!--Hàng 2: Nội dung chính-->
+        <Grid Grid.Row="1">
+
+            <!--Hai cột-->
+            <Grid.ColumnDefinitions>
+                <!--Cột 1: Side Bar-->
+                <ColumnDefinition Width="120"/>
+                <!--Cột 2: Nội dung hiển thị tương ứng-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Cột 1: Side Bar-->
+            <StackPanel 
+                Grid.Column="0"
+                Background="{StaticResource ToolBarColor}">
+
+                <Button 
+                    Margin="0 40 0 0"
+                    ToolTip="Home"
+                    DataContext="Home"
+                    BorderThickness="0"
+                    Background="{StaticResource ToolBarColor}"
+                    VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0 0 0 3">
+                            <materialDesign:PackIcon 
+                                HorizontalAlignment="Center"
+                                Kind="Home"
+                                Margin="3 0 10 0"
+                                Width="40"
+                                Height="40"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <TextBlock 
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                                Text="Home"
+                                FontSize="16"/>
+                        </Grid>
+                    </Grid>
+                </Button>
+
+                <Button 
+                    ToolTip="BookStore"
+                    DataContext="BookStore"
+                    Template="{StaticResource VerticalIconButton}">
+                    <Button.Tag>
+                        <materialDesign:PackIconKind>Library</materialDesign:PackIconKind>
+                    </Button.Tag>
+                </Button>
+                <Button 
+                    ToolTip="Book"
+                    DataContext="Book"
+                    Template="{StaticResource VerticalIconButton}">
+                    <Button.Tag>
+                        <materialDesign:PackIconKind>BookOpenBlankVariant</materialDesign:PackIconKind>
+                    </Button.Tag>
+                </Button>
+                <Button 
+                    ToolTip="Fee"
+                    DataContext="Fee"
+                    Template="{StaticResource VerticalIconButton}">
+                    <Button.Tag>
+                        <materialDesign:PackIconKind>CurrencyUsd</materialDesign:PackIconKind>
+                    </Button.Tag>
+                </Button>
+                <Button 
+                    ToolTip="Reader"
+                    DataContext="Reader"
+                    Template="{StaticResource VerticalIconButton}">
+                    <Button.Tag>
+                        <materialDesign:PackIconKind>Account</materialDesign:PackIconKind>
+                    </Button.Tag>
+                </Button>
+                <Button 
+                    ToolTip="Exit"
+                    DataContext="Exit"
+                    Template="{StaticResource VerticalIconButton}">
+                    <Button.Tag>
+                        <materialDesign:PackIconKind>ExitToApp</materialDesign:PackIconKind>
+                    </Button.Tag>
+                </Button>
+            </StackPanel>
+
+
+
+            <!--Cột 2: Nội dung hiển thị tương ứng-->
+            <Grid 
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Grid.Column="1">
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
+
