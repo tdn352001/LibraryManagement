@@ -32,6 +32,7 @@ C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LibraryManagement.csproj.GenerateResource.cache
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LibraryManagement.csproj.CoreCompileInputs.cache
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LibraryManagement.csproj.CopyComplete
+<<<<<<< HEAD
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LibraryManagement.csproj.AssemblyReference.cache
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\BookStore.g.cs
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\BookStore.baml
@@ -39,3 +40,5 @@ C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\TextStyle.baml
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\CustomControls\MenuButton.g.cs
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\CustomControls\MainUserControl.g.cs
+=======
+>>>>>>> 519272f277e0e78c89ed807c5fff7004f1cd8322
