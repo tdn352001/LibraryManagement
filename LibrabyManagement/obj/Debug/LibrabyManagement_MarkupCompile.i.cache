@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\
+C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\obj\Debug\
 LibrabyManagement
 none
 false
 DEBUG;TRACE
-C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\App.xaml
-7-1992492334
+C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\App.xaml
+8896257667
 
-13-420292563
-17-338367948
-LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;UserControls\MainUserControl.xaml;ResourceXaml\ViewModelResource.xaml;
+1444214275
+17994753532
+LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;UserControls\MainUserControl.xaml;ResourceXaml\ViewModelResource.xaml;UserControls\ReaderControl.xaml;
 
-False
+True
 
