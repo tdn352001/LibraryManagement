@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cc="clr-namespace:LibraryManagement.CustomControl"
+        xmlns:uc="clr-namespace:LibrabyManagement.UserControls"
         Name="mainWindow"
         Background="Transparent" 
         AllowsTransparency="True" 
@@ -21,7 +22,7 @@
 
     <Border
         CornerRadius="20"
-        Background="#EFF2F8">
+        Background="{StaticResource BackGround}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -48,6 +49,7 @@
                     <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                
                 <Border
                     Grid.Column="0"
                     CornerRadius="0 0 0 20"
@@ -77,32 +79,34 @@
                         FontFamily="Arial Rounded MT Bold"/>
 
                         <Button
-                        Name="homeBtn"
-                        Style="{StaticResource MenuButtonStyle}">
+                            Name="homeBtn"
+                            Command="{Binding HomeCommand}"
+                            Style="{StaticResource MenuButtonStyle}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                                Data="{StaticResource Home}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=homeBtn}" 
-                                Width="{Binding FontSize, ElementName=homeBtn}" 
-                                Fill="{Binding Foreground, ElementName=homeBtn}"/>
+                                    Data="{StaticResource Home}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=homeBtn}" 
+                                    Width="{Binding FontSize, ElementName=homeBtn}" 
+                                    Fill="{Binding Foreground, ElementName=homeBtn}"/>
 
                                 <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Home"
-                                Foreground="{Binding Foreground, ElementName=homeBtn}"
-                                TextDecorations="{Binding Tag, ElementName=homeBtn}"
-                                FontSize="{Binding FontSize, ElementName=homeBtn}"
-                                Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Home"
+                                    Foreground="{Binding Foreground, ElementName=homeBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=homeBtn}"
+                                    FontSize="{Binding FontSize, ElementName=homeBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
                             Name="storeBtn"
+                            Command="{Binding StoreCommand}"
                             Style="{StaticResource MenuButtonStyle}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -127,82 +131,103 @@
                         </Button>
 
                         <Button
-                        Name="bookBtn"
-                        Style="{StaticResource MenuButtonStyle}">
+                            Name="bookBtn"
+                            Command="{Binding BookCommand}"
+                            Style="{StaticResource MenuButtonStyle}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                                Data="{StaticResource Book}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=bookBtn}" 
-                                Width="{Binding FontSize, ElementName=bookBtn}" 
-                                Fill="{Binding Foreground, ElementName=bookBtn}"/>
+                                    Data="{StaticResource Book}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=bookBtn}" 
+                                    Width="{Binding FontSize, ElementName=bookBtn}" 
+                                    Fill="{Binding Foreground, ElementName=bookBtn}"/>
 
                                 <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Book"
-                                Foreground="{Binding Foreground, ElementName=bookBtn}"
-                                TextDecorations="{Binding Tag, ElementName=bookBtn}"
-                                FontSize="{Binding FontSize, ElementName=bookBtn}"
-                                Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Book"
+                                    Foreground="{Binding Foreground, ElementName=bookBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=bookBtn}"
+                                    FontSize="{Binding FontSize, ElementName=bookBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
-                        Name="userBtn"
-                        Style="{StaticResource MenuButtonStyle}">
+                            Name="userBtn"
+                            Command="{Binding ReaderCommand}"
+                            Style="{StaticResource MenuButtonStyle}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                                Data="{StaticResource User}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=userBtn}" 
-                                Width="{Binding FontSize, ElementName=userBtn}" 
-                                Fill="{Binding Foreground, ElementName=userBtn}"/>
+                                    Data="{StaticResource User}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=userBtn}" 
+                                    Width="{Binding FontSize, ElementName=userBtn}" 
+                                    Fill="{Binding Foreground, ElementName=userBtn}"/>
 
                                 <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Reader"
-                                Foreground="{Binding Foreground, ElementName=userBtn}"
-                                TextDecorations="{Binding Tag, ElementName=userBtn}"
-                                FontSize="{Binding FontSize, ElementName=userBtn}"
-                                Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Reader"
+                                    Foreground="{Binding Foreground, ElementName=userBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=userBtn}"
+                                    FontSize="{Binding FontSize, ElementName=userBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
-                        Name="feeBtn"
-                        Style="{StaticResource MenuButtonStyle}">
+                            Name="feeBtn"
+                            Command="{Binding FeeCommand}"
+                            Style="{StaticResource MenuButtonStyle}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                                Data="{StaticResource Fee}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=feeBtn}" 
-                                Width="{Binding FontSize, ElementName=feeBtn}" 
-                                Fill="{Binding Foreground, ElementName=feeBtn}"/>
+                                    Data="{StaticResource Fee}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=feeBtn}" 
+                                    Width="{Binding FontSize, ElementName=feeBtn}" 
+                                    Fill="{Binding Foreground, ElementName=feeBtn}"/>
 
                                 <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Fee"
-                                Foreground="{Binding Foreground, ElementName=feeBtn}"
-                                TextDecorations="{Binding Tag, ElementName=feeBtn}"
-                                FontSize="{Binding FontSize, ElementName=feeBtn}"
-                                Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Fee"
+                                    Foreground="{Binding Foreground, ElementName=feeBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=feeBtn}"
+                                    FontSize="{Binding FontSize, ElementName=feeBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
                     </StackPanel>
 
                 </Border>
+
+                <Grid Grid.Column="1">
+                    <uc:ReaderControl
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+                        
+                        <uc:ReaderControl.Style>
+                            <Style TargetType="uc:ReaderControl">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Screen}" Value="4">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </uc:ReaderControl.Style>
+                    </uc:ReaderControl>
+                </Grid>
             </Grid>
         </Grid> 
     </Border>
