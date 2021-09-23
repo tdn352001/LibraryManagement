@@ -14,6 +14,8 @@
                 <ResourceDictionary Source="ResourceXaml/ViewModelResource.xaml"/>
                 <ResourceDictionary Source="ResourceXaml/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="ResourceXaml/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="ResourceXaml/TextStyle.xaml"/>
+                <ResourceDictionary Source="ResourceXaml/Icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

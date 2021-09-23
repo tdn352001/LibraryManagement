@@ -12,8 +12,6 @@ C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\App.baml
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\LoginWindow.baml
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\MainWindow.baml
-C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\MainUserControl.g.cs
-C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\MainUserControl.baml
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\bin\Debug\LibrabyManagement.exe.config
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\bin\Debug\LibrabyManagement.exe
 C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\bin\Debug\LibrabyManagement.pdb
@@ -69,3 +67,9 @@ C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\obj\Debug\LibrabyMana
 C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\obj\Debug\LibrabyManagement.pdb
 C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\obj\Debug\UserControls\ReaderControl.g.cs
 C:\Users\vodon\Desktop\LibraryManagement\LibrabyManagement\obj\Debug\UserControls\ReaderControl.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\CustomControl\MainUserControl.g.cs
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\ReaderControl.g.cs
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\Icons.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\ResourceXaml\TextStyle.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\CustomControl\MainUserControl.baml
+C:\Users\NguyenTienDung\CodeSpace\Desktop\C#\LibrabyManagement\LibrabyManagement\obj\Debug\UserControls\ReaderControl.baml

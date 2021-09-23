@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryManagement.UserControls
+namespace LibraryManagement.CustomControl
 {
     /// <summary>
     /// Interaction logic for MainUserControl.xaml

@@ -6,155 +6,205 @@
         xmlns:local="clr-namespace:LibrabyManagement"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:uc="clr-namespace:LibraryManagement.UserControls"
-        WindowStartupLocation="CenterScreen"
+        xmlns:cc="clr-namespace:LibraryManagement.CustomControl"
         Name="mainWindow"
+        Background="Transparent" 
+        AllowsTransparency="True" 
         WindowStyle="None" 
         ResizeMode="NoResize"
         DataContext="{StaticResource MainViewModel}"
+        WindowStartupLocation="CenterScreen"
         Title="Library Management" 
         Height="640" 
         Width="1024"
         mc:Ignorable="d">
-    <Grid>
 
-        <!--Resource-->
-        <Grid.Resources>
-            <!--Button-->
-            <Style TargetType="Button">
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Height" Value="80"/>
-                <Setter Property="Width" Value="120"/>
-                <Setter Property="Background" Value="BlueViolet"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="LightCoral"/>
-                    </Trigger>
-                    <Trigger Property="IsMouseOver" Value="False">
-                        <Setter Property="Foreground" Value="White"/>
-                    </Trigger>
-                    <DataTrigger Binding="{Binding Content}" Value="True">
-                        <Setter Property="Foreground" Value="LightCoral"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
+    <Border
+        CornerRadius="20"
+        Background="#EFF2F8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        </Grid.Resources>
+            <Border
+                CornerRadius="20 0 0 0"
+                HorizontalAlignment="Left"
+                Width="180"
+                Grid.Row="0"
+                Background="White"/>
+            
+            <cc:MainUserControl
+                Grid.Row="0"
+                Background="Transparent"
+                HorizontalAlignment="Stretch"/>
+            
 
-        <!--Hai hàng-->
-        <Grid.RowDefinitions>
-            <!--Hàng 1: Thanh Control-->
-            <RowDefinition Height="auto"/>
-            <!--Hàng 2: Nội dung chính-->
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-
-        <!--Hàng 1: Thanh Control-->
-        <Grid Grid.Row="0">
-            <uc:MainUserControl Tag="{Binding Title, ElementName=mainWindow}"/>
-        </Grid>
-
-        <!--Hàng 2: Nội dung chính-->
-        <Grid Grid.Row="1">
-
-            <!--Hai cột-->
-            <Grid.ColumnDefinitions>
-                <!--Cột 1: Side Bar-->
-                <ColumnDefinition Width="120"/>
-                <!--Cột 2: Nội dung hiển thị tương ứng-->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!--Cột 1: Side Bar-->
-            <StackPanel 
-                Grid.Column="0"
-                Background="{StaticResource ToolBarColor}">
-
-                <Button 
-                    Margin="0 40 0 0"
-                    ToolTip="Home"
-                    DataContext="Home"
-                    BorderThickness="0"
-                    Background="{StaticResource ToolBarColor}"
-                    VerticalAlignment="Center">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0" Margin="0 0 0 3">
-                            <materialDesign:PackIcon 
-                                HorizontalAlignment="Center"
-                                Kind="Home"
-                                Margin="3 0 10 0"
-                                Width="40"
-                                Height="40"/>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <TextBlock 
-                                HorizontalAlignment="Center"
-                                TextAlignment="Center"
-                                Text="Home"
-                                FontSize="16"/>
-                        </Grid>
-                    </Grid>
-                </Button>
-
-                <Button 
-                    ToolTip="BookStore"
-                    DataContext="BookStore"
-                    Template="{StaticResource VerticalIconButton}">
-                    <Button.Tag>
-                        <materialDesign:PackIconKind>Library</materialDesign:PackIconKind>
-                    </Button.Tag>
-                </Button>
-                <Button 
-                    ToolTip="Book"
-                    DataContext="Book"
-                    Template="{StaticResource VerticalIconButton}">
-                    <Button.Tag>
-                        <materialDesign:PackIconKind>BookOpenBlankVariant</materialDesign:PackIconKind>
-                    </Button.Tag>
-                </Button>
-                <Button 
-                    ToolTip="Fee"
-                    DataContext="Fee"
-                    Template="{StaticResource VerticalIconButton}">
-                    <Button.Tag>
-                        <materialDesign:PackIconKind>CurrencyUsd</materialDesign:PackIconKind>
-                    </Button.Tag>
-                </Button>
-                <Button 
-                    ToolTip="Reader"
-                    DataContext="Reader"
-                    Template="{StaticResource VerticalIconButton}">
-                    <Button.Tag>
-                        <materialDesign:PackIconKind>Account</materialDesign:PackIconKind>
-                    </Button.Tag>
-                </Button>
-                <Button 
-                    ToolTip="Exit"
-                    DataContext="Exit"
-                    Template="{StaticResource VerticalIconButton}">
-                    <Button.Tag>
-                        <materialDesign:PackIconKind>ExitToApp</materialDesign:PackIconKind>
-                    </Button.Tag>
-                </Button>
-            </StackPanel>
-
-
-
-            <!--Cột 2: Nội dung hiển thị tương ứng-->
             <Grid 
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Grid.Column="1">
+                Grid.Row="1">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.Column="0"
+                    CornerRadius="0 0 0 20"
+                    HorizontalAlignment="Stretch"
+                    Background="White">
+                    <StackPanel
+                        Margin="5 0 5 20"
+                        Orientation="Vertical"
+                        Background="Transparent"
+                        HorizontalAlignment="Stretch">
+
+                        <TextBlock 
+                        Text="Library"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        FontSize="21" 
+                        FontFamily="Arial Rounded MT Bold"/>
+
+                        <TextBlock 
+                        Margin="0 0 0 20"
+                        Text="Management"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        FontSize="21" 
+                        FontFamily="Arial Rounded MT Bold"/>
+
+                        <Button
+                        Name="homeBtn"
+                        Style="{StaticResource MenuButtonStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                Data="{StaticResource Home}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=homeBtn}" 
+                                Width="{Binding FontSize, ElementName=homeBtn}" 
+                                Fill="{Binding Foreground, ElementName=homeBtn}"/>
+
+                                <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Home"
+                                Foreground="{Binding Foreground, ElementName=homeBtn}"
+                                TextDecorations="{Binding Tag, ElementName=homeBtn}"
+                                FontSize="{Binding FontSize, ElementName=homeBtn}"
+                                Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                            Name="storeBtn"
+                            Style="{StaticResource MenuButtonStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource BookStore}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=storeBtn}" 
+                                    Width="{Binding FontSize, ElementName=storeBtn}" 
+                                    Fill="{Binding Foreground, ElementName=storeBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Store"
+                                    Foreground="{Binding Foreground, ElementName=storeBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=storeBtn}"
+                                    FontSize="{Binding FontSize, ElementName=storeBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                        Name="bookBtn"
+                        Style="{StaticResource MenuButtonStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                Data="{StaticResource Book}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=bookBtn}" 
+                                Width="{Binding FontSize, ElementName=bookBtn}" 
+                                Fill="{Binding Foreground, ElementName=bookBtn}"/>
+
+                                <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Book"
+                                Foreground="{Binding Foreground, ElementName=bookBtn}"
+                                TextDecorations="{Binding Tag, ElementName=bookBtn}"
+                                FontSize="{Binding FontSize, ElementName=bookBtn}"
+                                Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                        Name="userBtn"
+                        Style="{StaticResource MenuButtonStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                Data="{StaticResource User}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=userBtn}" 
+                                Width="{Binding FontSize, ElementName=userBtn}" 
+                                Fill="{Binding Foreground, ElementName=userBtn}"/>
+
+                                <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Reader"
+                                Foreground="{Binding Foreground, ElementName=userBtn}"
+                                TextDecorations="{Binding Tag, ElementName=userBtn}"
+                                FontSize="{Binding FontSize, ElementName=userBtn}"
+                                Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                        Name="feeBtn"
+                        Style="{StaticResource MenuButtonStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                Data="{StaticResource Fee}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=feeBtn}" 
+                                Width="{Binding FontSize, ElementName=feeBtn}" 
+                                Fill="{Binding Foreground, ElementName=feeBtn}"/>
+
+                                <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Fee"
+                                Foreground="{Binding Foreground, ElementName=feeBtn}"
+                                TextDecorations="{Binding Tag, ElementName=feeBtn}"
+                                FontSize="{Binding FontSize, ElementName=feeBtn}"
+                                Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+
+                </Border>
             </Grid>
-        </Grid>
-    </Grid>
+        </Grid> 
+    </Border>
 </Window>
 

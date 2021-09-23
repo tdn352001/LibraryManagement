@@ -1,4 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="ToolBarColor" Color="#202020"/>
+    <SolidColorBrush x:Key="PrimaryColor" Color="#515EC1"/>
+    <SolidColorBrush x:Key="Shadow" Color="#f1f1f1"/>
 </ResourceDictionary>

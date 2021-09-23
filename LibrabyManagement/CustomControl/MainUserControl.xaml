@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="LibraryManagement.UserControls.MainUserControl"
+﻿<UserControl x:Class="LibraryManagement.CustomControl.MainUserControl"
+             xmlns:local="clr-namespace:LibraryManagement.CustomControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LibraryManagement.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
@@ -18,7 +18,7 @@
 
     <Grid>
         <materialDesign:ColorZone
-            Background="WhiteSmoke"
+            Background="Transparent"
             Mode="SecondaryLight"
             Padding="5">
             <DockPanel>
