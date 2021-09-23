@@ -9,7 +9,7 @@ namespace LibrabyManagement.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private int _Screen = 1;
+        private int _Screen = 2;
         public int Screen
         {
             get => _Screen; set { _Screen = value; OnPropertyChanged(); }

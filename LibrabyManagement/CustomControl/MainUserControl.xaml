@@ -19,8 +19,7 @@
     <Grid>
         <materialDesign:ColorZone
             Background="Transparent"
-            Mode="SecondaryLight"
-            Padding="5">
+            Mode="SecondaryLight">
             <DockPanel>
                 <StackPanel 
                     DockPanel.Dock="Left" 

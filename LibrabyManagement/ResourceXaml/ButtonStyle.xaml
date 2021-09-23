@@ -72,4 +72,48 @@
         </Style.Triggers>
     </Style>
 
+    <DropShadowBitmapEffect x:Key="DropShadowButton" Softness="2" ShadowDepth="5" Color="LightGray" Direction="260"/>
+    <Style x:Key="PrimaryButton" TargetType="{x:Type Button}">
+        <Setter Property="BitmapEffect" Value="{StaticResource DropShadowButton}"/>
+        <Setter Property="Background" Value="#6D78CB"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="174"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SearchButton" TargetType="{x:Type Button}" BasedOn="{StaticResource PrimaryButton}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border 
+                        CornerRadius="18" 
+                        Background="{TemplateBinding Background}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <Path 
+                            Data="{DynamicResource Search}" 
+                            Fill="White" 
+                            Width="15" 
+                            Stretch="Uniform"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
