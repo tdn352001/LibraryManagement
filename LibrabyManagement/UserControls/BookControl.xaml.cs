@@ -10,22 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LibrabyManagement.UserControls
 {
     /// <summary>
-    /// Interaction logic for ReaderControl.xaml
+    /// Interaction logic for BookControl.xaml
     /// </summary>
-    public partial class ReaderControl : UserControl
+    public partial class BookControl : Window
     {
-        public ReaderControl()
+        public BookControl()
         {
             InitializeComponent();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

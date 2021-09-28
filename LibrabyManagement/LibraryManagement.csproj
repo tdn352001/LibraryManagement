@@ -73,6 +73,9 @@
     <Compile Include="CustomControl\MainUserControl.xaml.cs">
       <DependentUpon>MainUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\BookControl.xaml.cs">
+      <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReaderControl.xaml.cs">
       <DependentUpon>ReaderControl.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceXaml\ViewModelResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BookControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

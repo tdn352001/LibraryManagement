@@ -64,7 +64,7 @@
                     VerticalAlignment="Stretch">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ListView ItemsSource="{Binding ReaderList}"  
-                          SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                          SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" SelectionChanged="ListView_SelectionChanged">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="Mã độc giả" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
