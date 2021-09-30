@@ -1,301 +1,55 @@
-﻿ <Window x:Class="LibrabyManagement.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LibrabyManagement"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:cc="clr-namespace:LibraryManagement.CustomControl"
-        xmlns:uc="clr-namespace:LibrabyManagement.UserControls"
-        Name="mainWindow"
-        Background="Transparent" 
-        AllowsTransparency="True" 
-        WindowStyle="None" 
-        ResizeMode="NoResize"
-        DataContext="{StaticResource MainViewModel}"
-        WindowStartupLocation="CenterScreen"
-        Title="Library Management" 
-        Height="680" 
-        Width="1240"
-        mc:Ignorable="d">
+<Window 
+    x:Class="LibrabyManagement.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LibrabyManagement"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:cc="clr-namespace:LibraryManagement.CustomControls"
+    WindowStartupLocation="CenterScreen"
+    Name="mainWindow"
+    WindowStyle="None" 
+    ResizeMode="NoResize"
+    DataContext="{StaticResource MainViewModel}"
+    Title="Library Management" 
+    Height="640" 
+    Width="1024"
+    mc:Ignorable="d">
 
-    <Border
-        CornerRadius="20"
-        Background="{StaticResource Background}">
+    <Border CornerRadius="20" Background="White">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Border
-                CornerRadius="20 0 0 0"
-                HorizontalAlignment="Left"
-                Width="180"
-                Grid.Row="0"
-                Background="White"/>
-            
-            <cc:MainUserControl
-                Grid.Row="0"
-                Background="Transparent"
-                HorizontalAlignment="Stretch"/>
-            
+            <StackPanel 
+                Grid.Column="0"
+                Orientation="Vertical" 
+                HorizontalAlignment="Center"
+                Margin="0,60,0,0">
+                <TextBlock 
+                    Text="Library"
+                    LineHeight="25"
+                    Height="auto"
+                    HorizontalAlignment="Center"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="21" 
+                    FontFamily="Arial Rounded MT Bold"/>
+                <TextBlock 
+                    Text="Management"
+                    LineHeight="25"
+                    Height="auto"
+                    HorizontalAlignment="Center"
+                    Foreground="{StaticResource TextColor}"
+                    FontSize="21" 
+                    FontFamily="Arial Rounded MT Bold"/>
 
-            <Grid 
-                Grid.Row="1">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="180"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Border
-                    Grid.Column="0"
-                    CornerRadius="0 0 0 20"
-                    HorizontalAlignment="Stretch"
-                    Background="White">
-                    <StackPanel
-                        Margin="5 0 5 20"
-                        Orientation="Vertical"
-                        Background="Transparent"
-                        HorizontalAlignment="Stretch">
-
-                        <TextBlock 
-                            Text="Library"
-                            Foreground="{StaticResource PrimaryColor}" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center" 
-                            FontSize="21" 
-                            FontFamily="Arial Rounded MT Bold"/>
-
-                        <TextBlock 
-                            Margin="0 0 0 20"
-                            Text="Management"
-                            Foreground="{StaticResource PrimaryColor}" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center" 
-                            FontSize="21" 
-                            FontFamily="Arial Rounded MT Bold"/>
-
-                        <Button
-                            Name="homeBtn"
-                            Command="{Binding HomeCommand}">
-                            
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Screen}" Value="1">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Home}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=homeBtn}" 
-                                    Width="{Binding FontSize, ElementName=homeBtn}" 
-                                    Fill="{Binding Foreground, ElementName=homeBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Home"
-                                    Foreground="{Binding Foreground, ElementName=homeBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=homeBtn}"
-                                    FontSize="{Binding FontSize, ElementName=homeBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-
-                        <Button
-                            Name="storeBtn"
-                            Command="{Binding StoreCommand}">
-                            
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Screen}" Value="2">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource BookStore}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=storeBtn}" 
-                                    Width="{Binding FontSize, ElementName=storeBtn}" 
-                                    Fill="{Binding Foreground, ElementName=storeBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Store"
-                                    Foreground="{Binding Foreground, ElementName=storeBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=storeBtn}"
-                                    FontSize="{Binding FontSize, ElementName=storeBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-
-                        <Button
-                            Name="bookBtn"
-                            Command="{Binding BookCommand}">
-                            
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Screen}" Value="3">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Book}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=bookBtn}" 
-                                    Width="{Binding FontSize, ElementName=bookBtn}" 
-                                    Fill="{Binding Foreground, ElementName=bookBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Book"
-                                    Foreground="{Binding Foreground, ElementName=bookBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=bookBtn}"
-                                    FontSize="{Binding FontSize, ElementName=bookBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-
-                        <Button
-                            Name="userBtn"
-                            Command="{Binding ReaderCommand}">
-
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Screen}" Value="4">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource User}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=userBtn}" 
-                                    Width="{Binding FontSize, ElementName=userBtn}" 
-                                    Fill="{Binding Foreground, ElementName=userBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Reader"
-                                    Foreground="{Binding Foreground, ElementName=userBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=userBtn}"
-                                    FontSize="{Binding FontSize, ElementName=userBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-
-                        <Button
-                            Name="feeBtn"
-                            Command="{Binding FeeCommand}">
-                            
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Screen}" Value="5">
-                                            <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Fee}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=feeBtn}" 
-                                    Width="{Binding FontSize, ElementName=feeBtn}" 
-                                    Fill="{Binding Foreground, ElementName=feeBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Fee"
-                                    Foreground="{Binding Foreground, ElementName=feeBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=feeBtn}"
-                                    FontSize="{Binding FontSize, ElementName=feeBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                    </StackPanel>
-
-                </Border>
-
-                <Grid 
-                    Margin="0 0 10 0"
-                    Grid.Column="1">
-
-                    <uc:StoreControl
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                        <uc:StoreControl.Style>
-                            <Style TargetType="uc:StoreControl">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Screen}" Value="2">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </uc:StoreControl.Style>
-                    </uc:StoreControl>
-                    
-                    <uc:ReaderControl
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                        <uc:ReaderControl.Style>
-                            <Style TargetType="uc:ReaderControl">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Screen}" Value="4">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </uc:ReaderControl.Style>
-                    </uc:ReaderControl>
-                </Grid>
-            </Grid>
-        </Grid> 
+            </StackPanel>
+        </Grid>
     </Border>
 </Window>
+
