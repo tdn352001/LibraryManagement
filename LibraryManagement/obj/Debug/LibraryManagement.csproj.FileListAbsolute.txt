@@ -26,6 +26,7 @@ C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Deb
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\BookControl.g.cs
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\ReaderControl.g.cs
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\StoreControl.g.cs
+C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\Windows\StoreWindow.g.cs
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\App.g.cs
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement_Content.g.cs
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -39,6 +40,7 @@ C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Deb
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\BookControl.baml
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\ReaderControl.baml
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\UserControls\StoreControl.baml
+C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\Windows\StoreWindow.baml
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.g.resources
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.Properties.Resources.resources
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csproj.GenerateResource.cache
@@ -46,3 +48,4 @@ C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Deb
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csproj.CopyComplete
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.exe
 C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.pdb
+C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csproj.AssemblyReference.cache

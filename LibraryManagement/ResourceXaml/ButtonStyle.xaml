@@ -116,4 +116,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ControlButonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignPaperSecondaryLightButton}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Padding" Value="20 8 20 8"/>
+        <Setter Property="Tag" Value="None"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Tag" Value="Underline"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

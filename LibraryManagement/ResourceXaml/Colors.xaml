@@ -4,4 +4,6 @@
     <SolidColorBrush x:Key="PrimaryColor" Color="#515EC1"/>
     <SolidColorBrush x:Key="Shadow" Color="#f1f1f1"/>
     <SolidColorBrush x:Key="Background" Color="#e0e7f5"/>
+    <SolidColorBrush x:Key="Seashell" Color="#F1F1F1"/>
+    
 </ResourceDictionary>
