@@ -4,4 +4,5 @@
     <viewmodel:MainViewModel x:Key="MainViewModel"/>
     <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
     <viewmodel:StoreViewModel x:Key="StoreViewModel"/>
+    <viewmodel:UserViewModel x:Key="UserViewModel"/>
 </ResourceDictionary>

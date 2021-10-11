@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\obj\Debug\
+C:\Users\vodon\Desktop\LibraryManagement\LibraryManagement\obj\Debug\
 LibraryManagement
 none
 false
 DEBUG;TRACE
-C:\Users\NguyenTienDung\source\repos\LibraryManagement\LibraryManagement\App.xaml
-14-1963896409
+C:\Users\vodon\Desktop\LibraryManagement\LibraryManagement\App.xaml
+151764729502
 21923828354
-32-252298953
-221126201206
-CustomControls\MainUserControl.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;ResourceXaml\Icons.xaml;ResourceXaml\TextBoxStyle.xaml;ResourceXaml\TextStyle.xaml;ResourceXaml\ViewModelResource.xaml;UserControls\BookControl.xaml;UserControls\ReaderControl.xaml;UserControls\StoreControl.xaml;Windows\StoreWindow.xaml;
+341628001305
+22-1095894418
+CustomControls\MainUserControl.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;ResourceXaml\Icons.xaml;ResourceXaml\TextBoxStyle.xaml;ResourceXaml\TextStyle.xaml;ResourceXaml\ViewModelResource.xaml;UserControls\BookControl.xaml;UserControls\ReaderControl.xaml;UserControls\StoreControl.xaml;Windows\StoreWindow.xaml;Windows\UserWindow.xaml;
 
 True
 

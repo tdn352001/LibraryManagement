@@ -144,8 +144,12 @@
     <Compile Include="ViewModel\MainUserControlViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="Windows\StoreWindow.xaml.cs">
       <DependentUpon>StoreWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\MainUserControl.xaml">
       <SubType>Designer</SubType>
@@ -211,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\StoreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
