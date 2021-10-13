@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\obj\Debug\
+D:\Doan\LibrabyManagement\obj\Debug\
 LibrabyManagement
 none
 false
 DEBUG;TRACE
-C:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\App.xaml
+D:\Doan\LibrabyManagement\App.xaml
 13-174507612
 
 15-1233811781
-17-355155720
+17-118929979
 LoginWindow.xaml;MainWindow.xaml;ResourceXaml\ButtonStyle.xaml;ResourceXaml\ButtonTemplate.xaml;ResourceXaml\Colors.xaml;CustomControl\MainUserControl.xaml;ResourceXaml\Icons.xaml;ResourceXaml\TextBoxStyle.xaml;ResourceXaml\TextStyle.xaml;ResourceXaml\ViewModelResource.xaml;UserControls\BookControl.xaml;UserControls\ReaderControl.xaml;UserControls\StoreControl.xaml;
 
 True
