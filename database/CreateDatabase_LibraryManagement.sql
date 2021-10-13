@@ -75,7 +75,6 @@ create table Book
 (
 	Id int identity(1,1) primary key,
 	Name nvarchar(max),
-	Address nvarchar(max),
 	PublishDate Date,
 	Quantity int,
 	PriceIn int,

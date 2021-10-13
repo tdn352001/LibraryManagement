@@ -126,7 +126,7 @@
                 <DatePicker
                     
                     Margin="0 5 0 5"
-                    materialDesign:HintAssist.Hint="Ngày mua"
+                    materialDesign:HintAssist.Hint="Ngày Xuất bản"
                     Style="{StaticResource MaterialDesignDatePicker}" />
                 <Grid
                     Height="60">
@@ -140,7 +140,7 @@
                     <Button
                         Content="Xóa"
                         
-                        HorizontalAlignment="Center" Margin="59,75,49.667,-46" Grid.ColumnSpan="2" Height="Auto" Width="68"/>
+                        HorizontalAlignment="Center" Margin="9.667,14,11.667,14" Height="Auto" Width="68" RenderTransformOrigin="1.044,-1.145" Grid.Column="1"/>
                 </Grid>
                 <Grid
                     Height="60">
@@ -148,9 +148,6 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button
-                        Content="Sửa"
-                        HorizontalAlignment="Center" Margin="98,-44,9.667,72" Width="69"/>
 
 
                 </Grid>
