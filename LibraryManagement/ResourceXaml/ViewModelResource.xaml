@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:viewmodel="clr-namespace:LibraryManagement.ViewModel"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <viewmodel:MainViewModel x:Key="MainViewModel"/>
+    <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
+    <viewmodel:StoreViewModel x:Key="StoreViewModel"/>
+    <viewmodel:UserViewModel x:Key="UserViewModel"/>
+</ResourceDictionary>
