@@ -17,15 +17,22 @@ using System.Windows.Shapes;
 namespace LibraryManagement.Windows
 {
     /// <summary>
-    /// Interaction logic for StoreWindow.xaml
+    /// Interaction logic for HistoryStore.xaml
     /// </summary>
-    public partial class StoreWindow : Window
+    public partial class HistoryStore : Window
     {
-        public StoreWindow()
+        HistoryStoreViewModel viewModel;
+
+        public HistoryStore()
         {
             InitializeComponent();
         }
 
-        
+        public HistoryStore(BookStore bookStore)
+        {
+            InitializeComponent();
+            viewModel = new HistoryStoreViewModel(bookStore);
+            this.DataContext = viewModel;
+        }
     }
 }

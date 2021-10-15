@@ -158,6 +158,7 @@
                                     <GridViewColumn Header="SĐT" DisplayMemberBinding="{Binding Email}" Width="auto"/>
                                     <GridViewColumn Header="Ngày Hợp Tác" DisplayMemberBinding="{Binding CoopDate}" Width="auto"/>
                                     <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
+                                    
                                 </GridView>
                             </ListView.View>
                         </ListView>

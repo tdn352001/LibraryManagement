@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Model;
+using LibraryManagement.Windows;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -109,12 +110,17 @@ namespace LibraryManagement.ViewModel
                                                                  DisplayResultSearch(p.Text);
                                                              });
 
-            DeleteCommand = new RelayCommand<TextBox>((p) => { return true; },
+            DeleteCommand = new RelayCommand<Object>((p) => { return true; },
                                                              (p) =>
                                                              {
                                                                  DeleteStore();
                                                              });
 
+            HistoryStoreCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) =>
+                                                             {
+                                                                 DisplayHistoryImportBook();
+                                                             });
         }
 
 
@@ -187,17 +193,24 @@ namespace LibraryManagement.ViewModel
             }
         }
 
+        private bool CheckImportBookExists(BookStore bookStore)
+        {
+            if (bookStore == null) 
+                return false;
 
+            return bookStore.ImportBooks.Count > 0;
+        }
         private void DeleteStore()
         {
-            if(SelectedItem == null) return;
+            if(SelectedItem == null) 
+                return;
 
             String title = "Xóa nhà sách?";
             String message = "Hành động này không thể khôi phục, Bạn có chắc chắn?";
             MessageBoxResult dialogResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
             if(dialogResult == MessageBoxResult.Yes)
             {
-                if (SelectedItem.ImportBooks != null)
+                if (CheckImportBookExists(SelectedItem))
                 {
                     String notifyTitle = "Thông báo";
                     String notifyMessage = "Không thể xóa nhà sách này.";
@@ -213,8 +226,21 @@ namespace LibraryManagement.ViewModel
                     MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
                 }
             }
+        }
 
-
+        private void DisplayHistoryImportBook()
+        {
+            if (CheckImportBookExists(SelectedItem))
+            {
+                HistoryStore historyStore = new HistoryStore(SelectedItem);
+                historyStore.ShowDialog();
+            }
+            else
+            {
+                String notifyTitle = "Thông báo";
+                String notifyMessage = "Không có lịch sử";
+                MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
+            }
         }
     }
 }
