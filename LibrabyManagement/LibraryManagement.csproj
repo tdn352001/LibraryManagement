@@ -76,6 +76,9 @@
     <Compile Include="UserControls\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FeesControl.xaml.cs">
+      <DependentUpon>FeesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReaderControl.xaml.cs">
       <DependentUpon>ReaderControl.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,12 @@
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MockFeeDataViewModel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ViewModel\MockFeeDataViewModel.Designer.cs">
+      <DependentUpon>MockFeeDataViewModel.cs</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BookControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FeesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -279,7 +279,7 @@
                             </Style>
                         </uc:StoreControl.Style>
                     </uc:StoreControl>
-                    
+
                     <uc:ReaderControl
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
@@ -294,6 +294,21 @@
                             </Style>
                         </uc:ReaderControl.Style>
                     </uc:ReaderControl>
+
+                    <uc:FeesControl
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+                        <uc:FeesControl.Style>
+                            <Style TargetType="uc:FeesControl">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Screen}" Value="5">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </uc:FeesControl.Style>
+                    </uc:FeesControl>
                 </Grid>
             </Grid>
         </Grid> 
