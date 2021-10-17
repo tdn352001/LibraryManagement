@@ -1,10 +1,11 @@
-﻿
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\App.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\LoginWindow.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\MainWindow.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\CustomControl\MainUserControl.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\ResourceXaml\ViewModelResource.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\UserControls\ReaderControl.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\UserControls\StoreControl.xaml;;
-FC:\Users\nqhuy\OneDrive - Trường ĐH CNTT - University of Information Technology\SE104\Doan\LibrabyManagement\UserControls\BookControl.xaml;;
+﻿E:\CODE\LibraryManagement\LibrabyManagement\obj\Release\GeneratedInternalTypeHelper.g.cs
+FE:\CODE\LibraryManagement\LibrabyManagement\App.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\LoginWindow.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\MainWindow.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\CustomControl\MainUserControl.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\ResourceXaml\ViewModelResource.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\UserControls\BookControl.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\UserControls\FeesControl.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\UserControls\ReaderControl.xaml;;
+FE:\CODE\LibraryManagement\LibrabyManagement\UserControls\StoreControl.xaml;;
 
