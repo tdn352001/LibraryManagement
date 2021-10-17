@@ -66,6 +66,8 @@ create table BookStore
 	Id int identity(1,1) primary key,
 	Name nvarchar(max),
 	Address nvarchar(max),
+	Email nvarchar (max),
+	Phone nvarchar (10),
 	CoopDate Date,
 	MoreInfo nvarchar(max)
 )

@@ -155,7 +155,7 @@
                                     <GridViewColumn Header="Tên nhà sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
                                     <GridViewColumn Header="Địa Chỉ" DisplayMemberBinding="{Binding Address}" Width="auto"/>
                                     <GridViewColumn Header="SĐT" DisplayMemberBinding="{Binding Phone}" Width="auto"/>
-                                    <GridViewColumn Header="SĐT" DisplayMemberBinding="{Binding Email}" Width="auto"/>
+                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="auto"/>
                                     <GridViewColumn Header="Ngày Hợp Tác" DisplayMemberBinding="{Binding CoopDate}" Width="auto"/>
                                     <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
                                 </GridView>

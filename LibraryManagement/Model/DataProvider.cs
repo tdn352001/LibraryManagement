@@ -12,11 +12,11 @@ namespace LibraryManagement.Model
         public static DataProvider Ins { get { if (_ins == null) _ins = new DataProvider(); return _ins; } set { _ins = value; } }
 
 
-        public LibraryManagementEntities DB { get; set; }
+        public LibraryManagementEntities1 DB { get; set; }
 
         private DataProvider()
         {
-            DB = new LibraryManagementEntities();
+            DB = new LibraryManagementEntities1();
         }
     }
 }

@@ -197,7 +197,7 @@ namespace LibraryManagement.ViewModel
             MessageBoxResult dialogResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
             if(dialogResult == MessageBoxResult.Yes)
             {
-                if (SelectedItem.ImportBooks != null)
+                if (SelectedItem.ImportBooks.Count > 0)
                 {
                     String notifyTitle = "Thông báo";
                     String notifyMessage = "Không thể xóa nhà sách này.";
