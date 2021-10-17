@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\LibrabyManagement",
-    "\\LibrabyManagement\\UserControls"
+    "\\LibraryManagement",
+    "\\LibraryManagement\\UserControls",
+    "\\LibraryManagement\\ViewModel",
+    "\\LibraryManagement\\Windows"
   ],
-  "SelectedNode": "\\LibrabyManagement\\UserControls\\BookControl.xaml",
+  "SelectedNode": "\\LibraryManagement.sln",
   "PreviewInSolutionExplorer": false
 }

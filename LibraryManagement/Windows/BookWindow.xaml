@@ -1,0 +1,216 @@
+﻿<Window x:Class="LibraryManagement.Windows.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagement.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        DataContext="{StaticResource BookViewModel}"
+        Title="UserWindow" Height="600" Width="1024">
+    <Grid
+        Background="{StaticResource Background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="564*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <materialDesign:Card
+                 Grid.Column="0" 
+            Margin="10,10,9.667,10" 
+            UniformCornerRadius="10" 
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+                <Grid
+                    HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                    Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border 
+                        Background="{StaticResource Background}"
+                        Grid.Column="0"
+                        CornerRadius="20"
+                        Padding="16 0 0 0"
+                        Margin="16">
+                            <Grid 
+                            Background="Transparent"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+                                <TextBox 
+                                Name="searchBox"
+                                Style="{StaticResource SearchFields}"
+                                materialDesign:HintAssist.Hint="Search Here..."
+                                Padding="8 4 8 0" 
+                                Margin="0 0 8 0"
+                                BorderThickness="0">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="TextChanged">
+                                            <i:InvokeCommandAction
+                                            Command="{Binding KeyWordChangeCommand}" 
+                                            CommandParameter="{Binding ElementName=searchBox}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
+                                </TextBox>
+
+                                <!--Search Button-->
+                                <Button 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" 
+                                Grid.Column="2"
+                                Width="30"
+                                Height="30"
+                                     Command="{Binding SearchCommand}"
+                                ToolTip="Search"
+                                Style="{StaticResource SearchButton}"/>
+                            </Grid>
+                        </Border>
+                        <ComboBox
+                            Margin="10"
+                        MinWidth="100"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                            SelectedIndex="{Binding SearchHeading}"
+                        materialDesign:HintAssist.Hint="OS"
+                        Grid.Column="1">
+                            <ComboBoxItem Content="Mã" />
+                            <ComboBoxItem Content="Tên" />
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid
+                         Grid.Row="1"
+                    Margin="10 0 10 10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="Thông tin sách"
+                             Foreground="{StaticResource PrimaryColor}" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Stretch" 
+                            FontSize="10" 
+                            FontFamily="Arial Rounded MT Bold">
+                        </TextBlock>
+
+                        <ScrollViewer 
+                            Grid.Row="1"
+                            VerticalScrollBarVisibility="Auto">
+                            <ListView ItemsSource="{Binding UserList}"
+                                     SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Mã sách" DisplayMemberBinding="{Binding Id}"  />
+                                        <GridViewColumn Header="Tên sách" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Tác giả" DisplayMemberBinding="{Binding BirthDay, StringFormat='dd/MM/yyyy'}"  />
+                                        <GridViewColumn Header="Thể loại" DisplayMemberBinding="{Binding Email}"  />
+                                        <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding Phone}" />
+                                        <GridViewColumn Header="Nhà sách" DisplayMemberBinding="{Binding Address}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <materialDesign:Card
+            Grid.Column="1"
+            Margin="10" 
+            Height="auto"
+            Padding="0 0 12 0"
+            UniformCornerRadius="10" 
+            HorizontalAlignment="Stretch">
+
+            <StackPanel
+                 Margin="10"
+                Height="auto"
+                Orientation="Vertical">
+                <TextBox
+                    IsEnabled="True"
+                    Margin="0 5 0 5"
+                    materialDesign:HintAssist.Hint="Mã sách"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <TextBox
+                    IsEnabled="True"
+                    Margin="0 5 0 5"
+                    materialDesign:HintAssist.Hint="Tên sách"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <TextBox
+                    IsEnabled="True"
+                    Margin="0 5 0 5"
+                    materialDesign:HintAssist.Hint="Tác giả"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <TextBox
+                    IsEnabled="True"
+                    Margin="0 5 0 5"
+                    materialDesign:HintAssist.Hint="Thể loại"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <DatePicker
+                        Margin="0 5 0 5"
+                        materialDesign:HintAssist.Hint="Ngày xuất bản"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <TextBox
+                    IsEnabled="True"
+                    Margin="0 5 0 5"
+                    materialDesign:HintAssist.Hint="Nhà sách"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <Grid
+                   Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Content="Thêm"
+                        HorizontalAlignment="Center">
+                    </Button>
+                    <Button
+                        Content="Xóa"
+                        
+                        HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="92,76,90.667,-48"/>
+                </Grid>
+                <Grid
+                    Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Content="Sửa"
+                        HorizontalAlignment="Center" Grid.Column="1" Margin="35.667,-45,27.667,73">
+                    </Button>
+
+
+                </Grid>
+            </StackPanel>
+
+        </materialDesign:Card>
+    </Grid>
+</Window>
