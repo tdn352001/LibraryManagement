@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LibraryManagement.Model;
+using LibraryManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibrabyManagement.UserControls
+namespace LibraryManagement.Windows
 {
     /// <summary>
-    /// Interaction logic for FeesControl.xaml
+    /// Interaction logic for FeeWindow.xaml
     /// </summary>
-    public partial class FeesControl : UserControl
+    public partial class FeeWindow : Window
     {
-        public FeesControl()
+        public FeeWindow()
         {
             InitializeComponent();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
