@@ -1,0 +1,244 @@
+﻿<Window x:Class="LibraryManagement.Windows.HistoryStore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagement.Windows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Title="HistoryStore" 
+        Height="600" 
+        Width="1024">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Thể hiện thông tin chung của Store-->
+            <Grid 
+                Margin="50 0 100 0"
+                Grid.Row="0">
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="50" />
+                    </Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Margin" Value="0 10 0 0"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="18"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock 
+                    Grid.Row="0"
+                    Text="Thông tin nhà sách"
+                    Foreground="{StaticResource PrimaryColor}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="0 12 0 0"
+                    FontSize="30" 
+                    FontFamily="Arial Rounded MT Bold"/>
+
+                <Grid 
+                Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel  Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Mã: " 
+                            FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.Id}"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Địa Chỉ: " 
+                            FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.Address}"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Email: " FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.Address}"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Ghi chú: " 
+                            FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.MoreInfo}"/>
+                        </Grid>
+
+
+                    </StackPanel>
+
+                    <StackPanel 
+                    Grid.Column="1"
+                    Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Tên: " 
+                            FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.Name}"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="SĐT: " FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.Phone}"/>
+                        </Grid>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                            Grid.Column="0" 
+                            Text="Ngày hợp tác: " 
+                            FontWeight="DemiBold"/>
+
+                            <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding storeItem.CoopDate}"/>
+                        </Grid>
+
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid 
+                
+                Margin="50 10 0 0"
+                Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock 
+                    Grid.Row="0"
+                    Text="Thông tin nhà sách"
+                    Foreground="{StaticResource PrimaryColor}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="0 12 0 0"
+                    FontSize="30" 
+                    FontFamily="Arial Rounded MT Bold"/>
+
+                
+                <ListView 
+                    Grid.Row="1"
+                    Margin="0 10 0 0"
+                    ItemsSource="{Binding StoreList}"  
+                    SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                            <GridViewColumn Header="Tên nhà sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                            <GridViewColumn Header="Địa Chỉ" DisplayMemberBinding="{Binding Address}" Width="auto"/>
+                            <GridViewColumn Header="SĐT" DisplayMemberBinding="{Binding Phone}" Width="auto"/>
+                            <GridViewColumn Header="SĐT" DisplayMemberBinding="{Binding Email}" Width="auto"/>
+                            <GridViewColumn Header="Ngày Hợp Tác" DisplayMemberBinding="{Binding CoopDate}" Width="auto"/>
+                            <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
+                            <GridViewColumn Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Width="80"
+                                            Height="30"
+                                            Margin="5" 
+                                            Content="Chi Tiết"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+            </Grid>
+            
+        </Grid>
+    </ScrollViewer>
+    
+</Window>
