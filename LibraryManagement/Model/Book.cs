@@ -18,8 +18,9 @@ namespace LibraryManagement.Model
         public Book()
         {
             this.HistoryBooks = new HashSet<HistoryBook>();
-            this.ImportBookDetails = new HashSet<ImportBookDetail>();
             this.Writers = new HashSet<Writer>();
+            this.ImportBooks = new HashSet<ImportBook>();
+            this.ImportBookDetails1 = new HashSet<ImportBookDetail>();
         }
     
         public int Id { get; set; }
@@ -34,8 +35,10 @@ namespace LibraryManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryBook> HistoryBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportBookDetail> ImportBookDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Writer> Writers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ImportBook> ImportBooks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ImportBookDetail> ImportBookDetails1 { get; set; }
     }
 }

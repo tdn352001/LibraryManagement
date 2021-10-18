@@ -17,15 +17,18 @@ namespace LibraryManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ImportBook()
         {
-            this.ImportBookDetails = new HashSet<ImportBookDetail>();
+            this.ImportBookDetails1 = new HashSet<ImportBookDetail>();
         }
     
         public int Id { get; set; }
         public Nullable<int> IdBookStore { get; set; }
         public Nullable<System.DateTime> ImportDate { get; set; }
+        public Nullable<int> IdBook { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
         public virtual BookStore BookStore { get; set; }
+        public virtual Book Book { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportBookDetail> ImportBookDetails { get; set; }
+        public virtual ICollection<ImportBookDetail> ImportBookDetails1 { get; set; }
     }
 }

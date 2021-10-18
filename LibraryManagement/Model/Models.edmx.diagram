@@ -12,21 +12,22 @@
         <EntityTypeShape EntityType="LibraryManagementModel.Fee" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.HistoryBook" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.ImportBook" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.ImportBookDetail" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.StatusBook" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.User" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.UserStatu" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Writer" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
         <AssociationConnector Association="LibraryManagementModel.FK__HistoryBo__IdBoo__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdBoo__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdBoo__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__DetailFee__IdFee__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__DetailFee__IdUse__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__HistoryBo__IdSta__571DF1D5" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__HistoryBo__IdUse__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdImp__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__Users__IdStatus__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.Author" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdBoo__4D94879B" />
+        <EntityTypeShape EntityType="LibraryManagementModel.ImportBookDetail" Width="1.5" PointX="8.25" PointY="13.125" />
+        <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdBoo__5812160E" />
+        <AssociationConnector Association="LibraryManagementModel.FK__ImportBoo__IdImp__59063A47" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

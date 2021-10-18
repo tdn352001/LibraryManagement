@@ -22,11 +22,11 @@ namespace LibraryManagement.Model
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
         public string Address { get; set; }
         public Nullable<System.DateTime> CoopDate { get; set; }
         public string MoreInfo { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImportBook> ImportBooks { get; set; }

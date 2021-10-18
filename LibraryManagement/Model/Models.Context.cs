@@ -32,10 +32,10 @@ namespace LibraryManagement.Model
         public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<HistoryBook> HistoryBooks { get; set; }
         public virtual DbSet<ImportBook> ImportBooks { get; set; }
-        public virtual DbSet<ImportBookDetail> ImportBookDetails { get; set; }
         public virtual DbSet<StatusBook> StatusBooks { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserStatu> UserStatus { get; set; }
         public virtual DbSet<Writer> Writers { get; set; }
+        public virtual DbSet<ImportBookDetail> ImportBookDetails { get; set; }
     }
 }
