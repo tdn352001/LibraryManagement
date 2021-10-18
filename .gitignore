@@ -190,3 +190,5 @@ git_stats/*
 LibrabyManagement/StyleCop.Cache
 LibrabyManagement/bin/
 LibrabyManagement/obj/
+/LibraryManagement/bin/Debug
+/LibraryManagement/obj/Debug
