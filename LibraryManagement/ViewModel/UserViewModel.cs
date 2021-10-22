@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.Win32;
+
 
 namespace LibraryManagement.ViewModel
 {
@@ -83,6 +85,10 @@ namespace LibraryManagement.ViewModel
         // Command xử lí khi ấn vào nút xóa trong layout selected item
         public ICommand DeleteCommand { get; set; }
 
+        // Command xử lí khi ấn vào nút xuất thông tin
+        public ICommand ExportInfoCommand { get; set; }
+
+
 
 
 
@@ -99,6 +105,7 @@ namespace LibraryManagement.ViewModel
 
         public UserViewModel()
         {
+           
             // lấy danh sách độc giả từ database
             UserList = new ObservableCollection<User>(DataProvider.Ins.DB.Users.ToList());
             UserStatus = new ObservableCollection<UserStatu>(DataProvider.Ins.DB.UserStatus);
@@ -141,6 +148,12 @@ namespace LibraryManagement.ViewModel
                                                              (p) =>
                                                              {
                                                                  DeleteUser();
+                                                             });
+
+            ExportInfoCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) =>
+                                                             {
+                                                                 ExportUser();
                                                              });
 
 
@@ -253,6 +266,45 @@ namespace LibraryManagement.ViewModel
                 }
             }
                 
+
+        }
+
+        private void ExportUser()
+        {
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook |*.xls", ValidateNames = true };
+            if (sfd.ShowDialog() == true)
+            {
+
+                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                Workbook wb = app.Workbooks.Add(XlSheetType.xlWorksheet);
+                Worksheet ws = (Worksheet)app.ActiveSheet;
+                app.Visible = false;
+                ws.Cells[1, 1] = "Mã độc giả";
+                ws.Cells[1, 2] = "Tên độc giả";
+                ws.Cells[1, 3] = "Ngày sinh";
+                ws.Cells[1, 4] = "Email";
+                ws.Cells[1, 5] = "Địa chỉ";
+                ws.Cells[1, 6] = "SĐT";
+                ws.Cells[1, 7] = "Trạng thái";
+                int i = 2;
+                foreach (var item in UserList)
+                {
+                    ws.Cells[i, 1] = item.Id;
+                    ws.Cells[i, 2] = item.Name;
+                    ws.Cells[i, 3] = item.BirthDay;
+                    ws.Cells[i, 4] = item.Email;
+                    ws.Cells[i, 5] = item.Address;
+                    ws.Cells[i, 6] = item.Phone;
+                    ws.Cells[i, 7] = item.UserStatu.Name;
+                    i++;
+                }
+                wb.SaveAs(sfd.FileName, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+                app.Quit();
+                MessageBox.Show("Your data has been successfully exported. ");
+
+
+            }
+
 
         }
 
