@@ -76,7 +76,7 @@ create table Book
 (
 	Id int identity(1,1) primary key,
 	Name nvarchar(max),
-	Address nvarchar(max),
+	Author nvarchar(max),
 	PublishDate Date,
 	Quantity int,
 	PriceIn int,
@@ -84,27 +84,6 @@ create table Book
 	MoreInfo nvarchar(max)
 )
 
-
-
--- tác giả
-create table Writer
-(
-	Id int identity(1,1) primary key,
-	Name nvarchar(max),
-	BirthDay Date,
-	Description nvarchar(max)
-)
-
-
--- sách do ai viết
-create table Author
-(
-	IdBook int,
-	IdWriter int
-	CONSTRAINT Author_pk PRIMARY KEY (IdBook, IdWriter)
-	foreign key (IdBook) references Book(Id),
-	foreign key (IdWriter) references Writer(Id),
-)
 
 
 --nhập sách

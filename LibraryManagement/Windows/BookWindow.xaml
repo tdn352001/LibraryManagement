@@ -1,0 +1,426 @@
+﻿<Window x:Class="LibraryManagement.Windows.BookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagement.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        DataContext="{StaticResource BookViewModel}"
+        Title="BookWindow" 
+        Height="600" 
+        Width="1024">
+    <Grid
+        Background="{StaticResource Background}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <materialDesign:Card 
+            Grid.Column="0" 
+            Margin="10" 
+            UniformCornerRadius="10" 
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+
+            <Grid  
+                Margin="16 0 16 0"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid
+                    Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border 
+                        Background="{StaticResource Background}"
+                        Grid.Column="0"
+                        CornerRadius="16"
+                        Padding="0 0 0 0"
+                        Margin="16">
+                        <Grid 
+                            Background="Transparent"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+
+                            <!--Search Button-->
+                            <Button 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" 
+                                Grid.Column="2"
+                                Command="{Binding SearchCommand}"
+                                Width="30"
+                                Height="30"
+                                ToolTip="Search"
+                                Style="{StaticResource SearchButton}"/>
+                            
+                            <TextBox 
+                                Name="searchBox"
+                                Style="{StaticResource SearchFields}"
+                                materialDesign:HintAssist.Hint="Search Here..."
+                                Padding="20 4 8 4" 
+                                VerticalContentAlignment="Center"
+                                Margin="16 0 8 0" 
+                                BorderThickness="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding KeyWordChangeCommand}" 
+                                            CommandParameter="{Binding ElementName=searchBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+
+                           
+                        </Grid>
+                    </Border>
+                    <ComboBox
+                        MinWidth="100"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        SelectedIndex="{Binding SearchHeading}"
+                        materialDesign:HintAssist.Hint="OS">
+                        <ComboBoxItem Content="Mã" />
+                        <ComboBoxItem Content="Tên sách" />
+                        <ComboBoxItem Content="Tác giả" />
+                        
+                    </ComboBox>
+                </Grid>
+               
+
+                <Grid
+                    Grid.Row="1"
+                    Margin="20 0 20 20"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button
+                        Name="addBtn"
+                        Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                        Foreground="{StaticResource PrimaryColor}"
+                        Height="20"
+                        FontSize="12"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding AddCommand}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                Data="{StaticResource Add}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=addBtn}" 
+                                Width="{Binding FontSize, ElementName=addBtn}" 
+                                Fill="{Binding Foreground, ElementName=addBtn}"/>
+
+                            <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Thêm mới"
+                                Foreground="{Binding Foreground, ElementName=addBtn}"
+                                TextDecorations="{Binding Tag, ElementName=addBtn}"
+                                FontSize="{Binding FontSize, ElementName=addBtn}"
+                                Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+
+                    <ScrollViewer 
+                        Grid.Row="1"
+                        VerticalScrollBarVisibility="Visible">
+                        <ListView 
+                            ItemsSource="{Binding BookList}"  
+                            SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                                    <GridViewColumn Header="Tên sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                                    <GridViewColumn Header="Tác giả" DisplayMemberBinding="{Binding Author}" Width="auto"/>
+                                    <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding PublishDate}" Width="auto"/>
+                                    <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding PriceOut}" Width="auto"/>
+                                    <GridViewColumn Header="Tình trạng" DisplayMemberBinding="{Binding Quantity}" Width="auto"/>
+                                    <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+
+
+        <materialDesign:Card 
+            Grid.Column="1" 
+            Margin="10" 
+            Height="auto"
+            Padding="0 0 12 0"
+            UniformCornerRadius="10" 
+            HorizontalAlignment="Stretch">
+            <ScrollViewer 
+                VerticalScrollBarVisibility="Hidden">
+                <StackPanel
+                Margin="10"
+                Height="auto"
+                Orientation="Vertical">
+                <TextBox
+                    IsEnabled="False"
+                    Text="{Binding SelectedItem.Id}"
+                    materialDesign:HintAssist.Hint="Mã"
+                    Style="{StaticResource InputTextBox}"/>
+                <TextBox
+                    Text="{Binding SelectedItem.Name}"
+                    materialDesign:HintAssist.Hint="Tên sách"
+                    Style="{StaticResource InputTextBox}"/>
+
+                <TextBox
+                    Text="{Binding SelectedItem.Author}"
+                    materialDesign:HintAssist.Hint="Tác giả"
+                    Style="{StaticResource InputTextBox}"/>
+                <DatePicker
+                    SelectedDate="{Binding SelectedItem.PublishDate}"
+                    materialDesign:HintAssist.Hint="Ngày xuất bản"
+                    Style="{StaticResource InputDatePicker}" />
+                    
+                <TextBox
+                    Text="{Binding SelectedItem.PriceIn}"
+                    materialDesign:HintAssist.Hint="Giá mua"
+                    Style="{StaticResource InputTextBox}"/>
+
+                <TextBox
+                    Text="{Binding SelectedItem.PriceOut}"
+                    materialDesign:HintAssist.Hint="Giá bán"
+                    Style="{StaticResource InputTextBox}"/>
+
+                <TextBox
+                    Text="{Binding SelectedItem.MoreInfo}"
+                    MaxLines="3"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    TextWrapping="Wrap"
+                    materialDesign:HintAssist.Hint="Thông tin thêm"
+                    Style="{StaticResource InputTextBox}"/>
+
+                    <Grid
+                    Margin="0 16 0 16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Name="editBtn"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding EditCommand}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                    Data="{StaticResource Pen}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=editBtn}" 
+                                    Width="{Binding FontSize, ElementName=editBtn}" 
+                                    Fill="{Binding Foreground, ElementName=editBtn}"/>
+
+                            <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Lưu"
+                                    Foreground="{Binding Foreground, ElementName=editBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=editBtn}"
+                                    FontSize="{Binding FontSize, ElementName=editBtn}"
+                                    Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+                    <Button
+                        Name="delBtn"
+                        Grid.Column="1"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding DeleteCommand}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                    Data="{StaticResource Delete}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=delBtn}" 
+                                    Width="{Binding FontSize, ElementName=delBtn}" 
+                                    Fill="{Binding Foreground, ElementName=delBtn}"/>
+
+                            <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Xóa"
+                                    Foreground="{Binding Foreground, ElementName=delBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=delBtn}"
+                                    FontSize="{Binding FontSize, ElementName=delBtn}"
+                                    Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                    <Border
+                    Height="2"
+                    Margin="10"
+                    HorizontalAlignment="Stretch"
+                    Background="Gray"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </materialDesign:Card>
+
+        <materialDesign:Card 
+            Grid.Column="1" 
+            Margin="10" 
+            Height="auto"
+            Padding="0 0 12 0"
+            UniformCornerRadius="10" 
+            HorizontalAlignment="Stretch">
+            <ScrollViewer 
+                VerticalScrollBarVisibility="Hidden">
+                <StackPanel
+                Margin="10"
+                Height="auto"
+                Orientation="Vertical">
+                    <TextBox
+                        IsEnabled="False"
+                        Text="{Binding AddItem.Id}"
+                        materialDesign:HintAssist.Hint="Mã"
+                        Style="{StaticResource InputTextBox}"/>
+                    <TextBox
+                        Text="{Binding AddItem.Name}"
+                        materialDesign:HintAssist.Hint="Tên sách"
+                        Style="{StaticResource InputTextBox}"/>
+
+                    <TextBox
+                        Text="{Binding AddItem.Author}"
+                        materialDesign:HintAssist.Hint="Tên tác giả"
+                        Style="{StaticResource InputTextBox}"/>
+                    <DatePicker
+                        SelectedDate="{Binding AddItem.PublishDate}"
+                        materialDesign:HintAssist.Hint="Ngày xuất bản"
+                        Style="{StaticResource InputDatePicker}" />
+                    <TextBox
+                        Text="{Binding AddItem.PriceIn}"
+                        materialDesign:HintAssist.Hint="Giá mua"
+                        Style="{StaticResource InputTextBox}"/>
+
+                    <TextBox
+                        Text="{Binding AddItem.PriceOut}"
+                        materialDesign:HintAssist.Hint="Giá bán"
+                        Style="{StaticResource InputTextBox}"/>
+                    <TextBox
+                        Text="{Binding AddItem.MoreInfo}"
+                        MaxLines="3"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto"
+                        TextWrapping="Wrap"
+                        materialDesign:HintAssist.Hint="Thông tin thêm"
+                        Style="{StaticResource InputTextBox}"/>
+
+                    <Grid
+                        Margin="0 16 0 16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Name="saveBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding SaveAddCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Save}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=saveBtn}" 
+                                    Width="{Binding FontSize, ElementName=saveBtn}" 
+                                    Fill="{Binding Foreground, ElementName=saveBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Lưu"
+                                    Foreground="{Binding Foreground, ElementName=saveBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=saveBtn}"
+                                    FontSize="{Binding FontSize, ElementName=saveBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                        <Button
+                            Name="cancelBtn"
+                            Grid.Column="1"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding CancelAddCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Cancel}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=cancelBtn}" 
+                                    Width="{Binding FontSize, ElementName=cancelBtn}" 
+                                    Fill="{Binding Foreground, ElementName=cancelBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Hủy"
+                                    Foreground="{Binding Foreground, ElementName=cancelBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=cancelBtn}"
+                                    FontSize="{Binding FontSize, ElementName=cancelBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+            </ScrollViewer>
+            <materialDesign:Card.Style>
+                <Style TargetType="materialDesign:Card">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AddLayoutVisible}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:Card.Style>
+        </materialDesign:Card>
+    </Grid>
+</Window>

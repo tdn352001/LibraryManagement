@@ -18,24 +18,21 @@ namespace LibraryManagement.Model
         public Book()
         {
             this.HistoryBooks = new HashSet<HistoryBook>();
-            this.ImportBookDetails = new HashSet<ImportBookDetail>();
-            this.Writers = new HashSet<Writer>();
+            this.ImportBooks = new HashSet<ImportBook>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
         public Nullable<System.DateTime> PublishDate { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<int> PriceIn { get; set; }
         public Nullable<int> PriceOut { get; set; }
         public string MoreInfo { get; set; }
+        public string Author { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryBook> HistoryBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportBookDetail> ImportBookDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Writer> Writers { get; set; }
+        public virtual ICollection<ImportBook> ImportBooks { get; set; }
     }
 }

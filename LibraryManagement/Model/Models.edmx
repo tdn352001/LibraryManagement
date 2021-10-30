@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,21 +18,13 @@
           <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="12" />
         </EntityType>
-        <EntityType Name="Author">
-          <Key>
-            <PropertyRef Name="IdBook" />
-            <PropertyRef Name="IdWriter" />
-          </Key>
-          <Property Name="IdBook" Type="int" Nullable="false" />
-          <Property Name="IdWriter" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Author" Type="nvarchar(max)" />
           <Property Name="PublishDate" Type="date" />
           <Property Name="Quantity" Type="int" />
           <Property Name="PriceIn" Type="int" />
@@ -45,8 +37,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar(max)" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="CoopDate" Type="date" />
           <Property Name="MoreInfo" Type="nvarchar(max)" />
@@ -84,17 +74,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBook" Type="int" />
           <Property Name="IdBookStore" Type="int" />
-          <Property Name="ImportDate" Type="date" />
-        </EntityType>
-        <EntityType Name="ImportBookDetail">
-          <Key>
-            <PropertyRef Name="IdImport" />
-            <PropertyRef Name="IdBook" />
-          </Key>
-          <Property Name="IdImport" Type="int" Nullable="false" />
-          <Property Name="IdBook" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="ImportDate" Type="date" />
         </EntityType>
         <EntityType Name="StatusBook">
           <Key>
@@ -122,40 +105,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Writer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="BirthDay" Type="date" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>
-        <Association Name="FK__Author__IdWriter__48CFD27E">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="Author" Type="Self.Author" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Author">
-              <PropertyRef Name="IdBook" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Author__IdWriter__49C3F6B7">
-          <End Role="Writer" Type="Self.Writer" Multiplicity="1" />
-          <End Role="Author" Type="Self.Author" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Writer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Author">
-              <PropertyRef Name="IdWriter" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DetailFee__IdFee__3F466844">
+        <Association Name="FK__DetailFee__IdFee__2D27B809">
           <End Role="Fee" Type="Self.Fee" Multiplicity="1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -167,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailFee__IdUse__403A8C7D">
+        <Association Name="FK__DetailFee__IdUse__2E1BDC42">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HistoryBo__IdBoo__5629CD9C">
+        <Association Name="FK__HistoryBo__IdBoo__3B75D760">
           <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
           <End Role="HistoryBook" Type="Self.HistoryBook" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +141,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HistoryBo__IdSta__571DF1D5">
+        <Association Name="FK__HistoryBo__IdSta__3C69FB99">
           <End Role="StatusBook" Type="Self.StatusBook" Multiplicity="0..1" />
           <End Role="HistoryBook" Type="Self.HistoryBook" Multiplicity="*" />
           <ReferentialConstraint>
@@ -203,7 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HistoryBo__IdUse__5535A963">
+        <Association Name="FK__HistoryBo__IdUse__3A81B327">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="HistoryBook" Type="Self.HistoryBook" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,7 +165,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ImportBoo__IdBoo__4CA06362">
+        <Association Name="FK__ImportBoo__IdBoo__34C8D9D1">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImportBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImportBoo__IdBoo__35BCFE0A">
           <End Role="BookStore" Type="Self.BookStore" Multiplicity="0..1" />
           <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,31 +189,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ImportBoo__IdBoo__4F7CD00D">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="ImportBookDetail" Type="Self.ImportBookDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImportBookDetail">
-              <PropertyRef Name="IdBook" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ImportBoo__IdImp__5070F446">
-          <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="1" />
-          <End Role="ImportBookDetail" Type="Self.ImportBookDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ImportBook">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImportBookDetail">
-              <PropertyRef Name="IdImport" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Users__IdStatus__3A81B327">
+        <Association Name="FK__Users__IdStatus__286302EC">
           <End Role="UserStatus" Type="Self.UserStatus" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,65 +203,49 @@
         </Association>
         <EntityContainer Name="LibraryManagementModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookStore" EntityType="Self.BookStore" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailFee" EntityType="Self.DetailFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryBook" EntityType="Self.HistoryBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImportBook" EntityType="Self.ImportBook" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ImportBookDetail" EntityType="Self.ImportBookDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusBook" EntityType="Self.StatusBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Writer" EntityType="Self.Writer" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Author__IdWriter__48CFD27E" Association="Self.FK__Author__IdWriter__48CFD27E">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="Author" EntitySet="Author" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Author__IdWriter__49C3F6B7" Association="Self.FK__Author__IdWriter__49C3F6B7">
-            <End Role="Writer" EntitySet="Writer" />
-            <End Role="Author" EntitySet="Author" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DetailFee__IdFee__3F466844" Association="Self.FK__DetailFee__IdFee__3F466844">
+          <AssociationSet Name="FK__DetailFee__IdFee__2D27B809" Association="Self.FK__DetailFee__IdFee__2D27B809">
             <End Role="Fee" EntitySet="Fee" />
             <End Role="DetailFee" EntitySet="DetailFee" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailFee__IdUse__403A8C7D" Association="Self.FK__DetailFee__IdUse__403A8C7D">
+          <AssociationSet Name="FK__DetailFee__IdUse__2E1BDC42" Association="Self.FK__DetailFee__IdUse__2E1BDC42">
             <End Role="Users" EntitySet="Users" />
             <End Role="DetailFee" EntitySet="DetailFee" />
           </AssociationSet>
-          <AssociationSet Name="FK__HistoryBo__IdBoo__5629CD9C" Association="Self.FK__HistoryBo__IdBoo__5629CD9C">
+          <AssociationSet Name="FK__HistoryBo__IdBoo__3B75D760" Association="Self.FK__HistoryBo__IdBoo__3B75D760">
             <End Role="Book" EntitySet="Book" />
             <End Role="HistoryBook" EntitySet="HistoryBook" />
           </AssociationSet>
-          <AssociationSet Name="FK__HistoryBo__IdSta__571DF1D5" Association="Self.FK__HistoryBo__IdSta__571DF1D5">
+          <AssociationSet Name="FK__HistoryBo__IdSta__3C69FB99" Association="Self.FK__HistoryBo__IdSta__3C69FB99">
             <End Role="StatusBook" EntitySet="StatusBook" />
             <End Role="HistoryBook" EntitySet="HistoryBook" />
           </AssociationSet>
-          <AssociationSet Name="FK__HistoryBo__IdUse__5535A963" Association="Self.FK__HistoryBo__IdUse__5535A963">
+          <AssociationSet Name="FK__HistoryBo__IdUse__3A81B327" Association="Self.FK__HistoryBo__IdUse__3A81B327">
             <End Role="Users" EntitySet="Users" />
             <End Role="HistoryBook" EntitySet="HistoryBook" />
           </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdBoo__4CA06362" Association="Self.FK__ImportBoo__IdBoo__4CA06362">
+          <AssociationSet Name="FK__ImportBoo__IdBoo__34C8D9D1" Association="Self.FK__ImportBoo__IdBoo__34C8D9D1">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ImportBook" EntitySet="ImportBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImportBoo__IdBoo__35BCFE0A" Association="Self.FK__ImportBoo__IdBoo__35BCFE0A">
             <End Role="BookStore" EntitySet="BookStore" />
             <End Role="ImportBook" EntitySet="ImportBook" />
           </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdBoo__4F7CD00D" Association="Self.FK__ImportBoo__IdBoo__4F7CD00D">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="ImportBookDetail" EntitySet="ImportBookDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdImp__5070F446" Association="Self.FK__ImportBoo__IdImp__5070F446">
-            <End Role="ImportBook" EntitySet="ImportBook" />
-            <End Role="ImportBookDetail" EntitySet="ImportBookDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Users__IdStatus__3A81B327" Association="Self.FK__Users__IdStatus__3A81B327">
+          <AssociationSet Name="FK__Users__IdStatus__286302EC" Association="Self.FK__Users__IdStatus__286302EC">
             <End Role="UserStatus" EntitySet="UserStatus" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -346,15 +268,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PublishDate" Type="DateTime" Precision="0" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="PriceIn" Type="Int32" />
           <Property Name="PriceOut" Type="Int32" />
           <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HistoryBooks" Relationship="Self.FK__HistoryBo__IdBoo__5629CD9C" FromRole="Book" ToRole="HistoryBook" />
-          <NavigationProperty Name="ImportBookDetails" Relationship="Self.FK__ImportBoo__IdBoo__4F7CD00D" FromRole="Book" ToRole="ImportBookDetail" />
-          <NavigationProperty Name="Writers" Relationship="Self.Author" FromRole="Book" ToRole="Writer" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ImportBooks" Relationship="LibraryManagementModel.FK__ImportBoo__IdBoo__34C8D9D1" FromRole="Book" ToRole="ImportBook" />
         </EntityType>
         <EntityType Name="BookStore">
           <Key>
@@ -362,8 +283,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CoopDate" Type="DateTime" Precision="0" />
           <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -411,18 +330,9 @@
           <Property Name="IdBookStore" Type="Int32" />
           <Property Name="ImportDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="BookStore" Relationship="Self.FK__ImportBoo__IdBoo__4CA06362" FromRole="ImportBook" ToRole="BookStore" />
-          <NavigationProperty Name="ImportBookDetails" Relationship="Self.FK__ImportBoo__IdImp__5070F446" FromRole="ImportBook" ToRole="ImportBookDetail" />
-        </EntityType>
-        <EntityType Name="ImportBookDetail">
-          <Key>
-            <PropertyRef Name="IdImport" />
-            <PropertyRef Name="IdBook" />
-          </Key>
-          <Property Name="IdImport" Type="Int32" Nullable="false" />
-          <Property Name="IdBook" Type="Int32" Nullable="false" />
+          <Property Name="IdBook" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Book" Relationship="Self.FK__ImportBoo__IdBoo__4F7CD00D" FromRole="ImportBookDetail" ToRole="Book" />
-          <NavigationProperty Name="ImportBook" Relationship="Self.FK__ImportBoo__IdImp__5070F446" FromRole="ImportBookDetail" ToRole="ImportBook" />
+          <NavigationProperty Name="Book" Relationship="LibraryManagementModel.FK__ImportBoo__IdBoo__34C8D9D1" FromRole="ImportBook" ToRole="Book" />
         </EntityType>
         <EntityType Name="StatusBook">
           <Key>
@@ -455,16 +365,6 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Users__IdStatus__3A81B327" FromRole="UserStatus" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Writer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDay" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Books" Relationship="Self.Author" FromRole="Writer" ToRole="Book" />
-        </EntityType>
         <Association Name="FK__HistoryBo__IdBoo__5629CD9C">
           <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
           <End Role="HistoryBook" Type="Self.HistoryBook" Multiplicity="*" />
@@ -473,18 +373,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HistoryBook">
-              <PropertyRef Name="IdBook" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ImportBoo__IdBoo__4F7CD00D">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="ImportBookDetail" Type="Self.ImportBookDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImportBookDetail">
               <PropertyRef Name="IdBook" />
             </Dependent>
           </ReferentialConstraint>
@@ -549,18 +437,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ImportBoo__IdImp__5070F446">
-          <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="1" />
-          <End Role="ImportBookDetail" Type="Self.ImportBookDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ImportBook">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImportBookDetail">
-              <PropertyRef Name="IdImport" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Users__IdStatus__3A81B327">
           <End Role="UserStatus" Type="Self.UserStatu" Multiplicity="0..1" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
@@ -573,10 +449,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Author">
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <End Role="Writer" Type="Self.Writer" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Books" EntityType="Self.Book" />
@@ -585,18 +457,12 @@
           <EntitySet Name="Fees" EntityType="Self.Fee" />
           <EntitySet Name="HistoryBooks" EntityType="Self.HistoryBook" />
           <EntitySet Name="ImportBooks" EntityType="Self.ImportBook" />
-          <EntitySet Name="ImportBookDetails" EntityType="Self.ImportBookDetail" />
           <EntitySet Name="StatusBooks" EntityType="Self.StatusBook" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserStatus" EntityType="Self.UserStatu" />
-          <EntitySet Name="Writers" EntityType="Self.Writer" />
           <AssociationSet Name="FK__HistoryBo__IdBoo__5629CD9C" Association="Self.FK__HistoryBo__IdBoo__5629CD9C">
             <End Role="Book" EntitySet="Books" />
             <End Role="HistoryBook" EntitySet="HistoryBooks" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdBoo__4F7CD00D" Association="Self.FK__ImportBoo__IdBoo__4F7CD00D">
-            <End Role="Book" EntitySet="Books" />
-            <End Role="ImportBookDetail" EntitySet="ImportBookDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__ImportBoo__IdBoo__4CA06362" Association="Self.FK__ImportBoo__IdBoo__4CA06362">
             <End Role="BookStore" EntitySet="BookStores" />
@@ -618,19 +484,27 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="HistoryBook" EntitySet="HistoryBooks" />
           </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdImp__5070F446" Association="Self.FK__ImportBoo__IdImp__5070F446">
-            <End Role="ImportBook" EntitySet="ImportBooks" />
-            <End Role="ImportBookDetail" EntitySet="ImportBookDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK__Users__IdStatus__3A81B327" Association="Self.FK__Users__IdStatus__3A81B327">
             <End Role="UserStatus" EntitySet="UserStatus" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="Author" Association="Self.Author">
+          <AssociationSet Name="FK__ImportBoo__IdBoo__34C8D9D1" Association="LibraryManagementModel.FK__ImportBoo__IdBoo__34C8D9D1">
             <End Role="Book" EntitySet="Books" />
-            <End Role="Writer" EntitySet="Writers" />
+            <End Role="ImportBook" EntitySet="ImportBooks" />
           </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__ImportBoo__IdBoo__34C8D9D1">
+          <End Type="LibraryManagementModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="LibraryManagementModel.ImportBook" Role="ImportBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImportBook">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -654,9 +528,9 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="LibraryManagementModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="PriceIn" ColumnName="PriceIn" />
@@ -670,8 +544,6 @@
               <MappingFragment StoreEntitySet="BookStore">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CoopDate" ColumnName="CoopDate" />
                 <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
@@ -711,18 +583,11 @@
           <EntitySetMapping Name="ImportBooks">
             <EntityTypeMapping TypeName="LibraryManagementModel.ImportBook">
               <MappingFragment StoreEntitySet="ImportBook">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdBookStore" ColumnName="IdBookStore" />
                 <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ImportBookDetails">
-            <EntityTypeMapping TypeName="LibraryManagementModel.ImportBookDetail">
-              <MappingFragment StoreEntitySet="ImportBookDetail">
-                <ScalarProperty Name="IdImport" ColumnName="IdImport" />
-                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -755,25 +620,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Writers">
-            <EntityTypeMapping TypeName="LibraryManagementModel.Writer">
-              <MappingFragment StoreEntitySet="Writer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Author" TypeName="LibraryManagementModel.Author" StoreEntitySet="Author">
-            <EndProperty Name="Book">
-              <ScalarProperty Name="Id" ColumnName="IdBook" />
-            </EndProperty>
-            <EndProperty Name="Writer">
-              <ScalarProperty Name="Id" ColumnName="IdWriter" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

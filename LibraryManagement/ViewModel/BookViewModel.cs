@@ -9,16 +9,16 @@ using System.Windows.Input;
 
 namespace LibraryManagement.ViewModel
 {
-    public class StoreViewModel : BaseViewModel
+    public class BookViewModel : BaseViewModel
     {
 
-        // Danh sách các nhà sách trong database
-        private ObservableCollection<BookStore> _StoreList { get; set; }
-        public ObservableCollection<BookStore> StoreList { get => _StoreList; set { _StoreList = value; OnPropertyChanged(); } }
+        // Danh sách sách trong db
+        private ObservableCollection<Book> _BookList { get; set; }
+        public ObservableCollection<Book> BookList { get => _BookList; set { _BookList = value; OnPropertyChanged(); } }
 
-        // nhà sách được chọn trên list view
-        private BookStore _SelectedItem;
-        public BookStore SelectedItem
+        // sách được chọn trên list view
+        private Book _SelectedItem;
+        public Book SelectedItem
         {
             get => _SelectedItem;
             set
@@ -29,9 +29,9 @@ namespace LibraryManagement.ViewModel
             }
         }
 
-        // nhà sách được thêm
-        private BookStore _AddItem;
-        public BookStore AddItem
+        // ách được thêm
+        private Book _AddItem;
+        public Book AddItem
         {
             get => _AddItem;
             set
@@ -64,31 +64,27 @@ namespace LibraryManagement.ViewModel
         // Command xử lí khi ấn vào nút tìm kiếm 
         public ICommand SearchCommand { get; set; }
         // Command xử lí khi ấn vào nút lịch sử nhập sách
-        public ICommand HistoryStoreCommand { get; set; }
-        // Command xử lí khi ấn vào nút xuất thông tin
-        public ICommand ExportInfoCommand { get; set; }
         //Command xử lí khi key word thay đổi
         public ICommand KeyWordChangeCommand { get; set; }
 
-        public StoreViewModel()
+        public BookViewModel()
         {
             // lấy danh sách từ database
-            StoreList = new ObservableCollection<BookStore>(DataProvider.Ins.DB.BookStores);
+            BookList = new ObservableCollection<Book>(DataProvider.Ins.DB.Books);
 
             EditCommand = new RelayCommand<Object>((p) => { return true; },
                                                               (p) =>
                                                               {
-                                                                  if (BookStoreValidate(SelectedItem))
-                                                                      SaveChangeStore();
+                                                                  if (BookValidate(SelectedItem))
+                                                                      SaveChangeBook();
                                                               });
 
             AddCommand = new RelayCommand<Object>((p) => { return true; },
                                                               (p) =>
                                                               {
                                                                   AddLayoutVisible = true;
-                                                                  AddItem = new BookStore();
-                                                                  DateTime now = DateTime.Now;
-                                                                  AddItem.CoopDate = now;
+                                                                  AddItem = new Book();
+                                                                  AddItem.Quantity = 1;
                                                                   OnPropertyChanged("AddItem");
                                                               });
             CancelAddCommand = new RelayCommand<Object>((p) => { return true; },
@@ -100,8 +96,8 @@ namespace LibraryManagement.ViewModel
             SaveAddCommand = new RelayCommand<Object>((p) => { return true; },
                                                              (p) =>
                                                              {
-                                                                 if (BookStoreValidate(AddItem))
-                                                                     SaveAddStore();
+                                                                 if (BookValidate(AddItem))
+                                                                     SaveAddBook();
                                                              });
 
             KeyWordChangeCommand = new RelayCommand<TextBox>((p) => { return true; },
@@ -113,53 +109,49 @@ namespace LibraryManagement.ViewModel
             DeleteCommand = new RelayCommand<Object>((p) => { return true; },
                                                              (p) =>
                                                              {
-                                                                 DeleteStore();
+                                                                 DeleteBook();
                                                              });
 
-            HistoryStoreCommand = new RelayCommand<Object>((p) => { return true; },
-                                                             (p) =>
-                                                             {
-                                                                 DisplayHistoryImportBook();
-                                                             });
+           
         }
 
 
 
-        private void SaveChangeStore()
+        private void SaveChangeBook()
         {
             if (SelectedItem != null)
             {
-                var store = DataProvider.Ins.DB.BookStores.Where(x => x.Id == SelectedItem.Id).SingleOrDefault();
+                var store = DataProvider.Ins.DB.Books.Where(x => x.Id == SelectedItem.Id).SingleOrDefault();
                 store.Name = SelectedItem.Name;
-                store.Address = SelectedItem.Address;
+                store.Author = SelectedItem.Author;
                 store.MoreInfo = SelectedItem.MoreInfo;
                 DataProvider.Ins.DB.SaveChanges();
                 MessageBox.Show("Đã Lưu", "Thành Công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        private void SaveAddStore()
+        private void SaveAddBook()
         {
             if (AddItem != null)
             {
-                DataProvider.Ins.DB.BookStores.Add(AddItem);
+                DataProvider.Ins.DB.Books.Add(AddItem);
                 DataProvider.Ins.DB.SaveChanges();
                 SelectedItem = AddItem;
-                StoreList.Add(AddItem);
+                BookList.Add(AddItem);
                 AddItem = null;
                 AddLayoutVisible = false;
             }
         }
 
-        private Boolean BookStoreValidate(BookStore store)
+        private Boolean BookValidate(Book book)
         {
-            if (store == null)
+            if (book == null)
                 return false;
 
-            if (String.IsNullOrEmpty(store.Name))
+            if (String.IsNullOrEmpty(book.Name))
                 return false;
 
-            if (String.IsNullOrEmpty(store.Address))
+            if (String.IsNullOrEmpty(book.Author))
                 return false;
 
             return true;
@@ -167,10 +159,10 @@ namespace LibraryManagement.ViewModel
 
         private void DisplayResultSearch(string keyWord)
         {
-            StoreList.Clear();
+            BookList.Clear();
             if (String.IsNullOrWhiteSpace(keyWord))
             {
-                StoreList = new ObservableCollection<BookStore>(DataProvider.Ins.DB.BookStores);
+                BookList = new ObservableCollection<Book>(DataProvider.Ins.DB.Books);
                 return;
             }
             else
@@ -178,67 +170,40 @@ namespace LibraryManagement.ViewModel
                 switch (SearchHeading)
                 {
                     case 0:
-                        StoreList = new ObservableCollection<BookStore>(DataProvider.Ins.DB.BookStores.Where(x => x.Id.ToString().ToLower().Contains(keyWord.ToLower())));
+                        BookList = new ObservableCollection<Book>(DataProvider.Ins.DB.Books.Where(x => x.Id.ToString().ToLower().Contains(keyWord.ToLower())));
                         break;
                     case 1:
-                        StoreList = new ObservableCollection<BookStore>(DataProvider.Ins.DB.BookStores.Where(x => x.Name.ToString().ToLower().Contains(keyWord.ToLower())));
+                        BookList = new ObservableCollection<Book>(DataProvider.Ins.DB.Books.Where(x => x.Name.ToString().ToLower().Contains(keyWord.ToLower())));
                         break;
                     case 2:
-                        StoreList = new ObservableCollection<BookStore>(DataProvider.Ins.DB.BookStores.Where(x => x.Address.ToString().ToLower().Contains(keyWord.ToLower())));
+                        BookList = new ObservableCollection<Book>(DataProvider.Ins.DB.Books.Where(x => x.Author.ToString().ToLower().Contains(keyWord.ToLower())));
                         break;
-                    
+
                 }
             }
         }
 
-        private bool CheckImportBookExists(BookStore bookStore)
+        
+        private void DeleteBook()
         {
-            if (bookStore == null) 
-                return false;
-
-            return bookStore.ImportBooks.Count > 0;
-        }
-        private void DeleteStore()
-        {
-            if(SelectedItem == null) 
+            if (SelectedItem == null)
                 return;
 
-            String title = "Xóa nhà sách?";
+            String title = "Xóa sách?";
             String message = "Hành động này không thể khôi phục, Bạn có chắc chắn?";
             MessageBoxResult dialogResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
-            if(dialogResult == MessageBoxResult.Yes)
+            if (dialogResult == MessageBoxResult.Yes)
             {
-                if (CheckImportBookExists(SelectedItem))
-                {
-                    String notifyTitle = "Thông báo";
-                    String notifyMessage = "Không thể xóa nhà sách này.";
-                    MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
-                }
-                else
-                {
-                    DataProvider.Ins.DB.BookStores.Remove(SelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    StoreList.Remove(SelectedItem);
-                    String notifyTitle = "Thông báo";
-                    String notifyMessage = "Xóa thành công.";
-                    MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
-                }
+                
+                DataProvider.Ins.DB.Books.Remove(SelectedItem);
+                DataProvider.Ins.DB.SaveChanges();
+                BookList.Remove(SelectedItem);
+                String notifyTitle = "Thông báo";
+                String notifyMessage = "Xóa thành công.";
+                MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
+                
             }
         }
 
-        private void DisplayHistoryImportBook()
-        {
-            if (CheckImportBookExists(SelectedItem))
-            {
-                HistoryStore historyStore = new HistoryStore(SelectedItem);
-                historyStore.ShowDialog();
-            }
-            else
-            {
-                String notifyTitle = "Thông báo";
-                String notifyMessage = "Không có lịch sử";
-                MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
-            }
-        }
     }
 }
