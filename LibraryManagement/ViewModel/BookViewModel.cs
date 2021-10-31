@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Win32;
+using Microsoft.Office.Interop.Excel;
 
 namespace LibraryManagement.ViewModel
 {
@@ -29,7 +31,7 @@ namespace LibraryManagement.ViewModel
             }
         }
 
-        // ách được thêm
+        // sách được thêm
         private Book _AddItem;
         public Book AddItem
         {
@@ -40,6 +42,7 @@ namespace LibraryManagement.ViewModel
                 OnPropertyChanged();
             }
         }
+
 
         // kiểm tra thông tin đang hiển thị là của item được chọn hay của item muốn thêm
         private bool _AddLayoutVisible = false;
@@ -63,9 +66,13 @@ namespace LibraryManagement.ViewModel
         public ICommand DeleteCommand { get; set; }
         // Command xử lí khi ấn vào nút tìm kiếm 
         public ICommand SearchCommand { get; set; }
-        // Command xử lí khi ấn vào nút lịch sử nhập sách
+        
         //Command xử lí khi key word thay đổi
         public ICommand KeyWordChangeCommand { get; set; }
+
+        //Command xử lí xuất thông tin
+        public ICommand ExportInfoCommand { get; set; }
+
 
         public BookViewModel()
         {
@@ -100,7 +107,7 @@ namespace LibraryManagement.ViewModel
                                                                      SaveAddBook();
                                                              });
 
-            KeyWordChangeCommand = new RelayCommand<TextBox>((p) => { return true; },
+            KeyWordChangeCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { return true; },
                                                              (p) =>
                                                              {
                                                                  DisplayResultSearch(p.Text);
@@ -112,7 +119,11 @@ namespace LibraryManagement.ViewModel
                                                                  DeleteBook();
                                                              });
 
-           
+            ExportInfoCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) =>
+                                                             {
+                                                                 ExportBook();
+                                                             });
         }
 
 
@@ -190,7 +201,7 @@ namespace LibraryManagement.ViewModel
                 return;
 
             String title = "Xóa sách?";
-            String message = "Hành động này không thể khôi phục, Bạn có chắc chắn?";
+            String message = "Bạn muốn xóa sách đang chọn ?";
             MessageBoxResult dialogResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
             if (dialogResult == MessageBoxResult.Yes)
             {
@@ -204,6 +215,42 @@ namespace LibraryManagement.ViewModel
                 
             }
         }
+        public void ExportBook()
+        {
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook |*.xls", ValidateNames = true };
+            if (sfd.ShowDialog() == true)
+            {
+                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                Workbook wb = app.Workbooks.Add(XlSheetType.xlWorksheet);
+                Worksheet ws = (Worksheet)app.ActiveSheet;
 
+                app.Visible = false;
+                ws.Cells[1, 1] = "Mã sách";
+                ws.Cells[1, 2] = "Tên sách";
+                ws.Cells[1, 3] = "Tác giả";
+                ws.Cells[1, 4] = "Ngày xuất bản";
+                ws.Cells[1, 5] = "Giá mua";
+                ws.Cells[1, 6] = "Giá bán";
+                ws.Cells[1, 7] = "Trạng thái";
+                ws.Cells[1, 8] = "Thông tin thêm";
+
+                int i = 2;
+                foreach (var item in BookList)
+                {
+                    ws.Cells[i, 1] = item.Id;
+                    ws.Cells[i, 2] = item.Name;
+                    ws.Cells[i, 3] = item.Author;
+                    ws.Cells[i, 4] = item.PublishDate;
+                    ws.Cells[i, 5] = item.PriceIn;
+                    ws.Cells[i, 6] = item.PriceOut;
+                    ws.Cells[i, 7] = item.Quantity;
+                    ws.Cells[i, 8] = item.MoreInfo;
+                }
+                wb.SaveAs(sfd.FileName, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+                app.Quit();
+
+                MessageBox.Show("Your data has been successfully exported. ");
+            }
+        }
     }
 }
