@@ -167,33 +167,35 @@
                 Orientation="Vertical">
                     <TextBox
                     IsEnabled="False"
-                        Text="{Binding SelectedItem.Id}"
+                        Text="{Binding Id}"
                     materialDesign:HintAssist.Hint="Mã độc giả"
                     Style="{StaticResource InputTextBox}"/>
                     <TextBox
-                        Text="{Binding SelectedItem.Name}"
+                        Text="{Binding Name}"
                     materialDesign:HintAssist.Hint="Tên độc giả"
                     Style="{StaticResource InputTextBox}"/>
 
                     <DatePicker
-                        SelectedDate="{Binding SelectedItem.BirthDay}"
+                        SelectedDate="{Binding BirthDay}"
                     materialDesign:HintAssist.Hint="Ngày sinh"
                     Style="{StaticResource InputDatePicker}" />
 
                     <TextBox
-                        Text="{Binding SelectedItem.Email}"
+                        Text="{Binding Email}"
                     materialDesign:HintAssist.Hint="Email"
                     Style="{StaticResource InputTextBox}"/>
 
                     <TextBox
-                        Text="{Binding SelectedItem.Address}"
+                        Text="{Binding Address}"
                     materialDesign:HintAssist.Hint="Địa chỉ"
                     Style="{StaticResource InputTextBox}"/>
 
                     <TextBox
-                        Text="{Binding SelectedItem.Phone}"
+                        Text="{Binding Phone}"
                     materialDesign:HintAssist.Hint="SĐT"
                     Style="{StaticResource InputTextBox}"/>
+
+                    
 
 
                     <ComboBox
@@ -379,10 +381,18 @@
                      Text="{Binding AddItem.Phone}"
                         materialDesign:HintAssist.Hint="SĐT"
                         Style="{StaticResource InputTextBox}"/>
-                    
-                    
-                    
-                    
+
+                    <!--<TextBox 
+                        Text="{Binding SelectedUserStatus.Name}"
+                    materialDesign:HintAssist.Hint="Trạng thái"
+                    Style="{StaticResource InputTextBox}">
+
+                    </TextBox>-->
+
+
+
+
+
 
 
                     <ComboBox

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
+using System.Windows.Controls;
 
 
 namespace LibraryManagement.ViewModel
@@ -33,6 +34,11 @@ namespace LibraryManagement.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
+                    Name = SelectedItem.Name;
+                    BirthDay = SelectedItem.BirthDay;
+                    Email = SelectedItem.Email;
+                    Address = SelectedItem.Address;
+                    Phone = SelectedItem.Phone;
                     SelectedUserStatus = SelectedItem.UserStatu;
                 }
                     
@@ -65,6 +71,30 @@ namespace LibraryManagement.ViewModel
                 }
             }
         }
+
+        private string _Name;
+        public string Name { get => _Name; set { _Name = value; OnPropertyChanged(); } }
+
+        private DateTime? _BirthDay;
+        public DateTime? BirthDay { get => _BirthDay; set { _BirthDay = value; OnPropertyChanged(); } }
+
+        private string _Email;
+        public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
+
+        private string _Address;
+        public string Address { get => _Address; set { _Address = value; OnPropertyChanged(); } }
+
+        private string _Phone;
+        public string Phone { get => _Phone; set { _Phone = value; OnPropertyChanged(); } }
+
+
+
+
+
+
+
+
+
 
         // kiểm tra thông tin đang hiển thị là của item được chọn hay của item muốn thêm
         private bool _AddLayoutVisible = false;
@@ -144,7 +174,7 @@ namespace LibraryManagement.ViewModel
                                                                      SaveAddUser();
                                                              });
 
-            DeleteCommand = new RelayCommand<TextBox>((p) => { return true; },
+            DeleteCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { return true; },
                                                              (p) =>
                                                              {
                                                                  DeleteUser();
@@ -159,7 +189,7 @@ namespace LibraryManagement.ViewModel
 
 
 
-            KeyWordChangeCommand = new RelayCommand<TextBox>((p) => { return true; },
+            KeyWordChangeCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { return true; },
                                                             (p) =>
                                                             {
                                                                 DisplayResultSearch(p.Text);
@@ -194,13 +224,17 @@ namespace LibraryManagement.ViewModel
             if (SelectedItem != null)
             {
                 var user = DataProvider.Ins.DB.Users.Where(x => x.Id == SelectedItem.Id).SingleOrDefault();
-                SelectedItem.IdStatus = SelectedUserStatus.Id;
-                user.Name = SelectedItem.Name;
-                user.Address = SelectedItem.Address;
-                user.Email = SelectedItem.Email;
-                user.Phone = SelectedItem.Phone;
+                ////SelectedItem.IdStatus = SelectedUserStatus.Id;
+                
+                user.Name = Name;
+                user.BirthDay = BirthDay;
+                user.Address = Address;
+                user.Email = Email;
+                user.Phone = Phone;
                 user.IdStatus = SelectedUserStatus.Id;
                 DataProvider.Ins.DB.SaveChanges();
+
+                SelectedItem.Name = Name;
                 MessageBox.Show("Đã Lưu", "Thành Công", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
