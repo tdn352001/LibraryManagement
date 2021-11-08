@@ -12,11 +12,12 @@ namespace LibraryManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ImportBookDetail
+    public partial class DetailImport
     {
         public int IdImport { get; set; }
         public int IdBook { get; set; }
         public Nullable<int> Quantity { get; set; }
+        public Nullable<int> PriceIn { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual ImportBook ImportBook { get; set; }

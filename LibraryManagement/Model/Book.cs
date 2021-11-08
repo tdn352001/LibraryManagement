@@ -17,25 +17,20 @@ namespace LibraryManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
+            this.DetailImports = new HashSet<DetailImport>();
             this.HistoryBooks = new HashSet<HistoryBook>();
-            this.ImportBookDetails = new HashSet<ImportBookDetail>();
-            this.Writers = new HashSet<Writer>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
+        public string Author { get; set; }
         public Nullable<System.DateTime> PublishDate { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<int> PriceIn { get; set; }
-        public Nullable<int> PriceOut { get; set; }
         public string MoreInfo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetailImport> DetailImports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoryBook> HistoryBooks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportBookDetail> ImportBookDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Writer> Writers { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace LibraryManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ImportBook()
         {
-            this.ImportBookDetails = new HashSet<ImportBookDetail>();
+            this.DetailImports = new HashSet<DetailImport>();
         }
     
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace LibraryManagement.Model
     
         public virtual BookStore BookStore { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImportBookDetail> ImportBookDetails { get; set; }
+        public virtual ICollection<DetailImport> DetailImports { get; set; }
     }
 }
