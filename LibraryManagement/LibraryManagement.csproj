@@ -138,6 +138,9 @@
     <Compile Include="UserControls\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FeeControl.xaml.cs">
+      <DependentUpon>FeeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReaderControl.xaml.cs">
       <DependentUpon>ReaderControl.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\BookControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FeeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

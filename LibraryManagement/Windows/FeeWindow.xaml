@@ -186,11 +186,11 @@
                         VerticalScrollBarVisibility="Visible">
                         <ListView 
                             ItemsSource="{Binding FeeList}"  
-                            SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                            SelectedItem="{Binding FeeSelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
-                                    <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding Interval}" Width="auto"/>
+                                    <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding Interval,  StringFormat='MM/yyyy'}"  Width="auto"/>
                                     <GridViewColumn Header="Số tiền" DisplayMemberBinding="{Binding Money}" Width="auto"/>
 
                                 </GridView>
@@ -217,21 +217,23 @@
                 Height="auto"
                 Orientation="Vertical">
                     <TextBox
-                    IsEnabled="False"
-                    Text="{Binding SelectedItem.Id}"
-                    materialDesign:HintAssist.Hint="Mã"
-                    Style="{StaticResource InputTextBox}"/>
+                        IsEnabled="False"
+                        Text="{Binding FeeSelectedItem.Id}"
+                        materialDesign:HintAssist.Hint="Mã"
+                        Style="{StaticResource InputTextBox}"/>
 
 
                     <DatePicker
-                    SelectedDate="{Binding SelectedItem.Money}"
-                    materialDesign:HintAssist.Hint="Khoảng thời gian"
-                    Style="{StaticResource InputDatePicker}" />
+                        IsEnabled="{Binding canEditFeeSelectedItem}"
+                        SelectedDate="{Binding FeeSelectedItem.Interval, StringFormat='dd/MM/yyyy'}"
+                        materialDesign:HintAssist.Hint="Khoảng thời gian"
+                        Style="{StaticResource InputDatePicker}" />
 
                     <TextBox
-                    Text="{Binding SelectedItem.Interval}"
-                    materialDesign:HintAssist.Hint="Số tiền"
-                    Style="{StaticResource InputTextBox}"/>
+                        IsEnabled="{Binding canEditFeeSelectedItem}"
+                        Text="{Binding FeeSelectedItem.Money}"
+                        materialDesign:HintAssist.Hint="Số tiền"
+                        Style="{StaticResource InputTextBox}"/>
 
                     <Grid
                     Margin="0 16 0 16">
@@ -240,12 +242,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Button
-                        Name="editBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        Command="{Binding EditCommand}">
+                            Name="editBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding EditFeeCommand}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -268,13 +270,13 @@
                             </Grid>
                         </Button>
                         <Button
-                        Name="delBtn"
-                        Grid.Column="1"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        Command="{Binding DeleteCommand}">
+                            Name="delBtn"
+                            Grid.Column="1"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding FeeDeleteCommand}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -298,39 +300,12 @@
                         </Button>
                     </Grid>
 
-                    <Button
-                    Name="exportBtn"
-                    Command="{Binding ExportInfoCommand}"
-                    Style="{StaticResource ControlButonStyle}"
-                    Foreground="Black"
-                    HorizontalContentAlignment="Center">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Path 
-                            Data="{StaticResource Export}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=exportBtn}" 
-                            Width="{Binding FontSize, ElementName=exportBtn}" 
-                            Fill="{Binding Foreground, ElementName=exportBtn}"/>
-
-                            <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Xuất thông tin"
-                            Foreground="{Binding Foreground, ElementName=exportBtn}"
-                            TextDecorations="{Binding Tag, ElementName=exportBtn}"
-                            FontSize="{Binding FontSize, ElementName=exportBtn}"
-                            Grid.Column="1"/>
-                        </Grid>
-                    </Button>
-
+                   
                     <Border
-                    Height="2"
-                    Margin="10"
-                    HorizontalAlignment="Stretch"
-                    Background="Gray"/>
+                        Height="2"
+                        Margin="10"
+                        HorizontalAlignment="Stretch"
+                        Background="Gray"/>
 
                 </StackPanel>
             </ScrollViewer>

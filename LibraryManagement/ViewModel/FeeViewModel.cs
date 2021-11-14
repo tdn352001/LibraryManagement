@@ -10,67 +10,87 @@ namespace LibraryManagement.ViewModel
 {
     public class FeeViewModel : BaseViewModel
     {
+        private ObservableCollection<Fee> _FeeList { get; set; }
+        public ObservableCollection<Fee> FeeList { get => _FeeList; set { _FeeList = value; OnPropertyChanged(); } }
 
-        // Danh sách các nhà sách trong database
-        private ObservableCollection<DetailFee> _FeeList { get; set; }
-        public ObservableCollection<DetailFee> FeeList { get => _FeeList; set { _FeeList = value; OnPropertyChanged(); } }
-
-        // nhà sách được chọn trên list view
-        private DetailFee _SelectedItem;
-        public DetailFee SelectedItem
+        private Fee _FeeSelectedItem;
+        public Fee FeeSelectedItem
         {
-            get => _SelectedItem;
+            get => _FeeSelectedItem;
             set
             {
-                _SelectedItem = value;
-
+                _FeeSelectedItem = value;
+                canEditFeeSelectedItem = CanEditFeeSelectedItem();
                 OnPropertyChanged();
             }
         }
 
-        // nhà sách được thêm
-        private DetailFee _AddItem;
-        public DetailFee AddItem
+        private bool _canEditFeeSelectedItem;
+        public bool canEditFeeSelectedItem
         {
-            get => _AddItem;
+            get => _canEditFeeSelectedItem;
             set
             {
-                _AddItem = value;
+                _canEditFeeSelectedItem = value;
                 OnPropertyChanged();
             }
         }
 
-        // kiểm tra thông tin đang hiển thị là của item được chọn hay của item muốn thêm
-        private bool _AddLayoutVisible = false;
-        public bool AddLayoutVisible { get => _AddLayoutVisible; set { _AddLayoutVisible = value; OnPropertyChanged(); } }
+        public ICommand EditFeeCommand { get; set; }
+        public ICommand FeeDeleteCommand { get; set; }
 
-        // thứ tự của heading được chọn trong phân loại tìm kiếm trong commbo box
-        private int _SearchHeading = 1;
-        public int SearchHeading { get => _SearchHeading; set { _SearchHeading = value; OnPropertyChanged(); } }
 
-        //Command xử lí khi click vào nút thêm (nút trên list view)
-        public ICommand AddCommand { get; set; }
 
-        // Command xử lí khi ấn vào nút lưu trong layout thêm item
-        public ICommand SaveAddCommand { get; set; }
-        // Command xử lí khi ấn vào nút hủy trong layout thêm item
-        public ICommand CancelAddCommand { get; set; }
+        private ObservableCollection<DetailFee> _DetailFeeList { get; set; }
+        public ObservableCollection<DetailFee> DetailFeeList { get => _DetailFeeList; set { _DetailFeeList = value; OnPropertyChanged(); } }
 
-        // Command xử lí khi ấn vào nút lưu trong layout selected item
-        public ICommand EditCommand { get; set; }
-        // Command xử lí khi ấn vào nút xóa trong layout selected item
-        public ICommand DeleteCommand { get; set; }
-        // Command xử lí khi ấn vào nút tìm kiếm 
-        public ICommand SearchCommand { get; set; }
-        // Command xử lí khi ấn vào nút lịch sử nhập sách
-        public ICommand ExportInfoCommand { get; set; }
-        //Command xử lí khi key word thay đổi
-        public ICommand KeyWordChangeCommand { get; set; }
+
+
 
         public FeeViewModel()
         {
-            // lấy danh sách từ database
-            FeeList = new ObservableCollection<DetailFee>(DataProvider.Ins.DB.DetailFees);
-        }       
+            FeeList = new ObservableCollection<Fee>(DataProvider.Ins.DB.Fees);
+            canEditFeeSelectedItem = CanEditFeeSelectedItem();
+
+            // Edit Fee Commnad
+            EditFeeCommand = new RelayCommand<Object>((p) => {
+                return canEditFeeSelectedItem;
+            },
+            (p) =>
+            {
+                MessageBox.Show("Helllo");                                                   
+            });
+
+            // Delete Fee Command
+            FeeDeleteCommand = new RelayCommand<Object>((p) => {
+                return canEditFeeSelectedItem;
+            },
+            (p) =>
+            {
+                MessageBox.Show("Helllo");
+            });
+        }
+
+
+
+
+        private bool CanEditFeeSelectedItem()
+        {
+            if (FeeSelectedItem == null)
+                return false;
+            int currentYear = DateTime.UtcNow.Year;
+            int selectedYear = FeeSelectedItem.Interval.Value.Year;
+            
+            if (selectedYear < currentYear)
+                return false;
+
+            int currentMonth = DateTime.UtcNow.Month;
+            int selectedMonth = FeeSelectedItem.Interval.Value.Month;
+            if(selectedYear == currentYear)
+                if (currentMonth >= selectedMonth)
+                    return false;
+
+            return true;
+        }
     }
 }
