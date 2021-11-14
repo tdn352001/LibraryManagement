@@ -1,4 +1,4 @@
-﻿<Window 
+﻿ <Window 
     x:Class="LibraryManagement.MainWindow"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -14,12 +14,19 @@
     Background="Transparent" 
     AllowsTransparency="True" 
     WindowStyle="None" 
-    ResizeMode="NoResize"
+    ResizeMode="NoResize" 
     WindowStartupLocation="CenterScreen"
     Title="Library Management" 
     Height="680" 
     Width="1240"
     mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction 
+                Command="{Binding LoadedCommand}" 
+                CommandParameter="{Binding ElementName=controlContainer}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Border
         CornerRadius="20"
         Background="{StaticResource Background}">
@@ -80,7 +87,8 @@
 
                         <Button
                             Name="homeBtn"
-                            Command="{Binding HomeCommand}">
+                            Command="{Binding HomeCommand}"
+                            CommandParameter="{Binding ElementName=controlContainer}">
 
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
@@ -116,7 +124,8 @@
 
                         <Button
                             Name="storeBtn"
-                            Command="{Binding StoreCommand}">
+                            Command="{Binding StoreCommand}"
+                            CommandParameter="{Binding ElementName=controlContainer}">
 
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
@@ -152,7 +161,8 @@
 
                         <Button
                             Name="bookBtn"
-                            Command="{Binding BookCommand}">
+                            Command="{Binding BookCommand}"
+                            CommandParameter="{Binding ElementName=controlContainer}">
 
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
@@ -188,7 +198,8 @@
 
                         <Button
                             Name="userBtn"
-                            Command="{Binding ReaderCommand}">
+                            Command="{Binding ReaderCommand}"
+                            CommandParameter="{Binding ElementName=controlContainer}">
 
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
@@ -224,7 +235,8 @@
 
                         <Button
                             Name="feeBtn"
-                            Command="{Binding FeeCommand}">
+                            Command="{Binding FeeCommand}"
+                            CommandParameter="{Binding ElementName=controlContainer}">
 
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MenuButtonStyle}" TargetType="Button">
@@ -262,54 +274,12 @@
                 </Border>
 
                 <Grid 
+                    Name="controlContainer"
                     Margin="0 0 10 0"
                     Grid.Column="1">
                     
-                    <uc:StoreControl   
-                        x:Name="storeControl"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                        <uc:StoreControl.Style>
-                            <Style TargetType="uc:StoreControl">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Screen}" Value="2">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </uc:StoreControl.Style>
-                    </uc:StoreControl>
 
-                    <uc:BookControl
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                        <uc:BookControl.Style>
-                            <Style TargetType="uc:BookControl">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Screen}" Value="3">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </uc:BookControl.Style>
-                    </uc:BookControl>
-
-                    <uc:ReaderControl
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                        <uc:ReaderControl.Style>
-                            <Style TargetType="uc:ReaderControl">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Screen}" Value="4">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </uc:ReaderControl.Style>
-                    </uc:ReaderControl>
+                    
                 </Grid>
             </Grid>
         </Grid>

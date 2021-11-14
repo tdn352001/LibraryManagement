@@ -52,6 +52,10 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -95,6 +99,9 @@
     <Compile Include="Model\DetailFee.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DetailImport.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Fee.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -102,9 +109,6 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ImportBook.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ImportBookDetail.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Models.Context.cs">
@@ -131,11 +135,11 @@
     <Compile Include="Model\UserStatu.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Writer.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FeeControl.xaml.cs">
+      <DependentUpon>FeeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ReaderControl.xaml.cs">
       <DependentUpon>ReaderControl.xaml</DependentUpon>
@@ -144,12 +148,20 @@
       <DependentUpon>StoreControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\FeeViewModel.cs" />
     <Compile Include="ViewModel\HistoryStoreViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainUserControlViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="Windows\BookWindow.xaml.cs">
+      <DependentUpon>BookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FeeWindow.xaml.cs">
+      <DependentUpon>FeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\HistoryStore.xaml.cs">
       <DependentUpon>HistoryStore.xaml</DependentUpon>
     </Compile>
@@ -214,11 +226,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\FeeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ReaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\StoreControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
