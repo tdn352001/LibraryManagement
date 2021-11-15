@@ -8,7 +8,7 @@
     mc:Ignorable="d" 
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:viewmodel="clr-namespace:LibraryManagement.ViewModel" 
+    DataContext="{StaticResource BookViewModel}"
     d:DesignHeight="450" 
     d:DesignWidth="800">
     <Grid
@@ -153,7 +153,7 @@
                                     <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
                                     <GridViewColumn Header="Tên sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
                                     <GridViewColumn Header="Tác giả" DisplayMemberBinding="{Binding Author}" Width="auto"/>
-                                    <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding PublishDate}" Width="auto"/>
+                                    <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding PublishDate, StringFormat='dd/MM/yyyy'}" Width="auto"/>
                                     <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}" Width="auto"/>
                                     <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
 

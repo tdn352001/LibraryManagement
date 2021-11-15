@@ -8,421 +8,395 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        WindowState="Maximized"
         DataContext="{StaticResource FeeViewModel}"
         Title="FeeWindow" 
         Height="600" 
         Width="1024">
-    <Grid
-        Background="{StaticResource Background}">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <TabControl Margin="20">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid Width="250" 
+                                      Margin="-2 0 3 -1" 
+                                      x:Name="ContainX"
+                                      >
+                                    <Border Height="40" 
+                                            Name="Border"
+                                            BorderThickness="1,1,1,0" CornerRadius="5,5,0,0"
+                                            Padding="25,5,25,5" Margin="0,0,0,0"
+                                            Background="White"
+                                            BorderBrush="DarkGray">
+                                        <ContentPresenter x:Name="ContentSite" 
+                                                              ContentSource="Header" 
+                                                              HorizontalAlignment="Center" 
+                                                              VerticalAlignment="Center"
+                                                          
+                                                          >
+                                        </ContentPresenter>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter TargetName="Border" Property="Background" Value="white"/>
+                                        <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="{StaticResource PrimaryColor}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="White"/>
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource PrimaryColor}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
 
-        <materialDesign:Card 
-            Grid.Column="0" 
-            Margin="10" 
-            UniformCornerRadius="10" 
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch">
-
-            <Grid  
-                Margin="16 0 16 0"
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Grid
-                    Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Border 
-                        Background="{StaticResource Background}"
-                        Grid.Column="0"
-                        CornerRadius="16"
-                        Padding="0 0 0 0"
-                        Margin="16">
-                        <Grid 
-                            Background="Transparent"
-                            VerticalAlignment="Stretch"
-                            HorizontalAlignment="Stretch">
-
-                            <!--Search Button-->
-                            <Button 
-                                HorizontalAlignment="Left" 
-                                VerticalAlignment="Top" 
-                                Grid.Column="2"
-                                Command="{Binding SearchCommand}"
-                                Width="30"
-                                Height="30"
-                                ToolTip="Search"
-                                Style="{StaticResource SearchButton}"/>
-
-                            <TextBox 
-                                Name="searchBox"
-                                Style="{StaticResource SearchFields}"
-                                materialDesign:HintAssist.Hint="Search Here..."
-                                Padding="20 4 8 4" 
-                                VerticalContentAlignment="Center"
-                                Margin="16 0 8 0" 
-                                BorderThickness="0">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction
-                                            Command="{Binding KeyWordChangeCommand}" 
-                                            CommandParameter="{Binding ElementName=searchBox}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-
-
-                        </Grid>
-                    </Border>
-                    <ComboBox
-                        MinWidth="100"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        Grid.Column="1"
-                        SelectedIndex="{Binding SearchHeading}"
-                        materialDesign:HintAssist.Hint="OS">
-                        <ComboBoxItem Content="Mã" />
-                        <ComboBoxItem Content="Tên" />
-                        <ComboBoxItem Content="Địa Chỉ" />
-                        <ComboBoxItem Content="Số Điện Thoại" />
-                    </ComboBox>
-                </Grid>
-
-
-                <Grid
-                    Grid.Row="1"
-                    Margin="20 0 20 20"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel
-                        Grid.Row="0"
-                        Orientation="Vertical">
-                        <Button
-                            Name="addBtn"
-                            Grid.Row="0"
-                            Style="{StaticResource MaterialDesignFlatDarkButton}"
-                            Foreground="{StaticResource PrimaryColor}"
-                            Height="20"
-                            FontSize="12"
-                            HorizontalAlignment="Left"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding AddCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                Data="{StaticResource Add}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=addBtn}" 
-                                Width="{Binding FontSize, ElementName=addBtn}" 
-                                Fill="{Binding Foreground, ElementName=addBtn}"/>
-
-                                <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Bản thu phí mới"
-                                Foreground="{Binding Foreground, ElementName=addBtn}"
-                                TextDecorations="{Binding Tag, ElementName=addBtn}"
-                                FontSize="{Binding FontSize, ElementName=addBtn}"
-                                Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                        <StackPanel 
-                            Margin="16 8 0 0"
-                            Orientation="Horizontal">
-                            <ComboBox
-                                MinWidth="120"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
-                                Grid.Column="1"
-                                SelectedIndex="0"
-                                materialDesign:HintAssist.Hint="Tháng">
-                                <ComboBoxItem Content="Tháng 1" />
-                                <ComboBoxItem Content="Tháng 2" />
-                                <ComboBoxItem Content="Tháng 3" />
-                                <ComboBoxItem Content="Tháng 4" />
-                                <ComboBoxItem Content="Tháng 5" />
-                                <ComboBoxItem Content="Tháng 6" />
-                                <ComboBoxItem Content="Tháng 7" />
-                                <ComboBoxItem Content="Tháng 8" />
-                                <ComboBoxItem Content="Tháng 9" />
-                                <ComboBoxItem Content="Tháng 10" />
-                                <ComboBoxItem Content="Tháng 11" />
-                                <ComboBoxItem Content="Tháng 12" />
-                            </ComboBox>
-
-                            <ComboBox
-                                Margin="12 0 0 0"
-                                MinWidth="120"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Center"
-                                Grid.Column="1"
-                                SelectedIndex="0"
-                                materialDesign:HintAssist.Hint="Năm"/>
-
-                        </StackPanel>
-                    </StackPanel>
-                    
-
-                    <ScrollViewer 
-                        Grid.Row="1"
-                        VerticalScrollBarVisibility="Visible">
-                        <ListView 
-                            ItemsSource="{Binding FeeList}"  
-                            SelectedItem="{Binding FeeSelectedItem, Mode=OneWayToSource}">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
-                                    <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding Interval,  StringFormat='MM/yyyy'}"  Width="auto"/>
-                                    <GridViewColumn Header="Số tiền" DisplayMemberBinding="{Binding Money}" Width="auto"/>
-
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </ScrollViewer>
-
-                </Grid>
-            </Grid>
-        </materialDesign:Card>
-
-
-        <materialDesign:Card 
-            Grid.Column="1" 
-            Margin="10" 
-            Height="auto"
-            Padding="0 0 12 0"
-            UniformCornerRadius="10" 
-            HorizontalAlignment="Stretch">
-            <ScrollViewer 
-                VerticalScrollBarVisibility="Hidden">
-                <StackPanel
-                Margin="10"
-                Height="auto"
-                Orientation="Vertical">
-                    <TextBox
-                        IsEnabled="False"
-                        Text="{Binding FeeSelectedItem.Id}"
-                        materialDesign:HintAssist.Hint="Mã"
-                        Style="{StaticResource InputTextBox}"/>
-
-
-                    <DatePicker
-                        IsEnabled="{Binding canEditFeeSelectedItem}"
-                        SelectedDate="{Binding FeeSelectedItem.Interval, StringFormat='dd/MM/yyyy'}"
-                        materialDesign:HintAssist.Hint="Khoảng thời gian"
-                        Style="{StaticResource InputDatePicker}" />
-
-                    <TextBox
-                        IsEnabled="{Binding canEditFeeSelectedItem}"
-                        Text="{Binding FeeSelectedItem.Money}"
-                        materialDesign:HintAssist.Hint="Số tiền"
-                        Style="{StaticResource InputTextBox}"/>
-
-                    <Grid
-                    Margin="0 16 0 16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Button
-                            Name="editBtn"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding EditFeeCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Pen}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=editBtn}" 
-                                    Width="{Binding FontSize, ElementName=editBtn}" 
-                                    Fill="{Binding Foreground, ElementName=editBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Lưu"
-                                    Foreground="{Binding Foreground, ElementName=editBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=editBtn}"
-                                    FontSize="{Binding FontSize, ElementName=editBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                        <Button
-                            Name="delBtn"
-                            Grid.Column="1"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding FeeDeleteCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Delete}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=delBtn}" 
-                                    Width="{Binding FontSize, ElementName=delBtn}" 
-                                    Fill="{Binding Foreground, ElementName=delBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Xóa"
-                                    Foreground="{Binding Foreground, ElementName=delBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=delBtn}"
-                                    FontSize="{Binding FontSize, ElementName=delBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                    </Grid>
-
-                   
-                    <Border
-                        Height="2"
-                        Margin="10"
-                        HorizontalAlignment="Stretch"
-                        Background="Gray"/>
-
-                </StackPanel>
-            </ScrollViewer>
-        </materialDesign:Card>
-
-        <materialDesign:Card 
-            Grid.Column="1" 
-            Margin="10" 
-            Height="auto"
-            Padding="0 0 12 0"
-            UniformCornerRadius="10" 
-            HorizontalAlignment="Stretch">
-            <ScrollViewer 
-                VerticalScrollBarVisibility="Hidden">
-                <StackPanel
-                Margin="10"
-                Height="auto"
-                Orientation="Vertical">
-                    <TextBox
-                        IsEnabled="False"
-                        Text="{Binding AddItem.Id}"
-                        materialDesign:HintAssist.Hint="Mã"
-                        Style="{StaticResource InputTextBox}"/>
-
-
-
-                    <DatePicker
-                        materialDesign:HintAssist.Hint="Khoảng thời gian"
-                        Style="{StaticResource InputDatePicker}">
-                        <DatePicker.SelectedDate>
-                            <Binding Path="AddItem.Interval" UpdateSourceTrigger="LostFocus" Mode="TwoWay" StringFormat="MM/dd/yyyy"/>
-                        </DatePicker.SelectedDate>
-                    </DatePicker>
-
-                    <TextBox
-                        Text="{Binding AddItem.Money}"
-                        materialDesign:HintAssist.Hint="Số tiền"
-                        Style="{StaticResource InputTextBox}"/>
-
-
-                    <Grid
-                        Margin="0 16 0 16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Button
-                            Name="saveBtn"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding SaveAddCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Save}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=saveBtn}" 
-                                    Width="{Binding FontSize, ElementName=saveBtn}" 
-                                    Fill="{Binding Foreground, ElementName=saveBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Lưu"
-                                    Foreground="{Binding Foreground, ElementName=saveBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=saveBtn}"
-                                    FontSize="{Binding FontSize, ElementName=saveBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                        <Button
-                            Name="cancelBtn"
-                            Grid.Column="1"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding CancelAddCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Cancel}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=cancelBtn}" 
-                                    Width="{Binding FontSize, ElementName=cancelBtn}" 
-                                    Fill="{Binding Foreground, ElementName=cancelBtn}"/>
-
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Hủy"
-                                    Foreground="{Binding Foreground, ElementName=cancelBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=cancelBtn}"
-                                    FontSize="{Binding FontSize, ElementName=cancelBtn}"
-                                    Grid.Column="1"/>
-                            </Grid>
-                        </Button>
-                    </Grid>
-
-                </StackPanel>
-            </ScrollViewer>
-            <materialDesign:Card.Style>
-                <Style TargetType="materialDesign:Card">
-                    <Setter Property="Visibility" Value="Hidden"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding AddLayoutVisible}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
                 </Style>
-            </materialDesign:Card.Style>
-        </materialDesign:Card>
+            </TabControl.Resources>
+
+            <TabItem 
+                Header="Tab1"
+                Foreground="{StaticResource PrimaryColor}"
+                FontWeight="Bold"
+                FontSize="18">
+                <Grid
+                    Background="{StaticResource Background}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card 
+                        Grid.Column="0" 
+                        Margin="10" 
+                        UniformCornerRadius="10" 
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+
+                        <Grid  
+                            Margin="16 0 16 0"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">    
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="20"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Orientation="Vertical">
+                                    <Button
+                                        Name="addBtn"
+                                        Grid.Row="0"
+                                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                        Foreground="{StaticResource PrimaryColor}"
+                                        Height="20"
+                                        FontSize="12"
+                                        HorizontalAlignment="Left"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding AddFeeCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Add}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=addBtn}" 
+                                                Width="{Binding FontSize, ElementName=addBtn}" 
+                                                Fill="{Binding Foreground, ElementName=addBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Bản thu phí mới"
+                                                Foreground="{Binding Foreground, ElementName=addBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=addBtn}"
+                                                FontSize="{Binding FontSize, ElementName=addBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                </StackPanel>
+
+
+                                    <ScrollViewer 
+                                        Grid.Row="1"
+                                        Margin="0 8 0 0"
+                                        VerticalScrollBarVisibility="Visible">
+                                    <ListView 
+                                        ItemsSource="{Binding FeeList}"  
+                                        SelectedItem="{Binding FeeSelectedItem, Mode=OneWayToSource}">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                                                <GridViewColumn Header="Khoảng thời gian" DisplayMemberBinding="{Binding Interval,  StringFormat='MM/yyyy'}"  Width="auto"/>
+                                                <GridViewColumn Header="Số tiền" DisplayMemberBinding="{Binding Money}" Width="auto"/>
+
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </ScrollViewer>
+
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+
+
+                    <materialDesign:Card 
+                        Grid.Column="1" 
+                        Margin="10" 
+                        Height="auto"
+                        Padding="0 0 12 0"
+                        UniformCornerRadius="10" 
+                        HorizontalAlignment="Stretch">
+                        <ScrollViewer 
+                            VerticalScrollBarVisibility="Hidden">
+                            <StackPanel
+                                Margin="10"
+                                Height="auto"
+                                Orientation="Vertical"> 
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding FeeSelectedItem.Id}"
+                                    materialDesign:HintAssist.Hint="Mã"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <DatePicker
+                                    IsEnabled="False"
+                                    SelectedDate="{Binding FeeSelectedItem.Interval, StringFormat='dd/MM/yyyy'}"
+                                    materialDesign:HintAssist.Hint="Khoảng thời gian"
+                                    Style="{StaticResource InputDatePicker}" />
+
+                                <TextBox
+                                    IsEnabled="{Binding canEditFeeSelectedItem}"
+                                    Text="{Binding FeeSelectedItem.Money}"
+                                    materialDesign:HintAssist.Hint="Số tiền"
+                                    Style="{StaticResource InputTextBox}"/>     
+
+                                <Grid
+                                    Margin="0 16 0 16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Name="editBtn"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding EditFeeCommand}">     
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Pen}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=editBtn}" 
+                                                Width="{Binding FontSize, ElementName=editBtn}" 
+                                                Fill="{Binding Foreground, ElementName=editBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Lưu"
+                                                Foreground="{Binding Foreground, ElementName=editBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=editBtn}"
+                                                FontSize="{Binding FontSize, ElementName=editBtn}"
+                                                Grid.Column="1"/>   
+                                        </Grid>
+                                    </Button>
+                                    <Button
+                                        Name="delBtn"
+                                        Grid.Column="1"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding DeleteFeeCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Delete}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=delBtn}" 
+                                                Width="{Binding FontSize, ElementName=delBtn}" 
+                                                Fill="{Binding Foreground, ElementName=delBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Xóa"
+                                                Foreground="{Binding Foreground, ElementName=delBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=delBtn}"
+                                                FontSize="{Binding FontSize, ElementName=delBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+
+
+                                <Border
+                                    Height="2"
+                                    Margin="10"
+                                    HorizontalAlignment="Stretch"
+                                    Background="Gray"/>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card 
+                        Grid.Column="1" 
+                        Margin="10" 
+                        Height="auto"
+                        Padding="0 0 12 0"
+                        UniformCornerRadius="10" 
+                        HorizontalAlignment="Stretch">
+                        <ScrollViewer 
+                            VerticalScrollBarVisibility="Hidden">
+                            <StackPanel
+                                Margin="10"
+                                Height="auto"
+                                Orientation="Vertical">
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding AddFeeItem.Id}"
+                                    materialDesign:HintAssist.Hint="Mã"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <DatePicker
+                                    materialDesign:HintAssist.Hint="Khoảng thời gian"
+                                    Style="{StaticResource InputDatePicker}">
+                                    <DatePicker.SelectedDate>
+                                        <Binding 
+                                            Path="AddFeeDate" 
+                                            UpdateSourceTrigger="LostFocus" 
+                                            Mode="TwoWay" 
+                                            StringFormat="dd/MM/yyyy"/>
+
+                                    </DatePicker.SelectedDate>
+                                    
+                                </DatePicker>
+
+                                <TextBox
+                                    Text="{Binding AddFeeItem.Money}"
+                                    materialDesign:HintAssist.Hint="Số tiền"
+                                    Style="{StaticResource InputTextBox}"/> 
+
+
+                                <Grid
+                                     Margin="0 16 0 16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Name="saveBtn"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding SaveAddFeeCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Save}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=saveBtn}" 
+                                                Width="{Binding FontSize, ElementName=saveBtn}" 
+                                                Fill="{Binding Foreground, ElementName=saveBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Lưu"
+                                                Foreground="{Binding Foreground, ElementName=saveBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=saveBtn}"
+                                                FontSize="{Binding FontSize, ElementName=saveBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                    <Button
+                                        Name="cancelBtn"
+                                        Grid.Column="1"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding CancelAddFeeCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Cancel}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=cancelBtn}" 
+                                                Width="{Binding FontSize, ElementName=cancelBtn}" 
+                                                Fill="{Binding Foreground, ElementName=cancelBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Hủy"
+                                                Foreground="{Binding Foreground, ElementName=cancelBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=cancelBtn}"
+                                                FontSize="{Binding FontSize, ElementName=cancelBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                        <materialDesign:Card.Style>
+                            <Style TargetType="materialDesign:Card">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AddFeeLayoutVisible}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:Card.Style>
+                    </materialDesign:Card>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem 
+                    Header="Tab2"
+                    Foreground="{StaticResource PrimaryColor}"
+                    FontWeight="Bold"
+                    FontSize="18">
+                <TextBlock Text="Tab2"/>
+            </TabItem>
+
+
+
+
+        </TabControl>
     </Grid>
+  
 </Window>

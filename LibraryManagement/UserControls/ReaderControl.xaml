@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:LibraryManagement.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             xmlns:viewmodel="clr-namespace:LibraryManagement.ViewModel"
              mc:Ignorable="d" 
+             DataContext="{StaticResource UserViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid
