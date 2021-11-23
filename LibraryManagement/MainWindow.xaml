@@ -24,7 +24,7 @@
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction 
                 Command="{Binding LoadedCommand}" 
-                CommandParameter="{Binding ElementName=controlContainer}"/>
+                CommandParameter="{Binding ElementName=mainWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Border
@@ -44,6 +44,8 @@
                 Background="White"/>
 
             <cc:MainUserControl
+                Tag="{Binding Tag, ElementName=mainWindow}"
+                Padding="180 0 0 0"
                 Grid.Row="0"
                 Background="Transparent"
                 HorizontalAlignment="Stretch"/>

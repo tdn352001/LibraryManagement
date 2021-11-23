@@ -26,7 +26,8 @@
                     Orientation="Horizontal">
                     <TextBlock
                         FontWeight="Bold"
-                        FontSize="14"
+                        FontSize="16"
+                        Foreground="{StaticResource PrimaryColor}"
                         FontFamily="Arial"
                         VerticalAlignment="Center"
                         Margin="16 0 0 0"

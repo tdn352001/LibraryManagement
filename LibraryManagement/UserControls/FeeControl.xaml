@@ -13,6 +13,7 @@
     HorizontalAlignment="Stretch"
     d:DesignHeight="600" 
     d:DesignWidth="800">
+
     <Grid>
         <TabControl Margin="20">
             <TabControl.Resources>
@@ -386,11 +387,429 @@
             </TabItem>
 
             <TabItem 
-                    Header="Tab2"
-                    Foreground="{StaticResource PrimaryColor}"
-                    FontWeight="Bold"
-                    FontSize="18">
-                <TextBlock Text="Tab2"/>
+                Padding="8"
+                Header="Tab2"
+                Foreground="{StaticResource PrimaryColor}"
+                FontWeight="Bold"
+                FontSize="18">
+                <Grid
+                    Background="{StaticResource Background}">
+
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card 
+                        Grid.Column="0" 
+                        Margin="10" 
+                        UniformCornerRadius="10" 
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+
+                        <Grid  
+                            Margin="16 0 16 0"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Grid
+                                Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border 
+                                    Background="{StaticResource Background}"
+                                    Grid.Column="0"
+                                    CornerRadius="16"
+                                    Padding="0 0 0 0"
+                                    Margin="16">
+                                    <Grid 
+                                        Background="Transparent"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch">
+
+                                        <!--Search Button-->
+                                        <Button 
+                                            HorizontalAlignment="Left" 
+                                            VerticalAlignment="Top" 
+                                            Grid.Column="2"
+                                            Command="{Binding SearchCommand}"
+                                            Width="30"
+                                            Height="30"
+                                            ToolTip="Search"
+                                            Style="{StaticResource SearchButton}"/>
+
+                                        <TextBox 
+                                            Name="searchBox"
+                                            Style="{StaticResource SearchFields}"
+                                            materialDesign:HintAssist.Hint="Search Here..."
+                                            Padding="20 4 8 4" 
+                                            VerticalContentAlignment="Center"
+                                            Margin="16 0 8 0" 
+                                            BorderThickness="0">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="TextChanged">
+                                                    <i:InvokeCommandAction
+                                                        Command="{Binding KeyWordChangeCommand}" 
+                                                        CommandParameter="{Binding ElementName=searchBox}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
+
+
+                                    </Grid>
+                                </Border>
+                                <ComboBox
+                                    MinWidth="100"
+                                    FontStyle="Normal"
+                                    FontWeight="Normal"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    SelectedIndex="{Binding SearchHeading}"
+                                    materialDesign:HintAssist.Hint="Lọc" Margin="0,14" Width="100">
+                                    <ComboBoxItem Content="Mã Hóa Đơn" />
+                                    <ComboBoxItem Content="Mã Thành Viên" />
+                                    <ComboBoxItem Content="Tên Thành Viên" />
+                                </ComboBox>
+                            </Grid>
+
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="20 0 20 20"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Orientation="Vertical">
+                                    <Button
+                                        Name="addDetailBtn"
+                                        Grid.Row="0"
+                                        Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                        Foreground="{StaticResource PrimaryColor}"
+                                        Height="20"
+                                        FontSize="12"
+                                        HorizontalAlignment="Left"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding AddDetailCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                            Data="{StaticResource Add}"
+                                            Stretch="Uniform"
+                                            Height="{Binding FontSize, ElementName=addDetailBtn}" 
+                                            Width="{Binding FontSize, ElementName=addDetailBtn}" 
+                                            Fill="{Binding Foreground, ElementName=addDetailBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Lập hóa đơn mới"
+                                                Foreground="{Binding Foreground, ElementName=addDetailBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=addDetailBtn}"
+                                                FontSize="{Binding FontSize, ElementName=addDetailBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                    <StackPanel 
+                                        Margin="16 8 0 0"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Style="{StaticResource MenuTextStyle}"
+                                            Text="Chọn thời gian: "
+                                            Foreground="Black"
+                                            FontSize="18"
+                                            Margin="0 0 8 0"/>
+
+                                        <ComboBox
+                                            Name="feeFilter"
+                                            Grid.Column="1"
+                                            MinWidth="150"
+                                            FontStyle="Normal"
+                                            FontWeight="Normal"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            ItemsSource="{Binding FeeList}"
+                                            SelectedItem="{Binding FeeFilterSelected}"
+                                            materialDesign:HintAssist.Hint="Chọn thời gian">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        Text="{Binding Interval, StringFormat='MM/yyyy'}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+
+                                        </ComboBox>
+
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                                <ScrollViewer 
+                                    Grid.Row="1"
+                                    VerticalScrollBarVisibility="Visible">
+                                    <ListView 
+                                        ItemsSource="{Binding DetailList}"  
+                                        SelectedItem="{Binding DetailSelectedItem, Mode=OneWayToSource}">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Mã Hóa Đơn" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                                                <GridViewColumn Header="Tên Thành Viên" DisplayMemberBinding="{Binding User.Name,  StringFormat='MM/yyyy'}"  Width="auto"/>
+                                                <GridViewColumn Header="Ngày Đóng" DisplayMemberBinding="{Binding PayDate,  StringFormat='dd/MM/yyyy'}"  Width="auto"/>
+                                                <GridViewColumn Header="Số Tiền" DisplayMemberBinding="{Binding Fee.Money}" Width="auto"/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </ScrollViewer>
+
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
+
+
+                    <materialDesign:Card 
+                        Grid.Column="1" 
+                        Margin="10" 
+                        Height="auto"
+                        Padding="0 0 12 0"
+                        UniformCornerRadius="10" 
+                        HorizontalAlignment="Stretch">
+                        <ScrollViewer 
+                            VerticalScrollBarVisibility="Hidden">
+                            <StackPanel
+                            Margin="10"
+                            Height="auto"
+                            Orientation="Vertical">
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding DetailSelectedItem.Id}"
+                                    materialDesign:HintAssist.Hint="Mã Hóa Đơn"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding DetailSelectedItem.Fee.Interval, StringFormat='MM/yyyy'}"
+                                    materialDesign:HintAssist.Hint="Tháng Đóng"
+                                    Style="{StaticResource InputTextBox}"/>
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding DetailSelectedItem.User.Id}"
+                                    materialDesign:HintAssist.Hint="Mã thành viên"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding DetailSelectedItem.User.Name}"
+                                    materialDesign:HintAssist.Hint="Tên thành viên"
+                                    Style="{StaticResource InputTextBox}"/>
+                                <DatePicker
+                                    IsEnabled="{Binding canEditFeeSelectedItem}"
+                                    SelectedDate="{Binding DetailSelectedItem.PayDate, StringFormat='dd/MM/yyyy'}"
+                                    materialDesign:HintAssist.Hint="Ngày đóng"
+                                    Style="{StaticResource InputDatePicker}" />
+
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding DetailSelectedItem.Fee.Money}"
+                                    materialDesign:HintAssist.Hint="Số tiền"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <Button
+                                    Name="editDetailBtn"
+                                    Style="{StaticResource ControlButonStyle}"
+                                    Foreground="Black"
+                                    HorizontalAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    Command="{Binding EditFeeCommand}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Path 
+                                            Data="{StaticResource Pen}"
+                                            Stretch="Uniform"
+                                            Height="{Binding FontSize, ElementName=editDetailBtn}" 
+                                            Width="{Binding FontSize, ElementName=editDetailBtn}" 
+                                            Fill="{Binding Foreground, ElementName=editDetailBtn}"/>
+
+                                        <TextBlock
+                                            Style="{StaticResource MenuTextStyle}"
+                                            Text="Lưu"
+                                            Foreground="{Binding Foreground, ElementName=editDetailBtn}"
+                                            TextDecorations="{Binding Tag, ElementName=editDetailBtn}"
+                                            FontSize="{Binding FontSize, ElementName=editDetailBtn}"
+                                            Grid.Column="1"/>
+                                    </Grid>
+                                </Button>
+
+                                <Border
+                                    Height="2"
+                                    Margin="10"
+                                    HorizontalAlignment="Stretch"
+                                    Background="Gray"/>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card 
+                        Grid.Column="1" 
+                        Margin="10" 
+                        Height="auto"
+                        Padding="0 0 12 0"
+                        UniformCornerRadius="10" 
+                        HorizontalAlignment="Stretch">
+                        <ScrollViewer 
+                            VerticalScrollBarVisibility="Hidden">
+                            <StackPanel
+                            Margin="10"
+                            Height="auto"
+                            Orientation="Vertical">
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding AddDetailFeeItem.Id}"
+                                    materialDesign:HintAssist.Hint="Mã Hóa Đơn"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <TextBox
+                                    Text="{Binding idUser}"
+                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                    materialDesign:HintAssist.Hint="Mã thành viên"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding user.Name}"
+                                    materialDesign:HintAssist.Hint="Tên thành viên"
+                                    Style="{StaticResource InputTextBox}"/>
+
+                                <ComboBox
+                                    Name="detailFee"
+                                    FontStyle="Normal"
+                                    FontWeight="Normal"
+                                    Margin="0 12 0 0"
+                                    HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding FutureFeeList}"
+                                    SelectedItem="{Binding AddDetailFeeSelected}"
+                                    materialDesign:HintAssist.Hint="Đóng cho tháng">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Interval, StringFormat='MM/yyyy'}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <DatePicker
+                                    IsEnabled="False"
+                                    materialDesign:HintAssist.Hint="Ngày Đóng"
+                                    Style="{StaticResource InputDatePicker}">
+                                    <DatePicker.SelectedDate>
+                                        <Binding Path="AddDetailFeeItem.PayDate" UpdateSourceTrigger="LostFocus" Mode="TwoWay" StringFormat="MM/dd/yyyy"/>
+                                    </DatePicker.SelectedDate>
+                                </DatePicker>
+
+                                <TextBox
+                                    IsEnabled="False"
+                                    Text="{Binding AddDetailFeeSelected.Money}"
+                                    materialDesign:HintAssist.Hint="Số tiền"
+                                    Style="{StaticResource InputTextBox}"/>
+
+
+                                <Grid
+                                    Margin="0 16 0 16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Name="saveDetailBtn"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding SaveAddDetailCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Save}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=saveDetailBtn}" 
+                                                Width="{Binding FontSize, ElementName=saveDetailBtn}" 
+                                                Fill="{Binding Foreground, ElementName=saveDetailBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Lưu"
+                                                Foreground="{Binding Foreground, ElementName=saveDetailBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=saveDetailBtn}"
+                                                FontSize="{Binding FontSize, ElementName=saveDetailBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                    <Button
+                                        Name="cancelDetailBtn"
+                                        Grid.Column="1"
+                                        Style="{StaticResource ControlButonStyle}"
+                                        Foreground="Black"
+                                        HorizontalAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        Command="{Binding CancelAddDetailCommand}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Path 
+                                                Data="{StaticResource Cancel}"
+                                                Stretch="Uniform"
+                                                Height="{Binding FontSize, ElementName=cancelDetailBtn}" 
+                                                Width="{Binding FontSize, ElementName=cancelDetailBtn}" 
+                                                Fill="{Binding Foreground, ElementName=cancelDetailBtn}"/>
+
+                                            <TextBlock
+                                                Style="{StaticResource MenuTextStyle}"
+                                                Text="Hủy"
+                                                Foreground="{Binding Foreground, ElementName=cancelDetailBtn}"
+                                                TextDecorations="{Binding Tag, ElementName=cancelDetailBtn}"
+                                                FontSize="{Binding FontSize, ElementName=cancelDetailBtn}"
+                                                Grid.Column="1"/>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                        <materialDesign:Card.Style>
+                            <Style TargetType="materialDesign:Card">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AddDetailLayoutVisible}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:Card.Style>
+                    </materialDesign:Card>
+                </Grid>
             </TabItem>
 
 

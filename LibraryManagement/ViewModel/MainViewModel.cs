@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -22,6 +23,7 @@ namespace LibraryManagement.ViewModel
         ReaderControl readerControl;
         BookControl bookControl;
         FeeControl feeControl;
+        MainWindow mainWindow;
 
         public ICommand LoadedCommand { get; set; }
         public ICommand HomeCommand { get; set; }
@@ -37,11 +39,12 @@ namespace LibraryManagement.ViewModel
             bookControl = new BookControl();
             feeControl = new FeeControl();
 
-            LoadedCommand = new RelayCommand<Grid>((p) => { return true; },
+            LoadedCommand = new RelayCommand<Window>((p) => { return true; },
                                                                (p) => {
-
+                                                                   mainWindow = (MainWindow)p;
                                                                    Screen = 5;
-                                                                   p.Children.Add(feeControl);
+                                                                   mainWindow.controlContainer.Children.Add(feeControl);
+                                                                   mainWindow.Tag = "Quản lý thu phí";
                                                                });
 
 
@@ -49,6 +52,7 @@ namespace LibraryManagement.ViewModel
             HomeCommand = new RelayCommand<Grid>((p) => { return true; },
                                                                (p) => {
                                                                    Screen = 1;
+                                                                   mainWindow.Tag = "Home";
                                                                });
 
             // Click vào nút Store
@@ -59,6 +63,7 @@ namespace LibraryManagement.ViewModel
                                                                       Screen = 2;
                                                                       p.Children.Clear();
                                                                       p.Children.Add(storeControl);
+                                                                      mainWindow.Tag = "Quản lý nhà sách";
                                                                   }
                                                               });
 
@@ -70,6 +75,7 @@ namespace LibraryManagement.ViewModel
                                                                       Screen = 3;
                                                                       p.Children.Clear();
                                                                       p.Children.Add(bookControl);
+                                                                      mainWindow.Tag = "Quản lý sách";
                                                                   }
                                                               });
             // Click vào nút Reader
@@ -80,6 +86,7 @@ namespace LibraryManagement.ViewModel
                                                                        Screen = 4;
                                                                        p.Children.Clear();
                                                                        p.Children.Add(readerControl);
+                                                                       mainWindow.Tag = "Quản lý thành viên";
                                                                    }
                                                                });
             // Click vào nút Fee
@@ -90,6 +97,7 @@ namespace LibraryManagement.ViewModel
                                                                        Screen = 5;
                                                                        p.Children.Clear();
                                                                        p.Children.Add(feeControl);
+                                                                       mainWindow.Tag = "Quản lý thu phí";
                                                                    }
                                                                });
 

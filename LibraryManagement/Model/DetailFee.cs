@@ -14,8 +14,9 @@ namespace LibraryManagement.Model
     
     public partial class DetailFee
     {
-        public int IdFee { get; set; }
-        public int IdUser { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> IdFee { get; set; }
+        public Nullable<int> IdUser { get; set; }
         public Nullable<System.DateTime> PayDate { get; set; }
     
         public virtual Fee Fee { get; set; }

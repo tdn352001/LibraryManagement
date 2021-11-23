@@ -43,11 +43,11 @@
         </EntityType>
         <EntityType Name="DetailFee">
           <Key>
-            <PropertyRef Name="IdFee" />
-            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdFee" Type="int" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFee" Type="int" />
+          <Property Name="IdUser" Type="int" />
           <Property Name="PayDate" Type="date" />
         </EntityType>
         <EntityType Name="DetailImport">
@@ -113,8 +113,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__DetailFee__IdFee__3F466844">
-          <End Role="Fee" Type="Self.Fee" Multiplicity="1" />
+        <Association Name="FK__DetailFee__IdFee__5CD6CB2B">
+          <End Role="Fee" Type="Self.Fee" Multiplicity="0..1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fee">
@@ -125,8 +125,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailFee__IdUse__403A8C7D">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+        <Association Name="FK__DetailFee__IdUse__5DCAEF64">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -233,11 +233,11 @@
           <EntitySet Name="StatusBook" EntityType="Self.StatusBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DetailFee__IdFee__3F466844" Association="Self.FK__DetailFee__IdFee__3F466844">
+          <AssociationSet Name="FK__DetailFee__IdFee__5CD6CB2B" Association="Self.FK__DetailFee__IdFee__5CD6CB2B">
             <End Role="Fee" EntitySet="Fee" />
             <End Role="DetailFee" EntitySet="DetailFee" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailFee__IdUse__403A8C7D" Association="Self.FK__DetailFee__IdUse__403A8C7D">
+          <AssociationSet Name="FK__DetailFee__IdUse__5DCAEF64" Association="Self.FK__DetailFee__IdUse__5DCAEF64">
             <End Role="Users" EntitySet="Users" />
             <End Role="DetailFee" EntitySet="DetailFee" />
           </AssociationSet>
@@ -316,14 +316,14 @@
         </EntityType>
         <EntityType Name="DetailFee">
           <Key>
-            <PropertyRef Name="IdFee" />
-            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="IdFee" Type="Int32" Nullable="false" />
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFee" Type="Int32" />
+          <Property Name="IdUser" Type="Int32" />
           <Property Name="PayDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Fee" Relationship="Self.FK__DetailFee__IdFee__3F466844" FromRole="DetailFee" ToRole="Fee" />
-          <NavigationProperty Name="User" Relationship="Self.FK__DetailFee__IdUse__403A8C7D" FromRole="DetailFee" ToRole="Users" />
+          <NavigationProperty Name="Fee" Relationship="Self.FK__DetailFee__IdFee__5CD6CB2B" FromRole="DetailFee" ToRole="Fee" />
+          <NavigationProperty Name="User" Relationship="Self.FK__DetailFee__IdUse__5DCAEF64" FromRole="DetailFee" ToRole="Users" />
         </EntityType>
         <EntityType Name="DetailImport">
           <Key>
@@ -344,7 +344,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Interval" Type="DateTime" Precision="0" />
           <Property Name="Money" Type="Int32" />
-          <NavigationProperty Name="DetailFees" Relationship="Self.FK__DetailFee__IdFee__3F466844" FromRole="Fee" ToRole="DetailFee" />
+          <NavigationProperty Name="DetailFees" Relationship="Self.FK__DetailFee__IdFee__5CD6CB2B" FromRole="Fee" ToRole="DetailFee" />
         </EntityType>
         <EntityType Name="HistoryBook">
           <Key>
@@ -389,7 +389,7 @@
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IdStatus" Type="Int32" />
-          <NavigationProperty Name="DetailFees" Relationship="Self.FK__DetailFee__IdUse__403A8C7D" FromRole="Users" ToRole="DetailFee" />
+          <NavigationProperty Name="DetailFees" Relationship="Self.FK__DetailFee__IdUse__5DCAEF64" FromRole="Users" ToRole="DetailFee" />
           <NavigationProperty Name="HistoryBooks" Relationship="Self.FK__HistoryBo__IdUse__4F7CD00D" FromRole="Users" ToRole="HistoryBook" />
           <NavigationProperty Name="UserStatu" Relationship="Self.FK__Users__IdStatus__3A81B327" FromRole="Users" ToRole="UserStatus" />
         </EntityType>
@@ -437,8 +437,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailFee__IdFee__3F466844">
-          <End Role="Fee" Type="Self.Fee" Multiplicity="1" />
+        <Association Name="FK__DetailFee__IdFee__5CD6CB2B">
+          <End Role="Fee" Type="Self.Fee" Multiplicity="0..1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Fee">
@@ -449,8 +449,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailFee__IdUse__403A8C7D">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK__DetailFee__IdUse__5DCAEF64">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="DetailFee" Type="Self.DetailFee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -533,11 +533,11 @@
             <End Role="BookStore" EntitySet="BookStores" />
             <End Role="ImportBook" EntitySet="ImportBooks" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailFee__IdFee__3F466844" Association="Self.FK__DetailFee__IdFee__3F466844">
+          <AssociationSet Name="FK__DetailFee__IdFee__5CD6CB2B" Association="Self.FK__DetailFee__IdFee__5CD6CB2B">
             <End Role="Fee" EntitySet="Fees" />
             <End Role="DetailFee" EntitySet="DetailFees" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailFee__IdUse__403A8C7D" Association="Self.FK__DetailFee__IdUse__403A8C7D">
+          <AssociationSet Name="FK__DetailFee__IdUse__5DCAEF64" Association="Self.FK__DetailFee__IdUse__5DCAEF64">
             <End Role="Users" EntitySet="Users" />
             <End Role="DetailFee" EntitySet="DetailFees" />
           </AssociationSet>
@@ -606,6 +606,7 @@
           <EntitySetMapping Name="DetailFees">
             <EntityTypeMapping TypeName="LibraryManagementModel.DetailFee">
               <MappingFragment StoreEntitySet="DetailFee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdFee" ColumnName="IdFee" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="PayDate" ColumnName="PayDate" />
