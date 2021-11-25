@@ -284,37 +284,37 @@
                         </Grid>
 
                         <Button
-                        Name="feeBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalContentAlignment="Center">
+                            Name="feeBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                            Data="{StaticResource History}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=feeBtn}" 
-                            Width="{Binding FontSize, ElementName=feeBtn}" 
-                            Fill="{Binding Foreground, ElementName=feeBtn}"/>
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=feeBtn}" 
+                                    Width="{Binding FontSize, ElementName=feeBtn}" 
+                                    Fill="{Binding Foreground, ElementName=feeBtn}"/>
 
                                 <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Đóng Phí"
-                            Foreground="{Binding Foreground, ElementName=feeBtn}"
-                            TextDecorations="{Binding Tag, ElementName=feeBtn}"
-                            FontSize="{Binding FontSize, ElementName=feeBtn}"
-                            Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Đóng Phí"
+                                    Foreground="{Binding Foreground, ElementName=feeBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=feeBtn}"
+                                    FontSize="{Binding FontSize, ElementName=feeBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
-                        Name="borrowBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalContentAlignment="Center">
+                            Name="borrowBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -337,6 +337,32 @@
                             </Grid>
                         </Button>
 
+                        <Button
+                            Name="returnBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                            Data="{StaticResource History}"
+                            Stretch="Uniform"
+                            Height="{Binding FontSize, ElementName=returnBtn}" 
+                            Width="{Binding FontSize, ElementName=returnBtn}" 
+                            Fill="{Binding Foreground, ElementName=returnBtn}"/>
+
+                                <TextBlock
+                            Style="{StaticResource MenuTextStyle}"
+                            Text="Trả sách"
+                            Foreground="{Binding Foreground, ElementName=returnBtn}"
+                            TextDecorations="{Binding Tag, ElementName=returnBtn}"
+                            FontSize="{Binding FontSize, ElementName=returnBtn}"
+                            Grid.Column="1"/>
+                            </Grid>
+                        </Button>
 
                         <Button
                         Name="historyBtn"
