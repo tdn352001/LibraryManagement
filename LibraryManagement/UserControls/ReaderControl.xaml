@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="LibraryManagement.UserControls.ReaderControl"
+﻿ <UserControl x:Class="LibraryManagement.UserControls.ReaderControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -98,38 +98,105 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Button
-                            Name="addBtn"
-                            Grid.Row="0"
-                            Style="{StaticResource MaterialDesignFlatDarkButton}"
-                            Foreground="{StaticResource PrimaryColor}"
-                            Height="20"
-                            FontSize="12"
-                            HorizontalAlignment="Left"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding AddCommand}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path 
-                                    Data="{StaticResource Add}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=addBtn}" 
-                                    Width="{Binding FontSize, ElementName=addBtn}" 
-                                    Fill="{Binding Foreground, ElementName=addBtn}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                Name="addBtn"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                Foreground="{StaticResource PrimaryColor}"
+                                Height="20"
+                                FontSize="12"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding AddCommand}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                        Data="{StaticResource Add}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=addBtn}" 
+                                        Width="{Binding FontSize, ElementName=addBtn}" 
+                                        Fill="{Binding Foreground, ElementName=addBtn}"/>
 
-                                <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Thêm mới"
-                                    Foreground="{Binding Foreground, ElementName=addBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=addBtn}"
-                                    FontSize="{Binding FontSize, ElementName=addBtn}"
+                                    <TextBlock
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Lập phiếu độc giả"
+                                        Foreground="{Binding Foreground, ElementName=addBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=addBtn}"
+                                        FontSize="{Binding FontSize, ElementName=addBtn}"
                                     Grid.Column="1"/>
-                            </Grid>
+                                </Grid>
+                            </Button>
 
-                        </Button>
+                            <Button
+                                Name="borrowBookWithoutUserBtn"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                Foreground="{StaticResource PrimaryColor}"
+                                Height="20"
+                                FontSize="12"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding BorrowBookToolCommand}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                        Data="{StaticResource Add}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=borrowBookWithoutUserBtn}" 
+                                        Width="{Binding FontSize, ElementName=borrowBookWithoutUserBtn}" 
+                                        Fill="{Binding Foreground, ElementName=borrowBookWithoutUserBtn}"/>
+
+                                    <TextBlock
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Tạo phiếu mượn sách"
+                                        Foreground="{Binding Foreground, ElementName=borrowBookWithoutUserBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=borrowBookWithoutUserBtn}"
+                                        FontSize="{Binding FontSize, ElementName=borrowBookWithoutUserBtn}"
+                                        Grid.Column="1"/>
+                                </Grid>
+                            </Button>
+
+                            <Button
+                                Name="detailFeeToolBtn"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                Foreground="{StaticResource PrimaryColor}"
+                                Height="20"
+                                FontSize="12"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding DetailFeeToolCommand}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                        Data="{StaticResource Add}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=detailFeeToolBtn}" 
+                                        Width="{Binding FontSize, ElementName=detailFeeToolBtn}" 
+                                        Fill="{Binding Foreground, ElementName=detailFeeToolBtn}"/>
+
+                                    <TextBlock
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Tạo hóa đơn"
+                                        Foreground="{Binding Foreground, ElementName=detailFeeToolBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=detailFeeToolBtn}"
+                                        FontSize="{Binding FontSize, ElementName=detailFeeToolBtn}"
+                                        Grid.Column="1"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+
+                       
 
                         <ScrollViewer 
                             Grid.Row="1"
@@ -153,18 +220,18 @@
                 </Grid>
             </materialDesign:Card>
             <materialDesign:Card
-            Grid.Column="1"
-            Margin="10" 
-            Height="auto"
-            Padding="0 0 12 0"
-            UniformCornerRadius="10" 
-            HorizontalAlignment="Stretch">
-                <ScrollViewer
-                VerticalScrollBarVisibility="Hidden">
-                    <StackPanel
-                Margin="10"
+                Grid.Column="1"
+                Margin="10" 
                 Height="auto"
-                Orientation="Vertical">
+                Padding="12"
+                UniformCornerRadius="10" 
+                HorizontalAlignment="Stretch">
+                <ScrollViewer
+                    VerticalScrollBarVisibility="Hidden">
+                    <StackPanel
+                        Margin="10"
+                        Height="auto"
+                        Orientation="Vertical">
                         <TextBlock 
                         Text="Chi tiết"
                         Margin="0 12 0 0"
@@ -199,243 +266,241 @@
                         Style="{StaticResource InputTextBox}"/>
 
                         <TextBox
-                        Text="{Binding Phone}"
-                        materialDesign:HintAssist.Hint="SĐT"
-                        Style="{StaticResource InputTextBox}"/>
-
-
-
+                            Text="{Binding Phone}"
+                            PreviewTextInput="TextBox_PreviewTextInput"
+                            materialDesign:HintAssist.Hint="SĐT"
+                            Style="{StaticResource InputTextBox}"/>
 
                         <ComboBox
-                         Margin="5 5 15 5"
-                        DisplayMemberPath="Name"
-                        ItemsSource="{Binding UserStatus}"
-                        SelectedItem="{Binding SelectedUserStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        materialDesign:HintAssist.Hint="Trạng thái"
-                        IsEditable="True" 
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-
-                        </ComboBox>
+                             Margin="5 5 15 5"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding UserStatus}"
+                            SelectedItem="{Binding SelectedUserStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            materialDesign:HintAssist.Hint="Trạng thái"
+                            IsEditable="True" 
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
 
                         <Grid
-                    Margin="0 16 0 16">
+                            Margin="0 16 0 16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Button
-                        Name="editBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                            Command="{Binding EditCommand}">
+                                Name="editBtn"
+                                Style="{StaticResource ControlButonStyle}"
+                                Foreground="Black"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding EditCommand}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Path 
-                                    Data="{StaticResource Pen}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=editBtn}" 
-                                    Width="{Binding FontSize, ElementName=editBtn}" 
-                                    Fill="{Binding Foreground, ElementName=editBtn}"/>
+                                        Data="{StaticResource Pen}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=editBtn}" 
+                                        Width="{Binding FontSize, ElementName=editBtn}" 
+                                        Fill="{Binding Foreground, ElementName=editBtn}"/>
 
                                     <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Lưu"
-                                    Foreground="{Binding Foreground, ElementName=editBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=editBtn}"
-                                    FontSize="{Binding FontSize, ElementName=editBtn}"
-                                    Grid.Column="1"/>
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Lưu"
+                                        Foreground="{Binding Foreground, ElementName=editBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=editBtn}"
+                                        FontSize="{Binding FontSize, ElementName=editBtn}"
+                                        Grid.Column="1"/>
                                 </Grid>
                             </Button>
                             <Button
-                        Name="delBtn"
-                        Grid.Column="1"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        Command="{Binding DeleteCommand}">
+                                Name="delBtn"
+                                Grid.Column="1"
+                                Style="{StaticResource ControlButonStyle}"
+                                Foreground="Black"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding DeleteCommand}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Path 
-                                    Data="{StaticResource Delete}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=delBtn}" 
-                                    Width="{Binding FontSize, ElementName=delBtn}" 
-                                    Fill="{Binding Foreground, ElementName=delBtn}"/>
+                                        Data="{StaticResource Delete}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=delBtn}" 
+                                        Width="{Binding FontSize, ElementName=delBtn}" 
+                                        Fill="{Binding Foreground, ElementName=delBtn}"/>
 
                                     <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Xóa"
-                                    Foreground="{Binding Foreground, ElementName=delBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=delBtn}"
-                                    FontSize="{Binding FontSize, ElementName=delBtn}"
-                                    Grid.Column="1"/>
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Xóa"
+                                        Foreground="{Binding Foreground, ElementName=delBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=delBtn}"
+                                        FontSize="{Binding FontSize, ElementName=delBtn}"
+                                        Grid.Column="1"/>
                                 </Grid>
                             </Button>
                         </Grid>
 
                         <Button
-                        Name="feeBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalContentAlignment="Center">
+                            Name="detailFeeBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            Command="{Binding DetailFeeCommand}"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                            Data="{StaticResource History}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=feeBtn}" 
-                            Width="{Binding FontSize, ElementName=feeBtn}" 
-                            Fill="{Binding Foreground, ElementName=feeBtn}"/>
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=detailFeeBtn}" 
+                                    Width="{Binding FontSize, ElementName=detailFeeBtn}" 
+                                    Fill="{Binding Foreground, ElementName=detailFeeBtn}"/>
 
                                 <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Đóng Phí"
-                            Foreground="{Binding Foreground, ElementName=feeBtn}"
-                            TextDecorations="{Binding Tag, ElementName=feeBtn}"
-                            FontSize="{Binding FontSize, ElementName=feeBtn}"
-                            Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Đóng Phí"
+                                    Foreground="{Binding Foreground, ElementName=detailFeeBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=detailFeeBtn}"
+                                    FontSize="{Binding FontSize, ElementName=detailFeeBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
-                        Name="borrowBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalContentAlignment="Center">
+                            Name="borrowBtn"
+                            Command="{Binding BorrowBookCommand}"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                            Data="{StaticResource History}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=borrowBtn}" 
-                            Width="{Binding FontSize, ElementName=borrowBtn}" 
-                            Fill="{Binding Foreground, ElementName=borrowBtn}"/>
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=borrowBtn}" 
+                                    Width="{Binding FontSize, ElementName=borrowBtn}" 
+                                    Fill="{Binding Foreground, ElementName=borrowBtn}"/>
 
                                 <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Mượn sách"
-                            Foreground="{Binding Foreground, ElementName=borrowBtn}"
-                            TextDecorations="{Binding Tag, ElementName=borrowBtn}"
-                            FontSize="{Binding FontSize, ElementName=borrowBtn}"
-                            Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Mượn sách"
+                                    Foreground="{Binding Foreground, ElementName=borrowBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=borrowBtn}"
+                                    FontSize="{Binding FontSize, ElementName=borrowBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
 
                         <Button
-                        Name="historyBtn"
-                        Style="{StaticResource ControlButonStyle}"
-                        Foreground="Black"
-                        HorizontalContentAlignment="Center">
+                            Name="historyBtn"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                            Data="{StaticResource History}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=historyBtn}" 
-                            Width="{Binding FontSize, ElementName=historyBtn}" 
-                            Fill="{Binding Foreground, ElementName=historyBtn}"/>
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=historyBtn}" 
+                                    Width="{Binding FontSize, ElementName=historyBtn}" 
+                                    Fill="{Binding Foreground, ElementName=historyBtn}"/>
 
                                 <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Lịch sử mượn sách"
-                            Foreground="{Binding Foreground, ElementName=historyBtn}"
-                            TextDecorations="{Binding Tag, ElementName=historyBtn}"
-                            FontSize="{Binding FontSize, ElementName=historyBtn}"
-                            Grid.Column="1"/>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Lịch sử mượn sách"
+                                    Foreground="{Binding Foreground, ElementName=historyBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=historyBtn}"
+                                    FontSize="{Binding FontSize, ElementName=historyBtn}"
+                                    Grid.Column="1"/>
                             </Grid>
                         </Button>
 
                         <Button
-                    Name="exportBtn"
-                    Command="{Binding ExportInfoCommand}"
-                    Style="{StaticResource ControlButonStyle}"
-                    Foreground="Black"
-                    HorizontalContentAlignment="Center">
+                            Name="exportBtn"
+                            Command="{Binding ExportInfoCommand}"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path 
-                            Data="{StaticResource Export}"
-                            Stretch="Uniform"
-                            Height="{Binding FontSize, ElementName=exportBtn}" 
-                            Width="{Binding FontSize, ElementName=exportBtn}" 
-                            Fill="{Binding Foreground, ElementName=exportBtn}"/>
+                                    Data="{StaticResource Export}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=exportBtn}" 
+                                    Width="{Binding FontSize, ElementName=exportBtn}" 
+                                    Fill="{Binding Foreground, ElementName=exportBtn}"/>
 
                                 <TextBlock
-                            Style="{StaticResource MenuTextStyle}"
-                            Text="Xuất thông tin"
-                            Foreground="{Binding Foreground, ElementName=exportBtn}"
-                            TextDecorations="{Binding Tag, ElementName=exportBtn}"
-                            FontSize="{Binding FontSize, ElementName=exportBtn}"
-                            Grid.Column="1"/>
-                            </Grid>
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Xuất thông tin"
+                                    Foreground="{Binding Foreground, ElementName=exportBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=exportBtn}"
+                                    FontSize="{Binding FontSize, ElementName=exportBtn}"
+                                    Grid.Column="1"/>
+                                </Grid>
                         </Button>
                         <Border
-                    Height="2"
-                    Margin="10"
-                    HorizontalAlignment="Stretch"
-                    Background="Gray"/>
+                            Height="2"
+                            Margin="10"
+                            HorizontalAlignment="Stretch"
+                            Background="Gray"/>
                     </StackPanel>
                 </ScrollViewer>
             </materialDesign:Card>
 
             <materialDesign:Card 
-            Grid.Column="1" 
-            Margin="10" 
-            Height="auto"
-            Padding="0 0 12 0"
-            UniformCornerRadius="10" 
-            HorizontalAlignment="Stretch">
-                <ScrollViewer 
-                VerticalScrollBarVisibility="Hidden">
-                    <StackPanel
-                Margin="10"
+                Grid.Column="1" 
+                Margin="10" 
                 Height="auto"
-                Orientation="Vertical">
+                Padding="0 0 12 0"
+                UniformCornerRadius="10" 
+                HorizontalAlignment="Stretch">
+                <ScrollViewer 
+                    VerticalScrollBarVisibility="Hidden">
+                    <StackPanel
+                    Margin="10"
+                    Height="auto"
+                    Orientation="Vertical">
 
                         <TextBlock 
-                        Text="Tạo mới"
-                        Margin="0 12 0 0"
-                        Foreground="{StaticResource PrimaryColor}" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        FontSize="24" 
-                        FontFamily="Arial Rounded MT Bold"/>
+                            Text="Tạo mới"
+                            Margin="0 12 0 0"
+                            Foreground="{StaticResource PrimaryColor}" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            FontSize="24" 
+                            FontFamily="Arial Rounded MT Bold"/>
 
                         <TextBox
-                        IsEnabled="False"
-                        Text="{Binding AddItem.Id}"
-                        materialDesign:HintAssist.Hint="Mã độc giả"
-                        Style="{StaticResource InputTextBox}"/>
+                            IsEnabled="False"
+                            Text="{Binding AddItem.Id}"
+                            materialDesign:HintAssist.Hint="Mã độc giả"
+                            Style="{StaticResource InputTextBox}"/>
                         <TextBox
-                       Text="{Binding AddItem.Name}"
-                        materialDesign:HintAssist.Hint="Tên độc giả"
-                        Style="{StaticResource InputTextBox}"/>
+                           Text="{Binding AddItem.Name}"
+                            materialDesign:HintAssist.Hint="Tên độc giả"
+                            Style="{StaticResource InputTextBox}"/>
 
                         <DatePicker
-                        materialDesign:HintAssist.Hint="Ngày Sinh"                     
-                        Style="{StaticResource InputDatePicker}">
+                            materialDesign:HintAssist.Hint="Ngày Sinh"                     
+                            Style="{StaticResource InputDatePicker}">
                             <DatePicker.SelectedDate>
                                 <Binding Path="AddItem.BirthDay" UpdateSourceTrigger="LostFocus" Mode="TwoWay" StringFormat="MM/dd/yyyy"/>
                             </DatePicker.SelectedDate>
@@ -443,79 +508,80 @@
 
 
                         <TextBox
-                        Text="{Binding AddItem.Email}"
-                        materialDesign:HintAssist.Hint="Email"
-                        Style="{StaticResource InputTextBox}"/>
+                            Text="{Binding AddItem.Email}"
+                            materialDesign:HintAssist.Hint="Email"
+                            Style="{StaticResource InputTextBox}"/>
                         <TextBox
-                        Text="{Binding AddItem.Address}"
-                        materialDesign:HintAssist.Hint="Địa chỉ"
-                        Style="{StaticResource InputTextBox}"/>
+                            Text="{Binding AddItem.Address}"
+                            materialDesign:HintAssist.Hint="Địa chỉ"
+                            Style="{StaticResource InputTextBox}"/>
                         <TextBox
-                     Text="{Binding AddItem.Phone}"
-                        materialDesign:HintAssist.Hint="SĐT"
-                        Style="{StaticResource InputTextBox}"/>
+                            Text="{Binding AddItem.Phone}"
+                            PreviewTextInput="TextBox_PreviewTextInput"
+                            materialDesign:HintAssist.Hint="SĐT"
+                            Style="{StaticResource InputTextBox}"/>
 
                         <Grid
-                        Margin="0 16 0 16">
+                            Margin="0 16 0 16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Button
-                            Name="saveBtn"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding SaveAddCommand}">
+                                Name="saveBtn"
+                                Style="{StaticResource ControlButonStyle}"
+                                Foreground="Black"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding SaveAddCommand}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Path 
-                                    Data="{StaticResource Save}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=saveBtn}" 
-                                    Width="{Binding FontSize, ElementName=saveBtn}" 
-                                    Fill="{Binding Foreground, ElementName=saveBtn}"/>
+                                        Data="{StaticResource Save}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=saveBtn}" 
+                                        Width="{Binding FontSize, ElementName=saveBtn}" 
+                                        Fill="{Binding Foreground, ElementName=saveBtn}"/>
 
                                     <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Lưu"
-                                    Foreground="{Binding Foreground, ElementName=saveBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=saveBtn}"
-                                    FontSize="{Binding FontSize, ElementName=saveBtn}"
-                                    Grid.Column="1"/>
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Lưu"
+                                        Foreground="{Binding Foreground, ElementName=saveBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=saveBtn}"
+                                        FontSize="{Binding FontSize, ElementName=saveBtn}"
+                                        Grid.Column="1"/>
                                 </Grid>
                             </Button>
                             <Button
-                            Name="cancelBtn"
-                            Grid.Column="1"
-                            Style="{StaticResource ControlButonStyle}"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            HorizontalContentAlignment="Center"
-                            Command="{Binding CancelAddCommand}">
+                                Name="cancelBtn"
+                                Grid.Column="1"
+                                Style="{StaticResource ControlButonStyle}"
+                                Foreground="Black"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding CancelAddCommand}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Path 
-                                    Data="{StaticResource Cancel}"
-                                    Stretch="Uniform"
-                                    Height="{Binding FontSize, ElementName=cancelBtn}" 
-                                    Width="{Binding FontSize, ElementName=cancelBtn}" 
-                                    Fill="{Binding Foreground, ElementName=cancelBtn}"/>
+                                        Data="{StaticResource Cancel}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=cancelBtn}" 
+                                        Width="{Binding FontSize, ElementName=cancelBtn}" 
+                                        Fill="{Binding Foreground, ElementName=cancelBtn}"/>
 
                                     <TextBlock
-                                    Style="{StaticResource MenuTextStyle}"
-                                    Text="Hủy"
-                                    Foreground="{Binding Foreground, ElementName=cancelBtn}"
-                                    TextDecorations="{Binding Tag, ElementName=cancelBtn}"
-                                    FontSize="{Binding FontSize, ElementName=cancelBtn}"
-                                    Grid.Column="1"/>
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Hủy"
+                                        Foreground="{Binding Foreground, ElementName=cancelBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=cancelBtn}"
+                                        FontSize="{Binding FontSize, ElementName=cancelBtn}"
+                                        Grid.Column="1"/>
                                 </Grid>
                             </Button>
                         </Grid>

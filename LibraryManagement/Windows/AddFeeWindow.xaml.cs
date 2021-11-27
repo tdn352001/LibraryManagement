@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LibraryManagement.Model;
+using LibraryManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +13,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryManagement.UserControls
+namespace LibraryManagement.Windows
 {
     /// <summary>
-    /// Interaction logic for ReaderControl.xaml
+    /// Interaction logic for AddFeeWindow.xaml
     /// </summary>
-    public partial class ReaderControl : UserControl
+    public partial class AddFeeWindow : Window
     {
-        public ReaderControl()
+        AddFeeViewModel viewModel;
+        public AddFeeWindow()
         {
             InitializeComponent();
+            viewModel = new AddFeeViewModel();
+            this.DataContext = viewModel;
         }
+        public AddFeeWindow(User user)
+        {
+            InitializeComponent();
+            viewModel = new AddFeeViewModel(user);
+            this.DataContext = viewModel;
+        }
+
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

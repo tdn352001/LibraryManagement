@@ -10,12 +10,10 @@ using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
 using System.Windows.Controls;
+using LibraryManagement.Windows;
 
-
-namespace LibraryManagement.ViewModel
-{
-    public class UserViewModel : BaseViewModel
-    {
+namespace LibraryManagement.ViewModel {
+    public class UserViewModel : BaseViewModel {
         // Danh sách các độc giả trong database
         private ObservableCollection<User> _UserList;
         public ObservableCollection<User> UserList { get => _UserList; set { _UserList = value; OnPropertyChanged(); } }
@@ -24,16 +22,13 @@ namespace LibraryManagement.ViewModel
         public ObservableCollection<UserStatu> UserStatus { get => _UserStatus; set { _UserStatus = value; OnPropertyChanged(); } }
 
         private User _SelectedItem;
-        public User SelectedItem
-        {
+        public User SelectedItem {
             get => _SelectedItem;
-            set
-            {
+            set {
                 _SelectedItem = value;
 
                 OnPropertyChanged();
-                if (SelectedItem != null)
-                {
+                if (SelectedItem != null) {
                     Id = SelectedItem.Id;
                     Name = SelectedItem.Name;
                     BirthDay = SelectedItem.BirthDay;
@@ -47,11 +42,9 @@ namespace LibraryManagement.ViewModel
         }
 
         private UserStatu _SelectedUserStatus;
-        public UserStatu SelectedUserStatus
-        {
+        public UserStatu SelectedUserStatus {
             get => _SelectedUserStatus;
-            set
-            {
+            set {
                 _SelectedUserStatus = value;
 
                 OnPropertyChanged();
@@ -59,15 +52,12 @@ namespace LibraryManagement.ViewModel
         }
 
         private User _AddItem;
-        public User AddItem
-        {
+        public User AddItem {
             get => _AddItem;
-            set
-            {
+            set {
                 _AddItem = value;
                 OnPropertyChanged();
-                if (AddItem != null)
-                {
+                if (AddItem != null) {
                     SelectedUserStatus = AddItem.UserStatu;
                 }
             }
@@ -122,6 +112,16 @@ namespace LibraryManagement.ViewModel
         // Command xử lí khi ấn vào nút xuất thông tin
         public ICommand ExportInfoCommand { get; set; }
 
+        // Command xử lí khi ấn vào mượn sách phần chi tiết user
+        public ICommand BorrowBookCommand { get; set; }
+        // Command xử lí khi ấn vào mượn sách phần tool bar
+        public ICommand BorrowBookToolCommand { get; set; }
+
+        // Command xử lí khi ấn vào đóng phí phần chi tiết user
+        public ICommand DetailFeeCommand { get; set; }
+        // Command xử lí khi ấn vào mđóng phí phần toolbar
+        public ICommand DetailFeeToolCommand { get; set; }
+
         // thứ tự của heading được chọn trong phân loại tìm kiếm trong commbo box
         private int _SearchHeading = 1;
         public int SearchHeading { get => _SearchHeading; set { _SearchHeading = value; OnPropertyChanged(); } }
@@ -129,23 +129,20 @@ namespace LibraryManagement.ViewModel
         //Command xử lí khi key word thay đổi
         public ICommand KeyWordChangeCommand { get; set; }
 
-        public UserViewModel()
-        {
+        public UserViewModel() {
 
             // lấy danh sách độc giả từ database
             UserList = new ObservableCollection<User>(DataProvider.Ins.DB.Users.ToList());
             UserStatus = new ObservableCollection<UserStatu>(DataProvider.Ins.DB.UserStatus);
 
             EditCommand = new RelayCommand<Object>((p) => { return true; },
-                                                             (p) =>
-                                                             {
+                                                             (p) => {
                                                                  if (UserValidate(SelectedItem))
                                                                      SaveChangeUser();
                                                              });
 
             AddCommand = new RelayCommand<Object>((p) => { return true; },
-                                                              (p) =>
-                                                              {
+                                                              (p) => {
                                                                   AddLayoutVisible = true;
                                                                   AddItem = new User();
                                                                   DateTime now = DateTime.Now;
@@ -156,55 +153,81 @@ namespace LibraryManagement.ViewModel
 
 
             CancelAddCommand = new RelayCommand<Object>((p) => { return true; },
-                                                               (p) =>
-                                                               {
+                                                               (p) => {
                                                                    AddLayoutVisible = false;
                                                                    AddItem = null;
 
                                                                });
 
             SaveAddCommand = new RelayCommand<Object>((p) => { return true; },
-                                                             (p) =>
-                                                             {
+                                                             (p) => {
                                                                  if (UserValidate(AddItem))
                                                                      SaveAddUser();
                                                              });
 
             DeleteCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { return true; },
-                                                             (p) =>
-                                                             {
+                                                             (p) => {
                                                                  DeleteUser();
                                                              });
 
             ExportInfoCommand = new RelayCommand<Object>((p) => { return true; },
-                                                             (p) =>
-                                                             {
+                                                             (p) => {
                                                                  ExportUser();
+                                                             });
+
+            BorrowBookToolCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) => {
+                                                                 BorrowBookWindow window = new BorrowBookWindow();
+                                                                 window.ShowDialog();
+                                                             });
+
+            BorrowBookCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) => {
+                                                                 if (SelectedItem != null) {
+                                                                     int countBookBorrowing = SelectedItem.HistoryBooks.Where(x => x.IdStatus == Constant.BOOKSTATE_BORROWING).Count();
+                                                                     int countCanBorrow = Constant.BORROW_BOOK_MAX - countBookBorrowing;
+                                                                     if (countCanBorrow <= 0) {
+                                                                         MessageBox.Show("Thành viên này không thể mượn thêm sách!", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                                         return;
+                                                                     }
+
+                                                                     if (SelectedItem.IdStatus == Constant.USERSTATE_BLOCK) {
+                                                                         MessageBox.Show("Thành viên này đã bị chặn!", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                                         return;
+                                                                     }
+                                                                 }
+                                                                 BorrowBookWindow window = new BorrowBookWindow(SelectedItem);
+                                                                 window.ShowDialog();
+                                                             });
+
+            DetailFeeCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) => {
+                                                                 AddFeeWindow window = new AddFeeWindow(SelectedItem);
+                                                                 window.ShowDialog();
+                                                             });
+            DetailFeeToolCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) => {
+                                                                 AddFeeWindow window = new AddFeeWindow();
+                                                                 window.ShowDialog();
                                                              });
 
 
 
-
             KeyWordChangeCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { return true; },
-                                                            (p) =>
-                                                            {
+                                                            (p) => {
                                                                 DisplayResultSearch(p.Text);
                                                             });
         }
 
 
-        private void DisplayResultSearch(string keyWord)
-        {
+        private void DisplayResultSearch(string keyWord) {
             UserList.Clear();
-            if (String.IsNullOrWhiteSpace(keyWord))
-            {
+            if (String.IsNullOrWhiteSpace(keyWord)) {
                 UserList = new ObservableCollection<User>(DataProvider.Ins.DB.Users);
                 return;
             }
-            else
-            {
-                switch (SearchHeading)
-                {
+            else {
+                switch (SearchHeading) {
                     case 0:
                         UserList = new ObservableCollection<User>(DataProvider.Ins.DB.Users.Where(x => x.Id.ToString().ToLower().Contains(keyWord.ToLower())));
                         break;
@@ -215,10 +238,8 @@ namespace LibraryManagement.ViewModel
             }
         }
 
-        private void SaveChangeUser()
-        {
-            if (SelectedItem != null)
-            {
+        private void SaveChangeUser() {
+            if (SelectedItem != null) {
                 var user = DataProvider.Ins.DB.Users.Where(x => x.Id == SelectedItem.Id).SingleOrDefault();
                 ////SelectedItem.IdStatus = SelectedUserStatus.Id;
 
@@ -235,10 +256,8 @@ namespace LibraryManagement.ViewModel
             }
         }
 
-        private void SaveAddUser()
-        {
-            if (AddItem != null)
-            {
+        private void SaveAddUser() {
+            if (AddItem != null) {
                 DataProvider.Ins.DB.Users.Add(AddItem);
                 AddItem.IdStatus = 1;
                 DataProvider.Ins.DB.SaveChanges();
@@ -250,8 +269,7 @@ namespace LibraryManagement.ViewModel
         }
 
 
-        private Boolean UserValidate(User user)
-        {
+        private Boolean UserValidate(User user) {
             if (user == null)
                 return false;
 
@@ -264,23 +282,19 @@ namespace LibraryManagement.ViewModel
             return true;
         }
 
-        private void DeleteUser()
-        {
+        private void DeleteUser() {
             if (SelectedItem == null) return;
 
             String title = "Xóa thành viên ?";
             String message = "Hành động này không thể khôi phục, Bạn có chắc chắn?";
             MessageBoxResult dialogResult = MessageBox.Show(message, title, MessageBoxButton.YesNo);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-                if (SelectedItem.DetailFees.Count > 0)
-                {
+            if (dialogResult == MessageBoxResult.Yes) {
+                if (SelectedItem.DetailFees.Count > 0) {
                     String notifyTitle = "Thông báo";
                     String notifyMessage = "Không thể xóa thành viên này.";
                     MessageBox.Show(notifyMessage, notifyTitle, MessageBoxButton.OK);
                 }
-                else
-                {
+                else {
 
                     DataProvider.Ins.DB.Users.Remove(SelectedItem);
                     SelectedItem.IdStatus = SelectedUserStatus.Id;
@@ -295,11 +309,9 @@ namespace LibraryManagement.ViewModel
 
         }
 
-        private void ExportUser()
-        {
+        private void ExportUser() {
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook |*.xls", ValidateNames = true };
-            if (sfd.ShowDialog() == true)
-            {
+            if (sfd.ShowDialog() == true) {
 
                 Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
                 Workbook wb = app.Workbooks.Add(XlSheetType.xlWorksheet);
@@ -313,8 +325,7 @@ namespace LibraryManagement.ViewModel
                 ws.Cells[1, 6] = "SĐT";
                 ws.Cells[1, 7] = "Trạng thái";
                 int i = 2;
-                foreach (var item in UserList)
-                {
+                foreach (var item in UserList) {
                     ws.Cells[i, 1] = item.Id;
                     ws.Cells[i, 2] = item.Name;
                     ws.Cells[i, 3] = item.BirthDay;

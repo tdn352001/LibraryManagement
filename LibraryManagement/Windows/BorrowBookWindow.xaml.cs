@@ -25,7 +25,6 @@ namespace LibraryManagement.Windows
         public User user;
         public Book book1;
         public Book book2;
-        public ICommand SaveCommand;
         public BorrowBookWindow()
         {
             InitializeComponent();
@@ -38,7 +37,7 @@ namespace LibraryManagement.Windows
             SetCurrentDate();
             this.user = user;
             if (user != null)
-                tbIdUser.Text = user.Name;
+                tbIdUser.Text = user.Id.ToString();
         }
 
         public void SetCurrentDate()
@@ -131,6 +130,7 @@ namespace LibraryManagement.Windows
                     DataProvider.Ins.DB.HistoryBooks.Add(historyBook2);
                 }
                 DataProvider.Ins.DB.SaveChanges();
+                Close();
                 MessageBox.Show("Lưu thành công", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -145,9 +145,26 @@ namespace LibraryManagement.Windows
                 return false;
             }
 
+            if (user.IdStatus == Constant.USERSTATE_BLOCK)
+            {
+                MessageBox.Show("Thành viên này đã bị chặn!", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+                return false;
+            }
+
+
             if (book1 == null)
             {
                 MessageBox.Show("Vui lòng nhập đúng thông tin sách", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            int countBookBorrowing = user.HistoryBooks.Where(x => x.IdStatus == Constant.BOOKSTATE_BORROWING).Count();
+            int countCanBorrow = Constant.BORROW_BOOK_MAX - countBookBorrowing;
+            if (countCanBorrow <= 0)
+            {
+                MessageBox.Show("Thành viên này không thể mượn thêm sách!", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
                 return false;
             }
 
@@ -164,7 +181,21 @@ namespace LibraryManagement.Windows
                     MessageBox.Show("Hai sách không được trùng nhau", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
+
+
+                if(countCanBorrow == 1)
+                {
+                    MessageBox.Show("Thành viên này chỉ có thể mượn thêm một sách!", "Thông Báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Book2Container.Visibility = Visibility.Collapsed;
+                    addBookBtnContent.Text = "Thêm sách";
+                    var data = Application.Current.TryFindResource("Add");
+                    addBookBtnIcon.Data = (Geometry)data;
+                    book2 = null;
+                    return false;
+                }
             }
+
+            
 
             return true;
         }

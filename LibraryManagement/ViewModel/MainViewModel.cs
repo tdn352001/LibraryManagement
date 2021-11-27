@@ -8,13 +8,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace LibraryManagement.ViewModel
-{
-    public class MainViewModel : BaseViewModel
-    {
-        private int _Screen = 5;
-        public int Screen
-        {
+namespace LibraryManagement.ViewModel {
+    public class MainViewModel : BaseViewModel {
+        private int _Screen;
+        public int Screen {
             get => _Screen;
             set { _Screen = value; OnPropertyChanged(); }
         }
@@ -32,78 +29,97 @@ namespace LibraryManagement.ViewModel
         public ICommand ReaderCommand { get; set; }
         public ICommand FeeCommand { get; set; }
 
-        public MainViewModel()
-        {
-            storeControl = new StoreControl();
-            readerControl = new ReaderControl();
-            bookControl = new BookControl();
-            feeControl = new FeeControl();
+        public MainViewModel() {
 
             LoadedCommand = new RelayCommand<Window>((p) => { return true; },
                                                                (p) => {
                                                                    mainWindow = (MainWindow)p;
-                                                                   Screen = 5;
-                                                                   mainWindow.controlContainer.Children.Add(feeControl);
-                                                                   mainWindow.Tag = "Quản lý thu phí";
+                                                                   readerControl = new ReaderControl();
+                                                                   mainWindow.controlContainer.Children.Add(readerControl);
+                                                                   mainWindow.Tag = "Quản lý thành viên";
+                                                                   Screen = 4;
                                                                });
 
 
             // Click vào nút Home
             HomeCommand = new RelayCommand<Grid>((p) => { return true; },
                                                                (p) => {
-                                                                   Screen = 1;
                                                                    mainWindow.Tag = "Home";
+                                                                   ClearUserControl();
+                                                                   Screen = 1;
                                                                });
 
             // Click vào nút Store
             StoreCommand = new RelayCommand<Grid>((p) => { return true; },
                                                               (p) => {
-                                                                  if(Screen != 2)
-                                                                  {
-                                                                      Screen = 2;
+                                                                  if (Screen != 2) {
+                                                                      storeControl = new StoreControl();
                                                                       p.Children.Clear();
                                                                       p.Children.Add(storeControl);
                                                                       mainWindow.Tag = "Quản lý nhà sách";
+                                                                      ClearUserControl();
+                                                                      Screen = 2;
                                                                   }
                                                               });
 
             // Click vào nút Book
             BookCommand = new RelayCommand<Grid>((p) => { return true; },
                                                               (p) => {
-                                                                  if (Screen != 3)
-                                                                  {
-                                                                      Screen = 3;
+                                                                  if (Screen != 3) {
+                                                                      bookControl = new BookControl();
                                                                       p.Children.Clear();
                                                                       p.Children.Add(bookControl);
                                                                       mainWindow.Tag = "Quản lý sách";
+                                                                      ClearUserControl();
+                                                                      Screen = 3;
                                                                   }
                                                               });
             // Click vào nút Reader
             ReaderCommand = new RelayCommand<Grid>((p) => { return true; },
                                                                (p) => {
-                                                                   if (Screen != 4)
-                                                                   {
-                                                                       Screen = 4;
+                                                                   if (Screen != 4) {
+                                                                       readerControl = new ReaderControl();
                                                                        p.Children.Clear();
                                                                        p.Children.Add(readerControl);
                                                                        mainWindow.Tag = "Quản lý thành viên";
+                                                                       ClearUserControl();
+                                                                       Screen = 4;
+
                                                                    }
                                                                });
             // Click vào nút Fee
             FeeCommand = new RelayCommand<Grid>((p) => { return true; },
                                                                (p) => {
-                                                                   if (Screen != 5)
-                                                                   {
-                                                                       Screen = 5;
+                                                                   if (Screen != 5) {
+                                                                       feeControl = new FeeControl();
                                                                        p.Children.Clear();
                                                                        p.Children.Add(feeControl);
                                                                        mainWindow.Tag = "Quản lý thu phí";
+                                                                       ClearUserControl();
+                                                                       Screen = 5;
                                                                    }
                                                                });
 
-     
 
         }
 
+        private void ClearUserControl() {
+            switch (Screen) {
+                case 1:
+                    break;
+                case 2:
+                    storeControl = null;
+                    break;
+                case 3:
+                    bookControl = null;
+                    break;
+                case 4:
+                    readerControl = null;
+                    break;
+                case 5:
+                    feeControl = null;
+                    break;
+            }
+        }
     }
 }

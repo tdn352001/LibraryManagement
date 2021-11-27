@@ -7,4 +7,5 @@
     <viewmodel:UserViewModel x:Key="UserViewModel"/>
     <viewmodel:BookViewModel x:Key="BookViewModel"/>
     <viewmodel:FeeViewModel x:Key="FeeViewModel"/>
+    <viewmodel:AddFeeViewModel x:Key="AddFeeViewModel"/>
 </ResourceDictionary>
