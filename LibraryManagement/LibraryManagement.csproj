@@ -156,6 +156,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainUserControlViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ReturnBookViewModel.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="Windows\AddFeeWindow.xaml.cs">
@@ -172,6 +173,9 @@
     </Compile>
     <Compile Include="Windows\HistoryStore.xaml.cs">
       <DependentUpon>HistoryStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReturnBookWindow.xaml.cs">
+      <DependentUpon>ReturnBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StoreWindow.xaml.cs">
       <DependentUpon>StoreWindow.xaml</DependentUpon>
@@ -263,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\HistoryStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ReturnBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

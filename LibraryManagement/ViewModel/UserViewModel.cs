@@ -129,6 +129,10 @@ namespace LibraryManagement.ViewModel {
         //Command xử lí khi key word thay đổi
         public ICommand KeyWordChangeCommand { get; set; }
 
+        // Xử lí trả sách
+        public ICommand ReturnBookCommand { get; set; }
+
+
         public UserViewModel() {
 
             // lấy danh sách độc giả từ database
@@ -217,6 +221,10 @@ namespace LibraryManagement.ViewModel {
                                                             (p) => {
                                                                 DisplayResultSearch(p.Text);
                                                             });
+            ReturnBookCommand = new RelayCommand<Object>((p) => { return true; },
+                                                            (p) => { ReturnBook();});
+
+
         }
 
 
@@ -267,7 +275,6 @@ namespace LibraryManagement.ViewModel {
                 AddLayoutVisible = false;
             }
         }
-
 
         private Boolean UserValidate(User user) {
             if (user == null)
@@ -345,5 +352,20 @@ namespace LibraryManagement.ViewModel {
 
         }
 
+        
+
+        private void ReturnBook() {
+            if (SelectedItem == null)
+                return;
+            int countBookBorrowing = SelectedItem.HistoryBooks.Where(x => x.IdStatus == Constant.BOOKSTATE_BORROWING).Count();
+
+            if(countBookBorrowing == 0) {
+                MessageBox.Show("Thành viên này chưa mượn sách nào", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            ReturnBookWindow window = new ReturnBookWindow(SelectedItem);
+            window.ShowDialog();
+        }
     }
 }

@@ -401,6 +401,33 @@
                             </Grid>
                         </Button>
 
+                        <Button
+                            Name="returnBtn"
+                            Command="{Binding ReturnBookCommand}"
+                            Style="{StaticResource ControlButonStyle}"
+                            Foreground="Black"
+                            HorizontalContentAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=returnBtn}" 
+                                    Width="{Binding FontSize, ElementName=returnBtn}" 
+                                    Fill="{Binding Foreground, ElementName=returnBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Trả sách"
+                                    Foreground="{Binding Foreground, ElementName=returnBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=returnBtn}"
+                                    FontSize="{Binding FontSize, ElementName=returnBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
 
                         <Button
                             Name="historyBtn"
