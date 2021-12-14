@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LibraryManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,11 +14,11 @@ namespace LibraryManagement.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         // Tài khoản
-        private string _username;
+        private string _username = "";
         public string username { get => _username; set { _username = value; OnPropertyChanged(); } }
 
         // Mật Khẩu
-        private string _password;
+        private string _password = "";
         public string password { get => _password; set { _password = value; OnPropertyChanged(); } }
 
 
@@ -50,7 +52,7 @@ namespace LibraryManagement.ViewModel
             // Xử lí đăng nhập
             LoginCommand = new RelayCommand<Window>((p) => { return p == null ? false : true; },
                                                              (p) => {
-                                                                 Login(p);
+                                                                 Login(password, p);
                                                              });
 
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; },
@@ -60,21 +62,40 @@ namespace LibraryManagement.ViewModel
               });
         }
 
-        private void Login(Window window)
+        private string convertPasssword(string input) {
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+
+            for (int i = 0; i < bytes.Length; i++) {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+            return hash.ToString();
+        }
+
+        private void Login(string password, Window window)
         {
-            //if (window == null)
-            //    return;
 
-            //var User = DataProvider.Ins.DB.Users.Where(x => x.Name == username && x.Password == password);
+            if(username.Equals("") || password.Equals("")) {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-            //if (User.Count() > 0)
-            //{
-            //    MessageBox.Show("Đăng nhập thành công");
-            //}
-            //else
-            //{
-            //    MessageBox.Show(password, "Đăng nhập thất bại", MessageBoxButton.OK);
-            //}
+
+            string convertPassword = convertPasssword(password);
+            int countAcount = DataProvider.Ins.DB.Admins.Where(x => x.Name == username && x.Password == convertPassword).Count();
+            Admin admin = DataProvider.Ins.DB.Admins.Where(x => x.Username == username && x.Password == convertPassword).SingleOrDefault();
+
+            if (admin == null) {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác", "Đăng nhập thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else {
+                MainWindow mainWindow = new MainWindow();
+                window.Hide();
+                mainWindow.ShowDialog();
+                window.Close();
+            }
+
         }
     }
 }
