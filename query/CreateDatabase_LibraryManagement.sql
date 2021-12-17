@@ -1,8 +1,4 @@
-﻿create database LibraryManagement
-
-
-use LibraryManagement
-
+﻿
 -- quản trị viên 
 create table Admin
 (
@@ -13,7 +9,7 @@ create table Admin
 	Address nvarchar(max),
 	Phone varchar(10),
 	Username varchar(50),
-	Password varchar(12)
+	Password varchar(100)
 )
 
 
@@ -50,11 +46,11 @@ create table Fee
 
 create table DetailFee
 (
+	Id int identity(1,1) primary key,
 	IdFee int,
 	IdUser int,
 	PayDate Date,
 
-	CONSTRAINT detail_fee PRIMARY KEY (IdFee, IdUser),
 	foreign key (IdFee) references Fee(Id),
 	foreign key (IdUser) references Users(Id),
 )
@@ -65,59 +61,47 @@ create table BookStore
 (
 	Id int identity(1,1) primary key,
 	Name nvarchar(max),
+	Email varchar(100),
+	Phone varchar(10),
 	Address nvarchar(max),
 	CoopDate Date,
 	MoreInfo nvarchar(max)
 )
-
 
 -- sách
 create table Book
 (
 	Id int identity(1,1) primary key,
 	Name nvarchar(max),
-	Address nvarchar(max),
+	Author nvarchar(max),
 	PublishDate Date,
 	Quantity int,
-	PriceIn int,
-	PriceOut int,
 	MoreInfo nvarchar(max)
 )
 
-
-
--- tác giả
-create table Writer
-(
-	Id int identity(1,1) primary key,
-	Name nvarchar(max),
-	BirthDay Date,
-	Description nvarchar(max)
-)
-
-
--- sách do ai viết
-create table Author
-(
-	IdBook int,
-	IdWriter int
-	CONSTRAINT Author_pk PRIMARY KEY (IdBook, IdWriter)
-	foreign key (IdBook) references Book(Id),
-	foreign key (IdWriter) references Writer(Id),
-)
 
 
 --nhập sách
 create table ImportBook
 (
 	Id int identity(1,1) primary key,
-	IdBook int,
 	IdBookStore int,
-	Quantity int,
 	ImportDate Date,
-
-	foreign key (IdBook) references Book(Id),
+	TotalPrice BIGINT,
 	foreign key (IdBookStore) references BookStore(Id),
+)
+
+
+create table DetailImport
+(
+	IdImport int,
+	IdBook int,
+	Quantity int,
+	PriceIn int,
+
+	CONSTRAINT detail_import PRIMARY KEY (IdImport, IdBook),
+	foreign key (IdImport) references ImportBook(Id),
+	foreign key (IdBook) references Book(Id),
 )
 
 
@@ -147,3 +131,5 @@ create table HistoryBook
 	foreign key (IdBook) references Book(Id),
 	foreign key (IdStatus) references StatusBook(Id),
 )
+
+alter table Book  add constraint default_value default 0 for Quantity;
