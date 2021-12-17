@@ -194,6 +194,38 @@
                                         Grid.Column="1"/>
                                 </Grid>
                             </Button>
+
+                            <Button
+                                Name="historyToolBtn"
+                                Grid.Row="0"
+                                Style="{StaticResource MaterialDesignFlatDarkButton}"
+                                Foreground="{StaticResource PrimaryColor}"
+                                Height="20"
+                                FontSize="12"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Center"
+                                Command="{Binding HistoryToolCommand}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Path 
+                                        Data="{StaticResource History}"
+                                        Stretch="Uniform"
+                                        Height="{Binding FontSize, ElementName=historyToolBtn}" 
+                                        Width="{Binding FontSize, ElementName=historyToolBtn}" 
+                                        Fill="{Binding Foreground, ElementName=historyToolBtn}"/>
+
+                                    <TextBlock
+                                        Style="{StaticResource MenuTextStyle}"
+                                        Text="Lịch sử"
+                                        Foreground="{Binding Foreground, ElementName=historyToolBtn}"
+                                        TextDecorations="{Binding Tag, ElementName=historyToolBtn}"
+                                        FontSize="{Binding FontSize, ElementName=historyToolBtn}"
+                                        Grid.Column="1"/>
+                                </Grid>
+                            </Button>
                         </StackPanel>
 
                        
@@ -433,6 +465,7 @@
                             Name="historyBtn"
                             Style="{StaticResource ControlButonStyle}"
                             Foreground="Black"
+                            Command="{Binding HistoryCommand}"
                             HorizontalContentAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -448,7 +481,7 @@
 
                                 <TextBlock
                                     Style="{StaticResource MenuTextStyle}"
-                                    Text="Lịch sử mượn sách"
+                                    Text="Lịch sử"
                                     Foreground="{Binding Foreground, ElementName=historyBtn}"
                                     TextDecorations="{Binding Tag, ElementName=historyBtn}"
                                     FontSize="{Binding FontSize, ElementName=historyBtn}"

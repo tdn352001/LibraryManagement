@@ -153,12 +153,20 @@
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\FeeViewModel.cs" />
     <Compile Include="ViewModel\HistoryStoreViewModel.cs" />
+    <Compile Include="ViewModel\HistoryViewModel.cs" />
+    <Compile Include="ViewModel\ImportBookViewModels.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainUserControlViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ReturnBookViewModel.cs" />
     <Compile Include="ViewModel\StoreViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="Windows\AddBookImportWindow.xaml.cs">
+      <DependentUpon>AddBookImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddBookWindow.xaml.cs">
+      <DependentUpon>AddBookWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddFeeWindow.xaml.cs">
       <DependentUpon>AddFeeWindow.xaml</DependentUpon>
     </Compile>
@@ -171,8 +179,14 @@
     <Compile Include="Windows\FeeWindow.xaml.cs">
       <DependentUpon>FeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\HistoryWindow.xaml.cs">
+      <DependentUpon>HistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\HistoryStore.xaml.cs">
       <DependentUpon>HistoryStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportBookWindow.xaml.cs">
+      <DependentUpon>ImportBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ReturnBookWindow.xaml.cs">
       <DependentUpon>ReturnBookWindow.xaml</DependentUpon>
@@ -250,6 +264,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddBookImportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AddFeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,7 +288,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\HistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\HistoryStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

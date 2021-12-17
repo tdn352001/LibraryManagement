@@ -131,6 +131,8 @@ namespace LibraryManagement.ViewModel {
 
         // Xử lí trả sách
         public ICommand ReturnBookCommand { get; set; }
+        public ICommand HistoryToolCommand { get; set; }
+        public ICommand HistoryCommand { get; set; }
 
 
         public UserViewModel() {
@@ -223,8 +225,10 @@ namespace LibraryManagement.ViewModel {
                                                             });
             ReturnBookCommand = new RelayCommand<Object>((p) => { return true; },
                                                             (p) => { ReturnBook();});
-
-
+            HistoryToolCommand = new RelayCommand<Object>((p) => { return true; },
+                                                            (p) => { OpenHistoryAllUser();});
+            HistoryCommand = new RelayCommand<Object>((p) => { return SelectedItem != null; },
+                                                            (p) => { OpenHistoryUserSpecific();});
         }
 
 
@@ -352,8 +356,6 @@ namespace LibraryManagement.ViewModel {
 
         }
 
-        
-
         private void ReturnBook() {
             if (SelectedItem == null)
                 return;
@@ -365,6 +367,16 @@ namespace LibraryManagement.ViewModel {
             }
 
             ReturnBookWindow window = new ReturnBookWindow(SelectedItem);
+            window.ShowDialog();
+        }
+
+        private void OpenHistoryAllUser() {
+            HistoryWindow window = new HistoryWindow();
+            window.ShowDialog();
+        }
+
+        private void OpenHistoryUserSpecific() {
+            HistoryWindow window = new HistoryWindow(SelectedItem);
             window.ShowDialog();
         }
     }

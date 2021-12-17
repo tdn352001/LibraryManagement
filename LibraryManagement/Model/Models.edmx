@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -16,7 +16,7 @@
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="Phone" Type="varchar" MaxLength="10" />
           <Property Name="Username" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="12" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -86,6 +86,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdBookStore" Type="int" />
           <Property Name="ImportDate" Type="date" />
+          <Property Name="TotalPrice" Type="bigint" />
         </EntityType>
         <EntityType Name="StatusBook">
           <Key>
@@ -137,7 +138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailImp__IdBoo__4AB81AF0">
+        <Association Name="FK__DetailImp__IdBoo__0D7A0286">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="DetailImport" Type="Self.DetailImport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailImp__IdImp__49C3F6B7">
+        <Association Name="FK__DetailImp__IdImp__0C85DE4D">
           <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="1" />
           <End Role="DetailImport" Type="Self.DetailImport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ImportBoo__IdBoo__46E78A0C">
+        <Association Name="FK__ImportBoo__IdBoo__09A971A2">
           <End Role="BookStore" Type="Self.BookStore" Multiplicity="0..1" />
           <End Role="ImportBook" Type="Self.ImportBook" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,11 +242,11 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="DetailFee" EntitySet="DetailFee" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailImp__IdBoo__4AB81AF0" Association="Self.FK__DetailImp__IdBoo__4AB81AF0">
+          <AssociationSet Name="FK__DetailImp__IdBoo__0D7A0286" Association="Self.FK__DetailImp__IdBoo__0D7A0286">
             <End Role="Book" EntitySet="Book" />
             <End Role="DetailImport" EntitySet="DetailImport" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailImp__IdImp__49C3F6B7" Association="Self.FK__DetailImp__IdImp__49C3F6B7">
+          <AssociationSet Name="FK__DetailImp__IdImp__0C85DE4D" Association="Self.FK__DetailImp__IdImp__0C85DE4D">
             <End Role="ImportBook" EntitySet="ImportBook" />
             <End Role="DetailImport" EntitySet="DetailImport" />
           </AssociationSet>
@@ -261,7 +262,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="HistoryBook" EntitySet="HistoryBook" />
           </AssociationSet>
-          <AssociationSet Name="FK__ImportBoo__IdBoo__46E78A0C" Association="Self.FK__ImportBoo__IdBoo__46E78A0C">
+          <AssociationSet Name="FK__ImportBoo__IdBoo__09A971A2" Association="Self.FK__ImportBoo__IdBoo__09A971A2">
             <End Role="BookStore" EntitySet="BookStore" />
             <End Role="ImportBook" EntitySet="ImportBook" />
           </AssociationSet>
@@ -270,8 +271,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -286,7 +286,7 @@
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -369,6 +369,7 @@
           <Property Name="ImportDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="BookStore" Relationship="Self.FK__ImportBoo__IdBoo__46E78A0C" FromRole="ImportBook" ToRole="BookStore" />
           <NavigationProperty Name="DetailImports" Relationship="Self.FK__DetailImp__IdImp__49C3F6B7" FromRole="ImportBook" ToRole="DetailImport" />
+          <Property Name="TotalPrice" Type="Int32" />
         </EntityType>
         <EntityType Name="StatusBook">
           <Key>
@@ -647,6 +648,7 @@
           <EntitySetMapping Name="ImportBooks">
             <EntityTypeMapping TypeName="LibraryManagementModel.ImportBook">
               <MappingFragment StoreEntitySet="ImportBook">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdBookStore" ColumnName="IdBookStore" />
                 <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />

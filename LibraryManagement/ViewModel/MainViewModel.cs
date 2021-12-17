@@ -34,10 +34,10 @@ namespace LibraryManagement.ViewModel {
             LoadedCommand = new RelayCommand<Window>((p) => { return true; },
                                                                (p) => {
                                                                    mainWindow = (MainWindow)p;
-                                                                   readerControl = new ReaderControl();
-                                                                   mainWindow.controlContainer.Children.Add(readerControl);
-                                                                   mainWindow.Tag = "Quản lý thành viên";
-                                                                   Screen = 4;
+                                                                   storeControl = new StoreControl();
+                                                                   mainWindow.controlContainer.Children.Add(storeControl);
+                                                                   mainWindow.Tag = "Quản lý nhà sách";
+                                                                   Screen = 2;
                                                                });
 
 

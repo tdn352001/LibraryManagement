@@ -1,0 +1,400 @@
+﻿<Window 
+    x:Class="LibraryManagement.Windows.ImportBookWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LibraryManagement.Windows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    mc:Ignorable="d"
+    Name="importBookWindow"
+    Title="Nhập sách" 
+    WindowStartupLocation="CenterScreen"
+    Height="720"
+    Width="600">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction 
+                Command="{Binding LoadedCommand}" 
+                CommandParameter="{Binding ElementName=importBookWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid 
+                Margin="50 0 100 0"
+                Grid.Row="0">
+                <Grid.Resources >
+                    <Style TargetType="Border" >
+                        <Setter Property="Padding" Value="50" />
+                    </Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Margin" Value="0 10 0 0"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="18"/>
+                    </Style>
+                </Grid.Resources>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Nhà sách"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Margin="0 12 0 0"
+                        FontSize="20" 
+                        FontWeight="DemiBold"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Text="Mã nhà sách:"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+
+                        <TextBox
+                            Name="tbIdStore"
+                            Grid.Column="1" 
+                            FontSize="14"
+                            Width="Auto"
+                            MinWidth="200"
+                            PreviewTextInput="tbIdStore_PreviewTextInput"
+                            TextChanged="tbIdStore_TextChanged"
+                            HorizontalAlignment="Left" 
+                            materialDesign:HintAssist.Hint="Mã nhà sách"
+                            Style="{StaticResource InputTextBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction 
+                                            Command="{Binding UserIdChange}" 
+                                            CommandParameter="{Binding ElementName=tbIdUser}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Text="Tên nhà sách:"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding store.Name}"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Text="Địa chỉ:"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding store.Address}"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock 
+                            Text="SĐT:"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding store.Phone}"
+                            Margin="0 18 0 0"
+                            Foreground="Black" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="16"
+                            FontWeight="DemiBold"/>
+                    </Grid>
+
+                </StackPanel>
+                
+            </Grid>
+
+            <Grid 
+                
+                Margin="50 10 0 0"
+                Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel 
+                    Margin="0 12 0 0"
+                    Orientation="Horizontal">
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Sách Nhập"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="20" 
+                        FontWeight="DemiBold"/>
+
+                    <Button
+                        Name="addBtn"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        Margin="12 0 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" 
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding AddBookCommand}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                Data="{StaticResource Add}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=addBtn}" 
+                                Width="{Binding FontSize, ElementName=addBtn}" 
+                                Fill="{Binding Foreground, ElementName=addBtn}"/>
+
+                            <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Thêm"
+                                Foreground="{Binding Foreground, ElementName=addBtn}"
+                                TextDecorations="{Binding Tag, ElementName=addBtn}"
+                                FontSize="{Binding FontSize, ElementName=addBtn}"
+                                Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+
+                    <Button
+                        Name="delBtn"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        Margin="12 0 0 0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" 
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding DeleteBookCommand}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                Data="{StaticResource Delete}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=delBtn}" 
+                                Width="{Binding FontSize, ElementName=delBtn}" 
+                                Fill="{Binding Foreground, ElementName=delBtn}"/>
+
+                            <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Xóa"
+                                Foreground="{Binding Foreground, ElementName=delBtn}"
+                                TextDecorations="{Binding Tag, ElementName=delBtn}"
+                                FontSize="{Binding FontSize, ElementName=delBtn}"
+                                Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+
+                
+
+                <ListView 
+                    Grid.Row="1"
+                    Margin="0 10 0 0"
+                    ItemsSource="{Binding detailImports}"  
+                    VerticalContentAlignment="Center"
+                    SelectedItem="{Binding detailImport, Mode=OneWayToSource}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Height" Value="42"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Mã Sách" DisplayMemberBinding="{Binding IdBook}"    Width="auto"/>
+                            <GridViewColumn Header="Tên Sách" DisplayMemberBinding="{Binding Book.Name}"   Width="auto"/>
+                            <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}" Width="auto"/>
+                            <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding PriceIn}" Width="auto"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <Grid
+                Margin="50 10 0 10"
+                Grid.Row="2">
+                <StackPanel 
+                    Orientation="Horizontal">
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Thành tiền: "
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="20" 
+                        FontWeight="DemiBold"/>
+                    <TextBlock 
+                        x:Name="tbTotalPrice"
+                        Grid.Row="0"
+                        Text="{Binding totalPrice}"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="20" 
+                        FontWeight="DemiBold"/>
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="đ"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="20" 
+                        FontWeight="DemiBold"/>
+
+                </StackPanel>
+                
+            </Grid>
+
+            <Grid
+                Margin="50 10 0 10"
+                Grid.Row="3">
+                <StackPanel 
+                    Margin="0 12 0 0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Name="finishBtn"
+                        MinWidth="120"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="White"
+                        Background="#FF069C9C"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding SaveCommand}" BorderBrush="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                Data="{StaticResource Save}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=finishBtn}" 
+                                Width="{Binding FontSize, ElementName=finishBtn}" 
+                                Fill="{Binding Foreground, ElementName=finishBtn}"/>
+
+                            <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Lưu"
+                                Foreground="{Binding Foreground, ElementName=finishBtn}"
+                                TextDecorations="{Binding Tag, ElementName=finishBtn}"
+                                FontSize="{Binding FontSize, ElementName=finishBtn}"
+                                Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+
+                    <Button
+                        Name="cancelBtn"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        MinWidth="120"
+                        Margin="24 0 0 0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding CancelCommamd}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                                Data="{StaticResource Cancel}"
+                                Stretch="Uniform"
+                                Height="{Binding FontSize, ElementName=cancelBtn}" 
+                                Width="{Binding FontSize, ElementName=cancelBtn}" 
+                                Fill="{Binding Foreground, ElementName=cancelBtn}"/>
+
+                            <TextBlock
+                                Style="{StaticResource MenuTextStyle}"
+                                Text="Hủy"
+                                Foreground="{Binding Foreground, ElementName=cancelBtn}"
+                                TextDecorations="{Binding Tag, ElementName=cancelBtn}"
+                                FontSize="{Binding FontSize, ElementName=cancelBtn}"
+                                Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

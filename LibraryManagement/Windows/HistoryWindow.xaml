@@ -1,0 +1,236 @@
+﻿<Window x:Class="LibraryManagement.Windows.HistoryWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LibraryManagement.Windows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    mc:Ignorable="d"
+    Title="Lịch sử"
+    Name="historyUserWindow"
+    WindowStartupLocation="CenterScreen"
+    Height="680" 
+    Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction 
+                Command="{Binding LoadedCommand}" 
+                CommandParameter="{Binding ElementName=historyUserWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid 
+                x:Name="infoUser"
+                Margin="50 0 100 0"
+                Grid.Row="0">
+                    <Grid.Resources >
+                        <Style TargetType="Border" >
+                            <Setter Property="Padding" Value="50" />
+                        </Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Margin" Value="0 10 0 0"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="18"/>
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                    Grid.Row="0"
+                    Text="Thông tin người dùng"
+                    Foreground="{StaticResource PrimaryColor}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Margin="0 12 0 0"
+                    FontSize="24" 
+                    FontWeight="DemiBold"/>
+
+                    <Grid 
+                        Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel  Orientation="Vertical">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock 
+                                    Grid.Column="0" 
+                                    Text="Mã: " 
+                                    FontWeight="DemiBold"/>
+
+                                <TextBlock 
+                                    Grid.Column="1" 
+                                    Text="{Binding user.Id}"/>
+                            </Grid>
+
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock 
+                            Grid.Column="0" 
+                            Text="Địa Chỉ: " 
+                            FontWeight="DemiBold"/>
+
+                                <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding user.Address}"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel 
+                    Grid.Column="1"
+                    Orientation="Vertical">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock 
+                            Grid.Column="0" 
+                            Text="Tên: " 
+                            FontWeight="DemiBold"/>
+
+                                <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding user.Name}"/>
+                            </Grid>
+
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock 
+                            Grid.Column="0" 
+                            Text="SĐT: " FontWeight="DemiBold"/>
+
+                                <TextBlock 
+                            Grid.Column="1" 
+                            Text="{Binding user.Phone}"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <Grid 
+                    Margin="50 10 0 0"
+                    Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Lịch sử mượn sách"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Margin="0 12 0 0"
+                        FontSize="24" 
+                        FontWeight="DemiBold"/>
+
+
+                    <ListView 
+                        Grid.Row="1"
+                        Margin="0 10 0 0"
+                        ScrollViewer.PanningMode="None"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                        ItemsSource="{Binding historyBooks}"  
+                        VerticalContentAlignment="Center">
+                        
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Mã mượn" DisplayMemberBinding="{Binding Id}"    Width="auto"/>
+                                <GridViewColumn Header="Mã Sách" DisplayMemberBinding="{Binding IdBook}"    Width="auto"/>
+                                <GridViewColumn Header="Tên Sách" DisplayMemberBinding="{Binding Book.Name}"   Width="auto"/>
+                                <GridViewColumn Header="Ngày mượn" DisplayMemberBinding="{Binding BorrowedDate}" Width="auto"/>
+                                <GridViewColumn Header="Trạng thái" DisplayMemberBinding="{Binding StatusBook.Name}" Width="auto"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+                <Grid 
+                Margin="50 10 0 0"
+                Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                        Grid.Row="0"
+                        Text="Lịch sử đóng phí"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Margin="0 12 0 0"
+                        FontSize="24" 
+                        FontWeight="DemiBold"/>
+
+
+                    <ListView 
+                        Grid.Row="1"
+                        Margin="0 10 0 0"
+                        ItemsSource="{Binding detailFees}"  
+                        VerticalContentAlignment="Center">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Mã Hóa Đơn" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                                <GridViewColumn Header="Tên Thành Viên" DisplayMemberBinding="{Binding User.Name,  StringFormat='MM/yyyy'}"  Width="auto"/>
+                                <GridViewColumn Header="Ngày Đóng" DisplayMemberBinding="{Binding PayDate,  StringFormat='dd/MM/yyyy'}"  Width="auto"/>
+                                <GridViewColumn Header="Tháng Đóng" DisplayMemberBinding="{Binding Fee.Interval,  StringFormat='dd/MM/yyyy'}"  Width="auto"/>
+                                <GridViewColumn Header="Số Tiền" DisplayMemberBinding="{Binding Fee.Money}" Width="auto"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

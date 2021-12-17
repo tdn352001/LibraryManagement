@@ -23,6 +23,7 @@ namespace LibraryManagement.Model
         public int Id { get; set; }
         public Nullable<int> IdBookStore { get; set; }
         public Nullable<System.DateTime> ImportDate { get; set; }
+        public Nullable<int> TotalPrice { get; set; }
     
         public virtual BookStore BookStore { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
