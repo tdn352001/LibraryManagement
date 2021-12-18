@@ -129,5 +129,15 @@ namespace LibraryManagement.Windows {
             AddBookWindow window = new AddBookWindow();
             window.ShowDialog();
         }
+
+        private void selectBookBtn_Click(object sender, RoutedEventArgs e) {
+            SelectBookWindow window = new SelectBookWindow();
+            window.ShowDialog();
+            book = window.selectedItem;
+            if(book != null) {
+                tbNameBook.Text = book.Name;
+                tbIdBook.Text = book.Id.ToString();
+            }
+        }
     }
 }

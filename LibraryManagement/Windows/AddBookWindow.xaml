@@ -95,19 +95,19 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Path 
-                                Data="{StaticResource Cancel}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=cancelBtn}" 
-                                Width="{Binding FontSize, ElementName=cancelBtn}" 
-                                Fill="{Binding Foreground, ElementName=cancelBtn}"/>
+                            Data="{StaticResource Cancel}"
+                            Stretch="Uniform"
+                            Height="{Binding FontSize, ElementName=cancelBtn}" 
+                            Width="{Binding FontSize, ElementName=cancelBtn}" 
+                            Fill="{Binding Foreground, ElementName=cancelBtn}"/>
 
                         <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Hủy"
-                                Foreground="{Binding Foreground, ElementName=cancelBtn}"
-                                TextDecorations="{Binding Tag, ElementName=cancelBtn}"
-                                FontSize="{Binding FontSize, ElementName=cancelBtn}"
-                                Grid.Column="1"/>
+                            Style="{StaticResource MenuTextStyle}"
+                            Text="Hủy"
+                            Foreground="{Binding Foreground, ElementName=cancelBtn}"
+                            TextDecorations="{Binding Tag, ElementName=cancelBtn}"
+                            FontSize="{Binding FontSize, ElementName=cancelBtn}"
+                            Grid.Column="1"/>
                     </Grid>
                 </Button>
             </StackPanel>

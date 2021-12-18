@@ -27,38 +27,72 @@
                 FontSize="24" 
                 FontWeight="DemiBold"/>
 
-            <Button
-                Name="addBookBtn"
-                Grid.Row="0"
-                Click="addBookBtn_Click"
-                Margin="0 12 0 0"
-                Style="{StaticResource MaterialDesignFlatDarkButton}"
-                Foreground="{StaticResource PrimaryColor}"
-                Height="20"
-                FontSize="12"
-                HorizontalAlignment="Left"
-                HorizontalContentAlignment="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Path 
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Name="addBookBtn"
+                    Grid.Row="0"
+                    Click="addBookBtn_Click"
+                    Margin="0 12 0 0"
+                    Style="{StaticResource MaterialDesignFlatDarkButton}"
+                    Foreground="{StaticResource PrimaryColor}"
+                    Height="20"
+                    FontSize="12"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path 
                         Data="{StaticResource Add}"
                         Stretch="Uniform"
                         Height="{Binding FontSize, ElementName=addBookBtn}" 
                         Width="{Binding FontSize, ElementName=addBookBtn}" 
                         Fill="{Binding Foreground, ElementName=addBookBtn}"/>
 
-                    <TextBlock
+                        <TextBlock
                         Style="{StaticResource MenuTextStyle}"
                         Text="Tạo sách mới"
                         Foreground="{Binding Foreground, ElementName=addBookBtn}"
                         TextDecorations="{Binding Tag, ElementName=addBookBtn}"
                         FontSize="{Binding FontSize, ElementName=addBookBtn}"
                         Grid.Column="1"/>
-                </Grid>
-            </Button>
+                    </Grid>
+                </Button>
+                <Button
+                    Name="selectBookBtn"
+                    Grid.Row="0"
+                    Click="selectBookBtn_Click"
+                    Margin="0 12 0 0"
+                    Style="{StaticResource MaterialDesignFlatDarkButton}"
+                    Foreground="{StaticResource PrimaryColor}"
+                    Height="20"
+                    FontSize="12"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path 
+                            Data="{StaticResource Add}"
+                            Stretch="Uniform"
+                            Height="{Binding FontSize, ElementName=addselectBookBtnBookBtn}" 
+                            Width="{Binding FontSize, ElementName=selectBookBtn}" 
+                            Fill="{Binding Foreground, ElementName=selectBookBtn}"/>
+
+                        <TextBlock
+                            Style="{StaticResource MenuTextStyle}"
+                            Text="Chọn sách"
+                            Foreground="{Binding Foreground, ElementName=selectBookBtn}"
+                            TextDecorations="{Binding Tag, ElementName=selectBookBtn}"
+                            FontSize="{Binding FontSize, ElementName=selectBookBtn}"
+                            Grid.Column="1"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
             
             <TextBox
                 Name="tbIdBook"

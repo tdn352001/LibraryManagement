@@ -27,6 +27,13 @@ namespace LibraryManagement.Windows {
             this.DataContext = viewModel;
         }
 
+        public ImportBookWindow(BookStore store) {
+            InitializeComponent();
+            viewModel = new ImportBookViewModels();
+            tbIdStore.Text = store.Id.ToString();
+            this.DataContext = viewModel;
+        }
+
         private void tbIdStore_PreviewTextInput(object sender, TextCompositionEventArgs e) {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
@@ -44,5 +51,17 @@ namespace LibraryManagement.Windows {
             }
         }
 
+        private void addStoreBtn_Click(object sender, RoutedEventArgs e) {
+            AddStoreWindow window = new AddStoreWindow();
+            window.ShowDialog();
+        }
+
+        private void selectStoreBtn_Click(object sender, RoutedEventArgs e) {
+            SelectStoreWindow window = new SelectStoreWindow();
+            window.ShowDialog();
+            if(window.selectedItem != null) {
+                viewModel.setStore(window.selectedItem);
+            }
+        }
     }
 }

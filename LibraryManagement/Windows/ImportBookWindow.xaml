@@ -52,7 +52,6 @@
 
                 <StackPanel Orientation="Vertical">
                     <TextBlock 
-                        Grid.Row="0"
                         Text="Nhà sách"
                         Foreground="{StaticResource PrimaryColor}" 
                         HorizontalAlignment="Left" 
@@ -61,6 +60,70 @@
                         FontSize="20" 
                         FontWeight="DemiBold"/>
 
+                    <StackPanel 
+                        Orientation="Horizontal">
+                        <Button
+                            Name="addStoreBtn"
+                            Grid.Row="0"
+                            Style="{StaticResource MaterialDesignFlatDarkButton}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            FontSize="12"
+                            Click="addStoreBtn_Click"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Add}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=addStoreBtn}" 
+                                    Width="{Binding FontSize, ElementName=addStoreBtn}" 
+                                    Fill="{Binding Foreground, ElementName=addStoreBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Tạo mới"
+                                    Foreground="{Binding Foreground, ElementName=addStoreBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=addStoreBtn}"
+                                    FontSize="{Binding FontSize, ElementName=addStoreBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                            Name="selectStoreBtn"
+                            Grid.Row="0"
+                            Style="{StaticResource MaterialDesignFlatDarkButton}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            FontSize="12"
+                            Click="selectStoreBtn_Click"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Add}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=selectStoreBtn}" 
+                                    Width="{Binding FontSize, ElementName=selectStoreBtn}" 
+                                    Fill="{Binding Foreground, ElementName=selectStoreBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Chọn nhà sách"
+                                    Foreground="{Binding Foreground, ElementName=selectStoreBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=selectStoreBtn}"
+                                    FontSize="{Binding FontSize, ElementName=selectStoreBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
@@ -78,6 +141,7 @@
 
                         <TextBox
                             Name="tbIdStore"
+                            Text="{Binding store.Id}"
                             Grid.Column="1" 
                             FontSize="14"
                             Width="Auto"

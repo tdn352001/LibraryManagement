@@ -1,0 +1,88 @@
+﻿<Window 
+    x:Class="LibraryManagement.Windows.SelectBookWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LibraryManagement.Windows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    mc:Ignorable="d"
+    Title="Chọn sách"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    WindowStyle="ToolWindow"
+    Height="Auto"
+    MaxHeight="600"
+    Width="800">
+    <Grid>
+        <StackPanel
+            Margin="24"
+            Orientation="Vertical">
+            <TextBlock 
+                Grid.Row="0"
+                Text="Chọn sách"
+                Foreground="{StaticResource PrimaryColor}" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0 12 0 0"
+                FontSize="24" 
+                FontWeight="DemiBold"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border 
+                        Background="{StaticResource Background}"
+                        Grid.Column="0"
+                        CornerRadius="16"
+                        Padding="0 0 0 0"
+                        Margin="16">
+                    <Grid 
+                            Background="Transparent"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+
+                        <!--Search Button-->
+                        <Button 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Grid.Column="2"
+                            Width="30"
+                            Height="30"
+                            ToolTip="Search"
+                            Style="{StaticResource SearchButton}"/>
+
+                        <TextBox 
+                            Name="searchBox"
+                            Style="{StaticResource SearchFields}"
+                            materialDesign:HintAssist.Hint="Search Here..."
+                            TextChanged="searchBox_TextChanged"
+                            Padding="20 4 8 4" 
+                            VerticalContentAlignment="Center"
+                            Margin="16 0 8 0" 
+                            BorderThickness="0"/>
+
+                    </Grid>
+                </Border>
+            </Grid>
+            <ListView 
+                x:Name="bookList"
+                Margin="0 12 0 0"
+                SelectionChanged="bookList_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Mã" DisplayMemberBinding="{Binding Id}"  Width="auto"/>
+                        <GridViewColumn Header="Tên sách" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                        <GridViewColumn Header="Tác giả" DisplayMemberBinding="{Binding Author}" Width="auto"/>
+                        <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding PublishDate, StringFormat='dd/MM/yyyy'}" Width="auto"/>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}" Width="auto"/>
+                        <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>

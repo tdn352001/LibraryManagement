@@ -34,5 +34,15 @@ namespace LibraryManagement.Windows
             viewModel = new HistoryStoreViewModel(bookStore);
             this.DataContext = viewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Button button = sender as Button;
+            try {
+                String strDetailId = button.DataContext.ToString();
+                int detailId = int.Parse(strDetailId);
+                viewModel.viewDetailImport(detailId);
+            }
+            catch (Exception) { }
+        }
     }
 }

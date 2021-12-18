@@ -156,7 +156,6 @@
                                     <GridViewColumn Header="Ngày xuất bản" DisplayMemberBinding="{Binding PublishDate, StringFormat='dd/MM/yyyy'}" Width="auto"/>
                                     <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}" Width="auto"/>
                                     <GridViewColumn Header="Thông tin thêm" DisplayMemberBinding="{Binding MoreInfo}" Width="auto"/>
-
                                 </GridView>
                             </ListView.View>
                         </ListView>

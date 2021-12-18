@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Model;
+using LibraryManagement.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,16 @@ namespace LibraryManagement.ViewModel
                                                               {
                                                                   MessageBox.Show("Hello");
                                                               });
+        }
+
+        public void viewDetailImport(int id) {
+            foreach (var import in ImportList) {
+                if (import.Id.Equals(id)) {
+                    DetailImportWindow window = new DetailImportWindow(import);
+                    window.ShowDialog();
+                    return;
+                }
+            }
         }
     }
 }

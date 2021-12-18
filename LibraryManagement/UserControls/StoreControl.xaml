@@ -109,37 +109,102 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button
-                        Name="addBtn"
+                    <StackPanel
                         Grid.Row="0"
-                        Style="{StaticResource MaterialDesignFlatDarkButton}"
-                        Foreground="{StaticResource PrimaryColor}"
-                        Height="20"
-                        FontSize="12"
-                        HorizontalAlignment="Left"
-                        HorizontalContentAlignment="Center"
-                        Command="{Binding AddCommand}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Path 
-                                Data="{StaticResource Add}"
-                                Stretch="Uniform"
-                                Height="{Binding FontSize, ElementName=addBtn}" 
-                                Width="{Binding FontSize, ElementName=addBtn}" 
-                                Fill="{Binding Foreground, ElementName=addBtn}"/>
+                        Orientation="Horizontal">
+                        <Button
+                            Name="addBtn"
+                            Style="{StaticResource MaterialDesignFlatDarkButton}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            Height="20"
+                            FontSize="12"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding AddCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Add}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=addBtn}" 
+                                    Width="{Binding FontSize, ElementName=addBtn}" 
+                                    Fill="{Binding Foreground, ElementName=addBtn}"/>
 
-                            <TextBlock
-                                Style="{StaticResource MenuTextStyle}"
-                                Text="Thêm mới"
-                                Foreground="{Binding Foreground, ElementName=addBtn}"
-                                TextDecorations="{Binding Tag, ElementName=addBtn}"
-                                FontSize="{Binding FontSize, ElementName=addBtn}"
-                                Grid.Column="1"/>
-                        </Grid>
-                    </Button>
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Thêm mới"
+                                    Foreground="{Binding Foreground, ElementName=addBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=addBtn}"
+                                    FontSize="{Binding FontSize, ElementName=addBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                        <Button
+                            Name="importBookBtn"
+                            Style="{StaticResource MaterialDesignFlatDarkButton}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            Height="20"
+                            FontSize="12"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding ImportBookToolCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource Add}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=importBookBtn}" 
+                                    Width="{Binding FontSize, ElementName=importBookBtn}" 
+                                    Fill="{Binding Foreground, ElementName=importBookBtn}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Nhập sách"
+                                    Foreground="{Binding Foreground, ElementName=importBookBtn}"
+                                    TextDecorations="{Binding Tag, ElementName=importBookBtn}"
+                                    FontSize="{Binding FontSize, ElementName=importBookBtn}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+
+                        <Button
+                            Name="historyImportBook"
+                            Style="{StaticResource MaterialDesignFlatDarkButton}"
+                            Foreground="{StaticResource PrimaryColor}"
+                            Height="20"
+                            FontSize="12"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Center"
+                            Command="{Binding ImportBookToolCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Path 
+                                    Data="{StaticResource History}"
+                                    Stretch="Uniform"
+                                    Height="{Binding FontSize, ElementName=historyImportBook}" 
+                                    Width="{Binding FontSize, ElementName=historyImportBook}" 
+                                    Fill="{Binding Foreground, ElementName=historyImportBook}"/>
+
+                                <TextBlock
+                                    Style="{StaticResource MenuTextStyle}"
+                                    Text="Lịch sử"
+                                    Foreground="{Binding Foreground, ElementName=historyImportBook}"
+                                    TextDecorations="{Binding Tag, ElementName=historyImportBook}"
+                                    FontSize="{Binding FontSize, ElementName=historyImportBook}"
+                                    Grid.Column="1"/>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    
 
                     <ScrollViewer 
                         Grid.Row="1"
@@ -189,10 +254,10 @@
                     FontSize="24" 
                     FontFamily="Arial Rounded MT Bold"/>
                     <TextBox
-                    IsEnabled="False"
-                    Text="{Binding SelectedItem.Id}"
-                    materialDesign:HintAssist.Hint="Mã"
-                    Style="{StaticResource InputTextBox}"/>
+                        IsEnabled="False"
+                        Text="{Binding SelectedItem.Id}"
+                        materialDesign:HintAssist.Hint="Mã"
+                        Style="{StaticResource InputTextBox}"/>
                     <TextBox
                     Text="{Binding SelectedItem.Name}"
                     materialDesign:HintAssist.Hint="Tên nhà sách"
@@ -203,9 +268,11 @@
                     materialDesign:HintAssist.Hint="Địa Chỉ"
                     Style="{StaticResource InputTextBox}"/>
                     <TextBox
-                    Text="{Binding SelectedItem.Phone}"
-                    materialDesign:HintAssist.Hint="SĐT"
-                    Style="{StaticResource InputTextBox}"/>
+                        Text="{Binding SelectedItem.Phone}"
+                        PreviewTextInput="TextBox_PreviewTextInput"
+                        MaxLength="10"
+                        materialDesign:HintAssist.Hint="SĐT"
+                        Style="{StaticResource InputTextBox}"/>
                     <TextBox
                     Text="{Binding SelectedItem.Email}"
                     materialDesign:HintAssist.Hint="Email"
@@ -291,11 +358,11 @@
                     </Grid>
 
                     <Button
-                    Name="historyBtn"
-                    Command="{Binding HistoryStoreCommand}"
-                    Style="{StaticResource ControlButonStyle}"
-                    Foreground="Black"
-                    HorizontalContentAlignment="Center">
+                        Name="historyBtn"
+                        Command="{Binding HistoryStoreCommand}"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        HorizontalContentAlignment="Center">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -314,6 +381,34 @@
                             Foreground="{Binding Foreground, ElementName=historyBtn}"
                             TextDecorations="{Binding Tag, ElementName=historyBtn}"
                             FontSize="{Binding FontSize, ElementName=historyBtn}"
+                            Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+
+                    <Button
+                        Name="importBtn"
+                        Command="{Binding ImportBookCommand}"
+                        Style="{StaticResource ControlButonStyle}"
+                        Foreground="Black"
+                        HorizontalContentAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path 
+                            Data="{StaticResource History}"
+                            Stretch="Uniform"
+                            Height="{Binding FontSize, ElementName=importBtn}" 
+                            Width="{Binding FontSize, ElementName=importBtn}" 
+                            Fill="{Binding Foreground, ElementName=importBtn}"/>
+
+                            <TextBlock
+                            Style="{StaticResource MenuTextStyle}"
+                            Text="Nhập sách"
+                            Foreground="{Binding Foreground, ElementName=importBtn}"
+                            TextDecorations="{Binding Tag, ElementName=importBtn}"
+                            FontSize="{Binding FontSize, ElementName=importBtn}"
                             Grid.Column="1"/>
                         </Grid>
                     </Button>
@@ -394,6 +489,8 @@
                     <TextBox
                         Text="{Binding AddItem.Phone}"
                         materialDesign:HintAssist.Hint="SĐT"
+                        MaxLength="10"
+                        PreviewTextInput="TextBox_PreviewTextInput"
                         Style="{StaticResource InputTextBox}"/>
                     <TextBox
                         Text="{Binding AddItem.Email}"

@@ -10,6 +10,8 @@
     Title="Lịch sử"
     Name="historyUserWindow"
     WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    WindowStyle="ToolWindow"
     Height="680" 
     Width="800">
     <i:Interaction.Triggers>
@@ -50,14 +52,14 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock 
-                    Grid.Row="0"
-                    Text="Thông tin người dùng"
-                    Foreground="{StaticResource PrimaryColor}" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center" 
-                    Margin="0 12 0 0"
-                    FontSize="24" 
-                    FontWeight="DemiBold"/>
+                        Grid.Row="0"
+                        Text="Thông tin người dùng"
+                        Foreground="{StaticResource PrimaryColor}" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Margin="0 12 0 0"
+                        FontSize="24" 
+                        FontWeight="DemiBold"/>
 
                     <Grid 
                         Grid.Row="1">

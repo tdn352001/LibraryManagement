@@ -14,18 +14,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LibraryManagement.Windows
-{
+namespace LibraryManagement.Windows {
     /// <summary>
-    /// Interaction logic for StoreWindow.xaml
+    /// Interaction logic for DetailImportWindow.xaml
     /// </summary>
-    public partial class StoreWindow : Window
-    {
-        public StoreWindow()
-        {
+    public partial class DetailImportWindow : Window {
+        DetailImortViewModel viewModel;
+        public DetailImportWindow() {
             InitializeComponent();
         }
 
-        
+        public DetailImportWindow(ImportBook import) {
+            InitializeComponent();
+            viewModel = new DetailImortViewModel(import);
+            this.DataContext = viewModel;
+        }
     }
 }

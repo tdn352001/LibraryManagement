@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Model;
+using LibraryManagement.utils;
 using LibraryManagement.Windows;
 using System;
 using System.Collections.ObjectModel;
@@ -69,6 +70,8 @@ namespace LibraryManagement.ViewModel
         public ICommand ExportInfoCommand { get; set; }
         //Command xử lí khi key word thay đổi
         public ICommand KeyWordChangeCommand { get; set; }
+        public ICommand ImportBookCommand { get; set; }
+        public ICommand ImportBookToolCommand { get; set; }
 
         public StoreViewModel()
         {
@@ -78,7 +81,7 @@ namespace LibraryManagement.ViewModel
             EditCommand = new RelayCommand<Object>((p) => { return true; },
                                                               (p) =>
                                                               {
-                                                                  if (BookStoreValidate(SelectedItem))
+                                                                  if (Validate.isStoreValidate(SelectedItem))
                                                                       SaveChangeStore();
                                                               });
 
@@ -100,7 +103,7 @@ namespace LibraryManagement.ViewModel
             SaveAddCommand = new RelayCommand<Object>((p) => { return true; },
                                                              (p) =>
                                                              {
-                                                                 if (BookStoreValidate(AddItem))
+                                                                 if (Validate.isStoreValidate(AddItem))
                                                                      SaveAddStore();
                                                              });
 
@@ -120,6 +123,18 @@ namespace LibraryManagement.ViewModel
                                                              (p) =>
                                                              {
                                                                  DisplayHistoryImportBook();
+                                                             });
+            ImportBookToolCommand = new RelayCommand<Object>((p) => { return true; },
+                                                             (p) =>
+                                                             {
+                                                                 ImportBookWindow window = new ImportBookWindow();
+                                                                 window.ShowDialog();
+                                                             });
+            ImportBookCommand = new RelayCommand<Object>((p) => { return SelectedItem!= null; },
+                                                             (p) =>
+                                                             {
+                                                                 ImportBookWindow window = new ImportBookWindow(SelectedItem);
+                                                                 window.ShowDialog();
                                                              });
         }
 
@@ -151,20 +166,7 @@ namespace LibraryManagement.ViewModel
             }
         }
 
-        private Boolean BookStoreValidate(BookStore store)
-        {
-            if (store == null)
-                return false;
-
-            if (String.IsNullOrEmpty(store.Name))
-                return false;
-
-            if (String.IsNullOrEmpty(store.Address))
-                return false;
-
-            return true;
-        }
-
+       
         private void DisplayResultSearch(string keyWord)
         {
             StoreList.Clear();

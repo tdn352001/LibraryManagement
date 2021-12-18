@@ -83,7 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Constant.cs" />
+    <Compile Include="utils\Constant.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -148,9 +148,11 @@
     <Compile Include="UserControls\StoreControl.xaml.cs">
       <DependentUpon>StoreControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utils\Validate.cs" />
     <Compile Include="ViewModel\AddFeeViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\DetailImortViewModel.cs" />
     <Compile Include="ViewModel\FeeViewModel.cs" />
     <Compile Include="ViewModel\HistoryStoreViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
@@ -170,14 +172,14 @@
     <Compile Include="Windows\AddFeeWindow.xaml.cs">
       <DependentUpon>AddFeeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\BookWindow.xaml.cs">
-      <DependentUpon>BookWindow.xaml</DependentUpon>
+    <Compile Include="Windows\AddStoreWindow.xaml.cs">
+      <DependentUpon>AddStoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\BorrowBookWindow.xaml.cs">
       <DependentUpon>BorrowBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\FeeWindow.xaml.cs">
-      <DependentUpon>FeeWindow.xaml</DependentUpon>
+    <Compile Include="Windows\DetailImportWindow.xaml.cs">
+      <DependentUpon>DetailImportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\HistoryWindow.xaml.cs">
       <DependentUpon>HistoryWindow.xaml</DependentUpon>
@@ -191,11 +193,11 @@
     <Compile Include="Windows\ReturnBookWindow.xaml.cs">
       <DependentUpon>ReturnBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\StoreWindow.xaml.cs">
-      <DependentUpon>StoreWindow.xaml</DependentUpon>
+    <Compile Include="Windows\SelectBookWindow.xaml.cs">
+      <DependentUpon>SelectBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserWindow.xaml.cs">
-      <DependentUpon>UserWindow.xaml</DependentUpon>
+    <Compile Include="Windows\SelectStoreWindow.xaml.cs">
+      <DependentUpon>SelectStoreWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\MainUserControl.xaml">
       <SubType>Designer</SubType>
@@ -276,7 +278,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\BookWindow.xaml">
+    <Page Include="Windows\AddStoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -284,7 +286,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\FeeWindow.xaml">
+    <Page Include="Windows\DetailImportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,11 +306,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\StoreWindow.xaml">
+    <Page Include="Windows\SelectBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\UserWindow.xaml">
+    <Page Include="Windows\SelectStoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
